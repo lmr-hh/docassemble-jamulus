@@ -190,13 +190,13 @@ review:
     button: |
       ## Persönliche Daten
 
-      |Feld          |Deine Angabe              |
-      |--------------|--------------------------|
-      |Name          | ${ person.name }         |
-      |Organisation  | ${ person.organisation } |
-      |Telefonnummer | ${ person.phone_number } |
-      |E-Mail        | ${ person.email }        |
-      |Adresse       | ${ adresse(person) }     |
+      |Feld          |Deine Angabe                 |
+      |--------------|-----------------------------|
+      |Name          | ${ person.name }            |
+      |Organisation  | ${ person.organisation }    |
+      |Telefonnummer | ${ person.phone_number }    |
+      |E-Mail        | ${ person.email }           |
+      |Adresse       | ${ person.address.address } |
   - Angaben ändern: Optionen
     button: |
       ## Workshop-Optionen

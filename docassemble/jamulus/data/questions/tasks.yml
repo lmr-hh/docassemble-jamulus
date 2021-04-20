@@ -166,7 +166,7 @@ code: |
     result = True
   else:
     to = [person] if testmodus else recipients
-    result = send_ljo_email(
+    result = send_lmr_email(
       to=to,
       template=orga_email,
       attachments=[anmeldung.pdf, rechnung.pdf]
