@@ -1,0 +1,118 @@
+---
+# Dieser Abschnitt sollte nicht verändert werden.
+include:
+  - data.yml
+  - jamulus-fragen.yml
+---
+# Die Metadaten konfigurieren das Erscheinungsbild der Anmeldungen (z.B. den
+# Titel). Mögliche Felder sind hier dokumentiert:
+# https://docassemble.org/docs/initial.html#metadata
+metadata:
+  title: Anmeldung zum Jamulus-Workshop
+  tab title: Anmeldung Jamulus-Workshop
+  short title: Jamulus-Workshop
+  logo:
+    <img src="https://www.lmr-hh.de/wp-content/uploads/2020/03/Landesmusikrat-Hamburg-Negativ.svg"
+         height="27">
+  description:
+    Dies ist die Anmeldung zum Jamulus-Workshop im Mai 2021.
+  exit url: https://lmr-hh.de/
+  revision_date: 2021-04-20
+---
+# In diesem Abschnitt werden die Anmeldungen sowie die Automatisierung
+# konfiguriert. Die einzelnen Felder sind separat dokumentiert.
+variable name: daten
+data:
+  # Das Aktivieren des Testmodus verhindert, dass Anmeldungen automatisch
+  # archiviert werden. Stattdessen wird eine Zusammenfassung der Aktionen an die
+  # angegebene E-Mail geschickt, in der steht, was bei ausgeschaltetem
+  # Testmodus passiert wäre.
+  Testmodus: false
+
+  # Speichert alle angegebenen Daten in der Tabelle mit dieser ID ab. Die
+  # 'Tabelle' gibt die ID einer Google Docs Tabelle an, in der neue Anmeldungen
+  # eingefügt werden sollen. Der 'Bereich' gibt den Bereich (in A1-Notation) an,
+  # in dem neue Anmeldungen eingefügt werden sollen.
+
+  Anmeldungen:
+    Tabelle: 10bqlxBe6ZRVwgz7JoX2Qly1H4z5YX01idgxl1KutBSo
+    Blatt-ID: 1223040774
+    Bereich: Anmeldungen
+
+  # Die hier angegebenen Personen erhalten automatisch eine Benachrichtigung,
+  # wenn eine Anmeldung abgeschickt wird.
+  E-Mail Benachrichtigung:
+    - dejong@lmr-hh.de
+
+  # Dieses Mailgun Template wird zum Verschicken von E-Mails benutzt. Es sollte
+  # die Variable {{{ content }}} enthalten.
+  Mailgun Vorlage: anmeldung
+
+  # ID des Google Drive Ordners, in dem Anmeldungen archiviert werden sollen.
+  # Die ID kann aus der URL herausgelesen werden.
+  Archivordner-ID: 1FwPIdPZ1nrY_Xm-eGJhFX5g74YVwh4YZ
+---
+code: |
+  beitrag = 35 if Mitglied else 10
+---
+# Das Anmeldeformular als PDF. Hier können Dateiname und -inhalt gesetzt werden.
+# Der variable name sowie die valid formats sollten nicht verändert werden.
+attachment:
+  name: Anmeldung ${ person.name }
+  # Dies ist der Dateiname, der u.A. im Mailanhang verwendet wird.
+  filename: Anmeldung zum Jamulus-Workshop
+  # Dies ist der Dateiname des Templates. Diese Datei muss sich im `templates`
+  # Ordner befinden.
+  docx template file: Anmeldung Jamulus-Workshop.docx
+  # Die folgendne beiden Zeilen sollten nicht verändert werden
+  variable name: anmeldeformular
+  valid formats: [pdf]
+---
+# Der Inhalt der E-Mail, die an neu angemeldete Mitglieder geschickt wird. Der
+# Wert von template sollte nicht verändert werden.
+template: person_email
+# Der E-Mail-Betreff
+subject: Ihre Anmeldung zum Jamulus-Workshop
+# Diese Datei enthält den Mailinhalt (die Datei befindet sich im `templates`
+# Ordner).
+content file: Jamulus E-Mail.md
+---
+# Der Inhalt der E-Mail, die als Benachrichtigung bei neuen Anmeldungen
+# versendet wird. Der Wert von template sollte nicht verändert werden.
+template: orga_email
+# Der E-Mail-Betreff
+subject: ${ mitglied } hat sich zum Jamulus-Workshop angemeldet
+# Diese Datei enthält den Mailinhalt (die Datei befindet sich im `templates`
+# Ordner).
+content file: Benachrichtigung.md
+---
+template: testergebnis
+usedefs: [test_defs]
+content file: Testmodus.md
+---
+# Die Abschnitte der Anmeldung. In der fragen-Datei können Fragen diesen
+# Abschnitten zugeordnet werden.
+sections:
+  - Einleitung
+  - Persönliche Daten
+  - Workshop-Optionen
+  - Teilnahmebedingungen
+  - Ihre Anmeldung
+---
+# Die Reihenfolge, in der Fragen gestellt werden. Dies ist eine erweiterte
+# Funktion, die nicht leichtfertig verändert werden sollte.
+mandatory: True
+code: |
+  Einleitung
+  Mitglied
+  Kontaktdaten
+  Optionen
+  Rechnungs_Info
+  Teilnahmebedingungen
+  Kontrolle
+  Abschicken
+  if testmodus:
+    Testergebnisse
+  else:
+    Fertig
+---

@@ -1,0 +1,57 @@
+---
+features:
+  navigation: true
+  hide navbar: false
+  hide standard menu: true
+  labels above fields: true
+  javascript: [actions.js]
+---
+objects:
+  person: Individual
+  bedingungen: DAObject
+---
+include:
+  - tasks.yml
+  - defs.yml
+---
+modules:
+  - .util
+  - .automate
+---
+# Berechnet, ob die Teilnahmebedingungen akzeptiert wurden. Dies kann benutzt
+# werden, um ggf. die notwendige Frage nach den Bedingungen zu stellen, falls
+# bestimmte Bedingungne noch nicht akzeptiert sind.
+code: |
+  bedingungen.akzeptiert = all([
+    bedingungen.bezahlung,
+    bedingungen.daten,
+    bedingungen.teilnehmeranzahl
+  ])
+---
+# Der Testmodus wird über einen URL-Parameter oder eine Konfigurationsvariable
+# festgelegt.
+code: testmodus = url_args.get('test', False) or daten.get("Testmodus", False)
+---
+# Startet alle Hintergrundaufgaben und aktiviert den Wartebildschirm, bis diese
+# beendet sind.
+code: |
+  if not all(task.ready() for task in [
+      save_data_task,
+      register_player_email_task,
+      register_parent_email_task,
+      register_member_email_task,
+      member_email_task,
+      orga_email_task,
+      archive_registration_task
+  ]):
+    Warten
+  else:
+    Abschicken = True
+---
+# Wenn nach der Anmeldung gefragt wird, wird diese im Hintergrund erstellt.
+# Währenddessen wird ein Wartebildschirm gezeigt, Dies ist dazu da, dass der
+# "Absenden" Schritt einfach übersprungen werden kann.
+sets: anmeldung
+need: anmeldung_task
+code: Warten
+---
