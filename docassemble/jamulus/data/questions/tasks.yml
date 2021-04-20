@@ -20,7 +20,8 @@ code: |
     "Adresse": adresse(person),
     "Workshop-Option": Optionen,
     "Mitglied": Mitglied,
-    "Newsletter": bedingungen.newsletter
+    "Newsletter": bedingungen.newsletter,
+    "Datum": today(format='d.M.YYYY')
   }
 ---
 # A task that adds a row to the Anmeldungen.
@@ -101,6 +102,30 @@ code: |
 ---
 
 ---
+# A task that archives the invoice PDF to a folder.
+need: rechnung
+code: archive_invoice_task = background_action('archive_invoice', 'refresh')
+---
+# Archives the invoice PDF to a folder. This action does not receive
+# arguments.
+event: archive_invoice
+need: rechnung
+code: |
+  background = interface() in {"worker", "cron"}
+  if testmodus and background:
+    background_response_action(
+      'set_variable',
+      test_archiv_ordner=get_file_meta(daten["Archivordner-ID"])
+    )
+  else:
+    result = upload_file(rechnung.pdf, daten["Archivordner-ID"])
+    if background:
+      background_response(result)
+    else:
+      json_response(result)
+---
+
+---
 # Sends an email to the registered email address
 need: anmeldung
 code: member_email_task = background_action('send_member_email', 'refresh')
@@ -116,7 +141,7 @@ code: |
     result = send_lmr_email(
         to=[person],
         template=person_email,
-        attachments=[anmeldung.pdf]
+        attachments=[anmeldung.pdf, rechnung.pdf]
     )
   if background:
     background_response(result)
@@ -144,7 +169,7 @@ code: |
     result = send_ljo_email(
       to=to,
       template=orga_email,
-      attachments=[anmeldung.pdf]
+      attachments=[anmeldung.pdf, rechnung.pdf]
     )
   if background:
     background_response(result)

@@ -7,7 +7,7 @@
   ablaufen würde.
 </div>
 
-### Anmeldungsformular
+### Anmeldungsformular und Rechnung
 
 Es wurde ein Anmeldungsformular als PDF generiert.
 
@@ -15,6 +15,12 @@ Es wurde ein Anmeldungsformular als PDF generiert.
    target="_blank"
    class="btn btn-primary btn-sm">
     Anmeldeformular ansehen
+</a>
+
+<a href="${ rechnung.pdf.url_for() }"
+   target="_blank"
+   class="btn btn-primary btn-sm">
+    Rechnung ansehen
 </a>
 
 ### Begrüßungs-E-Mail
@@ -25,6 +31,7 @@ E-Mail sieht allerdings anders aus.
 An die E-Mail sind die folgenden Dokumente angehängt:
 
 - [${ anmeldeformular.pdf.filename }](${ anmeldung.pdf.url_for() })
+- [${ rechnung.pdf.filename }](${ rechnung.pdf.url_for() })
 
 <p>
   <%self:collapse_button id="person-email-collapse">
@@ -47,9 +54,8 @@ Es sind bisher keine Empfänger konfiguriert, daher würde dieser Schritt
 übersprungen werden.
 % else:
 Die Benachrichtigung enthält ebenfalls die
-[Anmeldung](${ anmeldung.pdf.url_for() }) im Anhang, enhält aber nur wenig Text
-und auch nicht die Teilnahmebedingungen und die Geschäftsordnung. Folgende
-Empfänger werden benachrichtigt:
+[Anmeldung](${ anmeldung.pdf.url_for() }) und [Rechnung](${ rechnung.pdf.url_for()})
+im Anhang, enhält aber nur wenig Text und auch nicht die Teilnahmebedingungen und die Geschäftsordnung. Folgende Empfänger werden benachrichtigt:
 
 % for email in daten["E-Mail Benachrichtigung"]:
   - `${ email }`
@@ -73,7 +79,7 @@ nur an die von dir angegebene Adresse `${ person.email }` gesendet.
 </%self:collapse>
 % endif
 
-### Archivieren der Anmeldung
+### Archivieren der Anmeldung und Rechnung
 Das Anmeldeformular wird automatisch in einem Google Drive Ordner mit der ID
 `${ test_archiv_ordner['id'] }` archiviert.
 
@@ -83,6 +89,10 @@ ${ check_folder(test_archiv_ordner) }
   <%self:action_button action="archive_registration"
                        message="Die Anmeldung wurde zum Ordner hinzugefügt.">
     Anmeldung archivieren
+  </%self:action_button>
+  <%self:action_button action="archive_invoice"
+                       message="Die Rechnung wurde zum Ordner hinzugefügt.">
+    Rechnung archivieren
   </%self:action_button>
   <a class="btn btn-secondary btn-sm"
      target="_blank"

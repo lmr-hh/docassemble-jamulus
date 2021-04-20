@@ -55,17 +55,31 @@ data:
 code: |
   beitrag = 10 if Mitglied else 35
 ---
+code: |
+  key = "jamulus_rechnungsnummer"
+  with redis.lock(key + "-lock", timeout=5):
+    redis.set(key, 1, nx=True)
+    redis.incr(key)
+    rechnungsnummer = redis.get(key).decode()
+---
 # Das Anmeldeformular als PDF. Hier können Dateiname und -inhalt gesetzt werden.
 # Der variable name sowie die valid formats sollten nicht verändert werden.
 attachment:
   name: Anmeldung ${ person.name }
   # Dies ist der Dateiname, der u.A. im Mailanhang verwendet wird.
-  filename: Anmeldung zum Jamulus-Workshop
+  filename: Anmeldung ${ person.name }
   # Dies ist der Dateiname des Templates. Diese Datei muss sich im `templates`
   # Ordner befinden.
   docx template file: Anmeldung Jamulus-Workshop.docx
   # Die folgendne beiden Zeilen sollten nicht verändert werden
   variable name: anmeldeformular
+  valid formats: [pdf]
+---
+attachment:
+  name: Rechnung ${ person.name }
+  filename: Rechnung ${ person.name }
+  docx template file: Rechnung.docx
+  variable name: rechnung
   valid formats: [pdf]
 ---
 # Der Inhalt der E-Mail, die an neu angemeldete Mitglieder geschickt wird. Der

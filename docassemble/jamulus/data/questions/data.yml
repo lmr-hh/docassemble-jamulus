@@ -9,6 +9,7 @@ features:
 objects:
   person: Individual
   bedingungen: DAObject
+  redis: DARedis
 ---
 include:
   - tasks.yml
@@ -39,7 +40,8 @@ code: |
       save_data_task,
       member_email_task,
       orga_email_task,
-      archive_registration_task
+      archive_registration_task,
+      archive_invoice_task
   ]):
     Warten
   else:
