@@ -27,7 +27,7 @@ data:
   # archiviert werden. Stattdessen wird eine Zusammenfassung der Aktionen an die
   # angegebene E-Mail geschickt, in der steht, was bei ausgeschaltetem
   # Testmodus passiert wäre.
-  Testmodus: false
+  Testmodus: true
 
   # Speichert alle angegebenen Daten in der Tabelle mit dieser ID ab. Die
   # 'Tabelle' gibt die ID einer Google Docs Tabelle an, in der neue Anmeldungen
@@ -53,7 +53,7 @@ data:
   Archivordner-ID: 1FwPIdPZ1nrY_Xm-eGJhFX5g74YVwh4YZ
 ---
 code: |
-  beitrag = 35 if Mitglied else 10
+  beitrag = 10 if Mitglied else 35
 ---
 # Das Anmeldeformular als PDF. Hier können Dateiname und -inhalt gesetzt werden.
 # Der variable name sowie die valid formats sollten nicht verändert werden.
@@ -96,7 +96,7 @@ sections:
   - Einleitung
   - Persönliche Daten
   - Workshop-Optionen
-  - Teilnahmebedingungen
+  - Bedingungen
   - Ihre Anmeldung
 ---
 # Die Reihenfolge, in der Fragen gestellt werden. Dies ist eine erweiterte
@@ -110,6 +110,7 @@ code: |
   Rechnungs_Info
   Teilnahmebedingungen
   Kontrolle
+  Unterschrift
   Abschicken
   if testmodus:
     Testergebnisse

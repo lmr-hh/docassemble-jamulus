@@ -12,11 +12,9 @@ from googleapiclient import discovery
 __all__ = [
     "ljo_account",
     "get_file_meta",
-    "get_group_meta",
     "add_spreadsheet_row",
-    "add_group_member",
     "upload_file",
-    "send_ljo_email"
+    "send_lmr_email"
 ]
 
 from googleapiclient.errors import HttpError

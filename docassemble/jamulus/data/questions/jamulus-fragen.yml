@@ -37,8 +37,9 @@ subquestion: |
   - **Zweiter Teil des Workshops**: Samstag, 29.05.2021  
     Hier findet direkt über das Programm Jamulus jeweils eine beispielhafte
     Probe für Chor bzw. für Instrumente statt.
-    - 15:00 Uhr – 17:00 Uhr Chorleiter*innen und Chorist*innen
-    - 17:30 Uhr – 19:30 Uhr Instrumentalist*innen
+
+      - 15:00 Uhr – 17:00 Uhr für Chorleiter\*innen und Chorist\*innen
+      - 17:30 Uhr – 19:30 Uhr für Instrumentalist\*innen
   
   #### Technische Voraussetzungen
   Für eine aktive Teilnahme an dem zweiten Teil des Workshops sind ein Computer,
@@ -66,7 +67,7 @@ under: |
   Workshops notwendig und werden ausschließlich zu dessen Durchführung
   verwendet. Daten werden nicht an Dritte weitergegeben. Beachten Sie auch
   unsere [Datenschutzhinweise](https://www.lmr-hh.de/datenschutzhinweise/).
-  Bei Fragen wenden Sie sich an [Daja de Jong](mailto:dejong@lmr-hh.de).
+  Bei Fragen wenden Sie sich an Frau [Daja de Jong](mailto:dejong@lmr-hh.de).
   </small>
 ---
 id: jamulus-2021/mitglied
@@ -88,6 +89,7 @@ subquestion: |
 fields:
   - Organisation: person.organisation
     help: Geben Sie den Namen der Organisation an, für die Sie sich anmelden.
+    required: false
   - Vorname: person.name.first
   - Nachname: person.name.last
   - E-Mail Adresse: person.email
@@ -95,7 +97,8 @@ fields:
     help: Sie erhalten Rechnung und Zugang zum Workshop an diese E-Mail Adresse.
   - Telefonnummer: person.phone_number
     required: false
-  - Straße und Wohnort: person.address.address
+  - Vollständige Anschrift: person.address.address
+    hint: Beispiel-Straße 123, 12345 Hamburg
 ---
 id: jamulus-2021/optionen
 field: Optionen
@@ -106,13 +109,13 @@ subquestion: |
   
   - 1\. Teil des Workshops: Freitag, 21.05.2021, 18.30 - 20.30 Uhr per ZOOM
   - 2\. Teil des Workshops: Samstag, 29.05.2021. Hier gibt es zwei Optionen:
-    - Workshop für Chorleiter\*innen und Chorist\*innen: 15.00 - 17.00 Uhr
-    - Workshop für Instrumentalist\*innen: 17.30 - 19.30 Uhr
+      - Workshop für Chorleiter\*innen und Chorist\*innen: 15.00 - 17.00 Uhr
+      - Workshop für Instrumentalist\*innen: 17.30 - 19.30 Uhr
 
   Bitte wählen Sie aus, an welchem Workshop Sie im 2. Teil teilnehmen möchten?
 buttons:
-  Chor: Chorleiter\*innen und Chorist\*innen
-  Instrument: Instrumentalist\*innen
+  Chorleiter\*innen und Chorist\*innen: Chor
+  Instrumentalist\*innen: Instrument
 ---
 id: jamulus-2021/rechnung
 field: Rechnungs_Info
@@ -127,7 +130,7 @@ buttons:
 ---
 id: jamulus-2021/teilnahmebedingungen
 field: Teilnahmebedingungen
-section: Teilnahmebedingungen
+section: Bedingungen
 question: Teilnahmebedingungen
 subquestion:
   Um am Workshop teilnehmen zu können, müssen Sie den folgenden
@@ -217,7 +220,14 @@ review:
       der Anmeldung. Drucke das PDF aus, unterschreibe es und schicke die
       unterschriebene Anmeldung an unsere Projektleitung. Die E-Mail-Adresse
       erhältst du in der Bestätigungsmail.
-continue button label: Anmeldung abschicken
+continue button label: Unterschreiben und abschicken
+---
+id: jamulus-2021/unterschrift
+continue button field: Abschicken
+section: Ihre Anmeldung
+question: Unterschreiben Sie Ihre Anmeldung
+signature: Unterschrift
+under: ${ person.name }
 ---
 id: jamulus-2021/warten
 event: Warten
