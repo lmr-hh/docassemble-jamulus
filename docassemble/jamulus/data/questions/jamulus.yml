@@ -42,7 +42,7 @@ data:
   # Die hier angegebenen Personen erhalten automatisch eine Benachrichtigung,
   # wenn eine Anmeldung abgeschickt wird.
   E-Mail Benachrichtigung:
-    - dejong@lmr-hh.de
+    - wittenburg@lmr-hh.de
 
   # Dieses Mailgun Template wird zum Verschicken von E-Mails benutzt. Es sollte
   # die Variable {{{ content }}} enthalten.
@@ -81,7 +81,7 @@ content file: Jamulus E-Mail.md
 # versendet wird. Der Wert von template sollte nicht verändert werden.
 template: orga_email
 # Der E-Mail-Betreff
-subject: ${ mitglied } hat sich zum Jamulus-Workshop angemeldet
+subject: ${ person.name } hat sich zum Jamulus-Workshop angemeldet
 # Diese Datei enthält den Mailinhalt (die Datei befindet sich im `templates`
 # Ordner).
 content file: Benachrichtigung.md

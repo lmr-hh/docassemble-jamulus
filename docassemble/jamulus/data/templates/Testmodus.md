@@ -27,7 +27,7 @@ An die E-Mail sind die folgenden Dokumente angehängt:
 - [${ anmeldeformular.pdf.filename }](${ anmeldung.pdf.url_for() })
 
 <p>
-  <%self:collapse_button id="mitglied-email-collapse">
+  <%self:collapse_button id="person-email-collapse">
     E-Mail-Inhalt anzeigen
   </%self:collapse_button>
   <%self:action_button action="send_member_email"
@@ -36,8 +36,8 @@ An die E-Mail sind die folgenden Dokumente angehängt:
   </%self:action_button>
 </p>
 
-<%self:collapse id="mitglied-email-collapse" title="${ mitglied_email.subject }">
-  ${ mitglied_email }
+<%self:collapse id="person-email-collapse" title="${ person_email.subject }">
+  ${ person_email }
 </%self:collapse>
 
 ### Benachrichtigungs-E-Mail

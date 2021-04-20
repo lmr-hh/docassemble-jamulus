@@ -12,13 +12,13 @@ code: |
 # case-insensitive.
 code: |
   member_data = {
-    "Vorname": mitglied.name.first,
-    "Nachname": mitglied.name.last,
-    "Organisation": mitglied.organisation,
-    "E-Mail": mitglied.email,
-    "Telefonnummer": mitglied.phone_number,
-    "Adresse": adresse(mitglied),
-    "Workshop-Option": "Chor" if Chor else "Instrument",
+    "Vorname": person.name.first,
+    "Nachname": person.name.last,
+    "Organisation": person.organisation,
+    "E-Mail": person.email,
+    "Telefonnummer": person.phone_number,
+    "Adresse": adresse(person),
+    "Workshop-Option": Optionen,
     "Mitglied": Mitglied,
     "Newsletter": bedingungen.newsletter
   }
@@ -140,7 +140,7 @@ code: |
   if (testmodus and background) or (not testmodus and not recipients):
     result = True
   else:
-    to = [mitglied] if testmodus else recipients
+    to = [person] if testmodus else recipients
     result = send_ljo_email(
       to=to,
       template=orga_email,

@@ -190,22 +190,23 @@ review:
     button: |
       ## Persönliche Daten
 
-      |Feld          |Deine Angabe                |
-      |--------------|----------------------------|
-      |Name          | ${ mitglied.name }         |
-      |Organisation  | ${ mitglied.organisation } |
-      |Telefonnummer | ${ mitglied.phone_number } |
-      |E-Mail        | ${ mitglied.email }        |
-      |Adresse       | ${ adresse(mitglied) }     |
+      |Feld          |Deine Angabe              |
+      |--------------|--------------------------|
+      |Name          | ${ person.name }         |
+      |Organisation  | ${ person.organisation } |
+      |Telefonnummer | ${ person.phone_number } |
+      |E-Mail        | ${ person.email }        |
+      |Adresse       | ${ adresse(person) }     |
   - Angaben ändern: Optionen
     button: |
       ## Workshop-Optionen
 
       Der Workshop findet an den folgenden Terminen statt:
+
       - 1\. Teil des Workshops: Freitag, 21.05.2021, 18.30 - 20.30 Uhr
-      % if Chor:
+      % if Optionen == "Chor":
       - 2\. Teil des Workshops: Samstag, 29.05.2021, 15.00 - 17.00 Uhr (Termin für Chorleiter\*innen und Chorist\*innen)
-      % elif Instrument:
+      % elif Optionen == "Instrument":
       - 2\. Teil des Workshops: Samstag, 29.05.2021, 17.30 - 19.30 Uhr (Termin für Instrumentalist\*innen)
       % endif
   - Erneut ansehen: Teilnahmebedingungen
@@ -216,14 +217,12 @@ review:
   - note: |
       ## Unterschrift
 
-      Wenn du die Anmeldung abschickst, bekomsmt du per E-Mail eine PDF-Version
-      der Anmeldung. Drucke das PDF aus, unterschreibe es und schicke die
-      unterschriebene Anmeldung an unsere Projektleitung. Die E-Mail-Adresse
-      erhältst du in der Bestätigungsmail.
+      Wenn Sie ihre Daten kontrolliert haben, werden Sie im folgenden Schritt
+      dazu aufgefordert, Ihre Anmeldung zu unterschreiben. Dies geht direkt mit
+      der Maus, bzw. per Touch-Eingabe. Danach können Sie Ihre Anmeldung abschicken.
 continue button label: Unterschreiben und abschicken
 ---
 id: jamulus-2021/unterschrift
-continue button field: Abschicken
 section: Ihre Anmeldung
 question: Unterschreiben Sie Ihre Anmeldung
 signature: Unterschrift
