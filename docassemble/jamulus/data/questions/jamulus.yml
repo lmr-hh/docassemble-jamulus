@@ -42,11 +42,11 @@ data:
   # Die hier angegebenen Personen erhalten automatisch eine Benachrichtigung,
   # wenn eine Anmeldung abgeschickt wird.
   E-Mail Benachrichtigung:
-    - wittenburg@lmr-hh.de
+    - dejong@lmr-hh.de
 
   # Dieses Mailgun Template wird zum Verschicken von E-Mails benutzt. Es sollte
   # die Variable {{{ content }}} enthalten.
-  Mailgun Vorlage: anmeldung
+  Mailgun Vorlage: lmr-anmeldung
 
   # ID des Google Drive Ordners, in dem Anmeldungen archiviert werden sollen.
   # Die ID kann aus der URL herausgelesen werden.
