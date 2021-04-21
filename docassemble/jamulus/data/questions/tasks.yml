@@ -21,7 +21,8 @@ code: |
     "Mitglied": Mitglied,
     "Newsletter": bedingungen.newsletter,
     "Anmeldedatum": format_datetime(today(), 'd.M.YYYY hh:mm'),
-    "Rechnungsnummer": rechnungsnummer
+    "Rechnungsnummer": rechnungsnummer,
+    "Beitrag": beitrag
   }
   if Mitglied:
     member_data["Organisation"] = person.organisation
