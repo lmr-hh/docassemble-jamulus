@@ -152,7 +152,7 @@ review:
       ## Persönliche Daten
 
       % if Mitglied:
-      Sie haben angegeben, dass sie **Mitglied** des Landesmusikrats sind, bzw. sich
+      Sie haben angegeben, dass Sie **Mitglied** des Landesmusikrats sind, bzw. sich
       im Namen einer **Mitgliedsorganisation** anmelden.
       % else:
       Sie melden sich als **externe\*r Teilnehmer\*in** an.
