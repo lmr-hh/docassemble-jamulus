@@ -44,6 +44,7 @@ data:
   E-Mail Benachrichtigung:
     - dejong@lmr-hh.de
     - burmeister@lmr-hh.de
+    - henne@lmr-hh.de
 
   # Dieses Mailgun Template wird zum Verschicken von E-Mails benutzt. Es sollte
   # die Variable {{{ content }}} enthalten.
