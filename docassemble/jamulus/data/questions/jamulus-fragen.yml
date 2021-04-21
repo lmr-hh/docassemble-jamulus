@@ -97,8 +97,12 @@ fields:
   - Straße und Hausnummer: person.address.address
     hint: Beispiel-Straße 123
   - Postleitzahl: person.address.zip
+    datatype: number
   - Ort: person.address.city
     default: Hamburg
+validation code: |
+  if person.phone_number and not phone_number_is_valid(person.phone_number, "DE"):
+    validation_error('Bitte geben Sie eine gültige Telefonnummer ein.', field='person.phone_number')
 ---
 id: jamulus-2021/optionen
 field: Optionen
@@ -119,7 +123,7 @@ subquestion: |
     - 15:00 Uhr – 17:00 Uhr für Chorleiter\*innen und Chorist\*innen
     - 17:30 Uhr – 19:30 Uhr für Instrumentalist\*innen
 
-  Bitte wählen Sie aus, an welchem Workshop Sie im 2. Teil teilnehmen möchten?
+  Bitte wählen Sie aus, an welchem Workshop Sie im 2. Teil teilnehmen möchten.
 buttons:
   Chorleiter\*innen und Chorist\*innen: Chor
   Instrumentalist\*innen: Instrument
@@ -193,7 +197,7 @@ review:
       bekommst du eine Zusammenfassung der auszuführenden Aktionen.
       </div>
       % endif
-      Bevor Sie Ihre Anmeldung abschicken, haben Sienoch einmal die Möglichkeit,
+      Bevor Sie Ihre Anmeldung abschicken, haben Sie noch einmal die Möglichkeit,
       Ihre Angaben zu überprüfen. Nachdem Sie Ihre Anmeldung abgeschickt haben,
       bekommen Sie eine Bestätigung per E-Mail.
   - Persönliche Daten ändern: Kontaktdaten

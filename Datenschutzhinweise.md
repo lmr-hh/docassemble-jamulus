@@ -4,9 +4,9 @@
 
 ## Verantwortlicher
 
-Landesmusikrat in der Freien und Hansestadt Hamburg e.V.  
-Dammtorstraße 14  
-20354 Hamburg  
+**Landesmusikrat in der Freien und Hansestadt Hamburg e.V.** <br />
+Dammtorstraße 14 <br />
+20354 Hamburg <br />
 info@lmr-hh.de
 
 ## Allgemeine Hinweise
@@ -15,7 +15,7 @@ Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren 
 
 ## Datenerfassung
 
-Bei Ihrem Besuch werden persönliche Daten erfasst. Die Daten werden dadurch erhoben, dass Sie diese in einem Anmeldeformular eingeben, bzw. automatisch durch unsere IT-Systeme. Bei automatisch erfassten Daten handelt es sich um technische Daten (z.B. Internetbrowser, Betriebssystem, Uhrzeit des Seitenaufrufs, …).
+Bei Ihrem Besuch werden persönliche Daten erfasst. Die Datenerfassung erfolgt durch die Software [docassemble](http://docassemble.org) Die Daten werden dadurch erhoben, dass Sie diese in einem Anmeldeformular eingeben, bzw. automatisch durch unsere IT-Systeme. Bei automatisch erfassten Daten handelt es sich um technische Daten (z.B. Internetbrowser, Betriebssystem, Uhrzeit des Seitenaufrufs, …).
 
 Die folgenden Daten werden in den meisten Fällen erfasst. Weitere Daten können abhängig von der Veranstaltung erfasst werden, für die Sie sich anmelden:
 
@@ -23,6 +23,8 @@ Die folgenden Daten werden in den meisten Fällen erfasst. Weitere Daten können
 - E-Mail-Adresse
 - Anschrift
 - Telefonnummer
+
+Wenn Sie eine Anmeldung starten aber nicht abschicken, werden die von Ihnen eingegebenen Daten durch die Software [docassemble](http://docassemble.org) gespeichert, sodass Sie die Anmeldung später fortsetzen können. Nach spätestens 30 Tagen Inaktivität werden unvollständige Anmeldedaten automatisch gelöscht.
 
 ## Wofür nutzen wir Ihre Daten?
 
@@ -32,7 +34,9 @@ Einige Veranstaltungen erfordern die Weitergabe einiger Daten, um Veranstaltunge
 
 ## Analyse-Tools und Tools von Drittanbietern
 
-Wir setzen auf dieser Website keine Analyse-Tools (Google Analytics, Matomo, …) ein. Bestimmte technische Informationen sind u.U. in Logdateien enthalten, die regelmäßig rotiert werden.
+Die Anmeldungen finden über die Software [docassemble](http://docassemble.org) statt. Die Software wird auf einem durch den Landesmusikrat Hamburg verwalteten Server in Deutschland betrieben.
+
+Wir setzen während des Anmeldeprozesses keine Analyse-Tools (Google Analytics, Matomo, …) ein. Bestimmte technische Informationen sind u.U. in Logdateien enthalten, die regelmäßig rotiert werden.
 
 Wir verwenden Google Workspace (Google Drive und Google Docs) zum automatischen Abspeichern Ihrer Angaben in der Anmeldung. Eine Verarbeitung personenbezogener Daten findet damit auch in einem Drittland statt. Wir haben mit Google einen Auftragsverarbeitungsvertrag geschlossen, der den Anforderungen von Art. 28 DSGVO entspricht. Ein angemessenes Datenschutzniveau ist durch den Abschluss der sog. EU-Standardvertragsklauseln garantiert.
 
