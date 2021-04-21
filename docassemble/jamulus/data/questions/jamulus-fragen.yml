@@ -195,7 +195,9 @@ review:
       Bevor Sie Ihre Anmeldung abschicken, haben Sienoch einmal die Möglichkeit,
       Ihre Angaben zu überprüfen. Nachdem Sie Ihre Anmeldung abgeschickt haben,
       bekommen Sie eine Bestätigung per E-Mail.
-  - Ändern: Mitglied
+  - Ändern:
+      - Mitglied
+      - {recompute: [person.organisation]}
     button: |
       % if Mitglied:
       Sie haben angegeben, dass sie **Mitglied** des Landesmusikrats sind, bzw. sich
@@ -210,7 +212,9 @@ review:
       |Feld          |Deine Angabe                 |
       |--------------|-----------------------------|
       |Name          | ${ person.name }            |
+      % if Mitglied:
       |Organisation  | ${ person.organisation }    |
+      % endif
       |Telefonnummer | ${ person.phone_number }    |
       |E-Mail        | ${ person.email }           |
       |Adresse       | ${ adresse(person) } |
