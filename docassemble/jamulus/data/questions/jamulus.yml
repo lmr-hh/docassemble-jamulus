@@ -27,7 +27,7 @@ data:
   # archiviert werden. Stattdessen wird eine Zusammenfassung der Aktionen an die
   # angegebene E-Mail geschickt, in der steht, was bei ausgeschaltetem
   # Testmodus passiert wäre.
-  Testmodus: true
+  Testmodus: false
 
   # Speichert alle angegebenen Daten in der Tabelle mit dieser ID ab. Die
   # 'Tabelle' gibt die ID einer Google Docs Tabelle an, in der neue Anmeldungen
@@ -61,7 +61,6 @@ code: |
     key = "jamulus_rechnungsnummer_test"
   else:
     key = "jamulus_rechnungsnummer"
-  redis.set("jamulus_rechnungsnummer", 94)
   with redis.lock(key + "-lock", timeout=5):
     redis.set(key, 94, nx=True)
     redis.incr(key)
