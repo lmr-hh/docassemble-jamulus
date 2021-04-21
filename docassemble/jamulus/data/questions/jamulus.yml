@@ -44,6 +44,7 @@ data:
   E-Mail Benachrichtigung:
     - dejong@lmr-hh.de
     - burmeister@lmr-hh.de
+    - henne@lmr-hh.de
 
   # Dieses Mailgun Template wird zum Verschicken von E-Mails benutzt. Es sollte
   # die Variable {{{ content }}} enthalten.
@@ -61,7 +62,6 @@ code: |
     key = "jamulus_rechnungsnummer_test"
   else:
     key = "jamulus_rechnungsnummer"
-  redis.set("jamulus_rechnungsnummer", 94)
   with redis.lock(key + "-lock", timeout=5):
     redis.set(key, 94, nx=True)
     redis.incr(key)
