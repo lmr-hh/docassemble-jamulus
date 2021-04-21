@@ -82,7 +82,13 @@ question: Persönliche Daten
 subquestion: |
   Zur Durchführung des Workshops benötigen wir von Ihnen folgende Daten. Diese
   Daten werden als Rechnungsdaten verwendet.
+
+  Wenn Sie selbst Mitglied im Landesmusikrat Hamburg sind oder sich im Namen
+  einer Organisation anmelden, die Mitglied im Landesmusikrat Hamburg ist,
+  zahlen Sie 10 € statt 35 € Teilnahmegebühr.
 fields:
+  - Sind Sie Mitglied im Landesmusikrat Hamburg?: Mitglied
+    datatype: yesnoradio
   - Organisation / Verband / Ensemble / ...: person.organisation
     help: |
       Geben Sie den Namen der Organisation (bzw. den Verband oder das Ensemble)
