@@ -114,7 +114,6 @@ content file: Testmodus.md
 # Die Abschnitte der Anmeldung. In der fragen-Datei können Fragen diesen
 # Abschnitten zugeordnet werden.
 sections:
-  - Einleitung
   - Persönliche Daten
   - Workshop-Optionen
   - Bedingungen
@@ -124,7 +123,6 @@ sections:
 # Funktion, die nicht leichtfertig verändert werden sollte.
 mandatory: True
 code: |
-  Einleitung
   Mitglied
   Kontaktdaten
   Optionen

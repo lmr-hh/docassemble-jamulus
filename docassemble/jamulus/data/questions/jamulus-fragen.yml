@@ -1,8 +1,8 @@
 ---
-id: jamulus-2021/einleitung
-field: Einleitung
-section: Einleitung
-question: Anmeldung zum Jamulus-Workshop
+id: jamulus-2021/persoenliche-daten
+field: Kontaktdaten
+section: Persönliche Daten
+question: Persönliche Daten
 subquestion: |
   % if testmodus:
   <div class="alert alert-warning" role="alert">
@@ -11,53 +11,13 @@ subquestion: |
   </div>
   % endif
 
-  Online-Proben können richtig Spaß machen! Sie bieten einen anderen Blick auf
-  das gemeinsame Musizieren und werden auch nach Corona eine praktische
-  Ergänzung sein können. Leider scheitern Musikproben über das Internet oft an
-  der Latenz (Zeitverzögerung) der Systeme. Man hört also nur sich selbst — es
-  fehlt das gemeinsame Klangerlebnis. Das muss nicht sein, denn es gibt ein
-  Programm, das gleichzeitiges Musizieren online auch für größere Gruppen
-  ermöglichen kann: Jamulus!
+  Zur Durchführung des Jamulus-Workshops benötigen wir von Ihnen folgende Daten.
+  Diese Daten werden als Rechnungsdaten verwendet.
 
-  Der Landesmusikrat Hamburg möchte mit diesem Workshopangebot den „Sprung in
-  die Technik des latenzarmen miteinander Musizierens“ erleichtern, Hürden
-  abbauen und bei der Umsetzung  eigener Online-Proben unterstützen. Sich nach
-  Monaten des Probenausfalls wieder zu hören und ein gemeinsames Klangerlebnis
-  zu teilen — ist sehr wohltuend und gibt Kraft. Das Programm Jamulus arbeitet
-  ohne Video. Parallel zur Probenarbeit mit Jamulus wird die visuelle Komponente
-  durch die Software Jitsi (www.jitsi.org) ergänzt. Dozent Joe Völker stellt
-  Jamulus im Auftrag des LMR Hamburg in einem zweiteiligen Workshop vor. Das
-  Programm ist für Chöre und Orchester/Bands etc. gleichermaßen geeignet.
-  Weitere allgemeine Informationen zu der Software Jamulus unter: www.jamulus.io
-
-  #### Ablauf des Workshops:
-  - **Erster Teil des Workshops**: Freitag, 21.05.2021, 18.30 – 20:30 Uhr  
-    Hier geht es um allgemeine Themen wie die Voraussetzungen, Installation und
-    Inbetriebnahme von Jamulus.
-  - **Zweiter Teil des Workshops**: Samstag, 29.05.2021  
-    Hier findet direkt über das Programm Jamulus jeweils eine beispielhafte
-    Probe für Chor bzw. für Instrumente statt.
-
-      - 15:00 Uhr – 17:00 Uhr für Chorleiter\*innen und Chorist\*innen
-      - 17:30 Uhr – 19:30 Uhr für Instrumentalist\*innen
-  
-  #### Technische Voraussetzungen
-  Für eine aktive Teilnahme an dem zweiten Teil des Workshops sind ein Computer,
-  ein LAN-Kabel und möglichst ein externes Mikrofon nötig.
-
-  #### Teilnahmegebühr
-  Die Teilnahmegebühr für LMR-Mitglieder beträgt insgesamt 10 Euro
-  (Nichtmitglieder zahlen 35 Euro). Die Teilnehmeranzahl ist begrenzt.
-
-  #### Anmeldeschluss
-  Anmeldeschluss ist der 14.05.2021.
-
-  #### Veranstalter:
-  Landesmusikrat Hamburg e.V.
-
-  **Ansprechpartnerin**  
-  Frau Daja de Jong  
-  E-Mail: dejong@lmr-hh.de
+  Wenn Sie selbst Mitglied im Landesmusikrat Hamburg sind oder sich im Namen
+  einer Organisation anmelden, die Mitglied im Landesmusikrat Hamburg ist,
+  zahlen Sie 10 € statt 35 € Teilnahmegebühr.
+  <p></p>
 under: |
   <small>
   Alle Angaben, die in diesem Formular gemacht werden, sind zur Durchführung
@@ -65,19 +25,6 @@ under: |
   verwendet. Daten werden nicht an Dritte weitergegeben. Beachten Sie auch
   unsere [Datenschutzhinweise](/packagestatic/docassemble.jamulus/datenschutzhinweise.html).
   </small>
----
-id: jamulus-2021/persoenliche-daten
-field: Kontaktdaten
-section: Persönliche Daten
-question: Persönliche Daten
-subquestion: |
-  Zur Durchführung des Workshops benötigen wir von Ihnen folgende Daten. Diese
-  Daten werden als Rechnungsdaten verwendet.
-
-  Wenn Sie selbst Mitglied im Landesmusikrat Hamburg sind oder sich im Namen
-  einer Organisation anmelden, die Mitglied im Landesmusikrat Hamburg ist,
-  zahlen Sie 10 € statt 35 € Teilnahmegebühr.
-  <p></p>
 fields:
   - Sind Sie Mitglied im Landesmusikrat Hamburg?: Mitglied
     datatype: yesnoradio
