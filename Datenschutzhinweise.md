@@ -4,9 +4,9 @@
 
 ## Verantwortlicher
 
-Landesmusikrat in der Freien und Hansestadt Hamburg e.V.  
-Dammtorstraße 14  
-20354 Hamburg  
+**Landesmusikrat in der Freien und Hansestadt Hamburg e.V.** <br />
+Dammtorstraße 14 <br />
+20354 Hamburg <br />
 info@lmr-hh.de
 
 ## Allgemeine Hinweise
@@ -15,7 +15,7 @@ Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren 
 
 ## Datenerfassung
 
-Bei Ihrem Besuch werden persönliche Daten erfasst. Die Daten werden dadurch erhoben, dass Sie diese in einem Anmeldeformular eingeben, bzw. automatisch durch unsere IT-Systeme. Bei automatisch erfassten Daten handelt es sich um technische Daten (z.B. Internetbrowser, Betriebssystem, Uhrzeit des Seitenaufrufs, …).
+Bei Ihrem Besuch werden persönliche Daten erfasst. Die Datenerfassung erfolgt durch die Software [docassemble](http://docassemble.org) Die Daten werden dadurch erhoben, dass Sie diese in einem Anmeldeformular eingeben, bzw. automatisch durch unsere IT-Systeme. Bei automatisch erfassten Daten handelt es sich um technische Daten (z.B. Internetbrowser, Betriebssystem, Uhrzeit des Seitenaufrufs, …).
 
 Die folgenden Daten werden in den meisten Fällen erfasst. Weitere Daten können abhängig von der Veranstaltung erfasst werden, für die Sie sich anmelden:
 
@@ -23,6 +23,8 @@ Die folgenden Daten werden in den meisten Fällen erfasst. Weitere Daten können
 - E-Mail-Adresse
 - Anschrift
 - Telefonnummer
+
+Wenn Sie eine Anmeldung starten aber nicht abschicken, werden die von Ihnen eingegebenen Daten durch die Software [docassemble](http://docassemble.org) gespeichert, sodass Sie die Anmeldung später fortsetzen können. Nach spätestens 30 Tagen Inaktivität werden unvollständige Anmeldedaten automatisch gelöscht.
 
 ## Wofür nutzen wir Ihre Daten?
 
