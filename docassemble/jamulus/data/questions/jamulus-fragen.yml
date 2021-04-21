@@ -209,15 +209,15 @@ review:
     button: |
       ## Persönliche Daten
 
-      |Feld          |Deine Angabe                 |
-      |--------------|-----------------------------|
-      |Name          | ${ person.name }            |
+      |Feld          |Ihre Angabe               |
+      |--------------|--------------------------|
+      |Name          | ${ person.name }         |
       % if Mitglied:
-      |Organisation  | ${ person.organisation }    |
+      |Organisation  | ${ person.organisation } |
       % endif
-      |Telefonnummer | ${ person.phone_number }    |
-      |E-Mail        | ${ person.email }           |
-      |Adresse       | ${ adresse(person) } |
+      |Telefonnummer | ${ person.phone_number } |
+      |E-Mail        | ${ person.email }        |
+      |Adresse       | ${ adresse(person) }     |
       <p></p>
   - Angaben ändern: Optionen
     button: |
@@ -231,11 +231,13 @@ review:
       % elif Optionen == "Instrument":
       - 2\. Teil des Workshops: Samstag, 29.05.2021, 17.30 - 19.30 Uhr (Termin für Instrumentalist\*innen)
       % endif
+      <p></p>
   - Erneut ansehen: Teilnahmebedingungen
     button: |
       ## Teilnahmebedingungen
 
       Sie haben den Teilnahmebedingungen **zugestimmt**.
+      <p></p>
   - note: |
       ## Anmelden
 

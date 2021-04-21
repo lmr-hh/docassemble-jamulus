@@ -21,7 +21,7 @@ code: |
     "Workshop-Option": Optionen,
     "Mitglied": Mitglied,
     "Newsletter": bedingungen.newsletter,
-    "Anmeldedatum": today(format='d.M.YYYY hh:mm'),
+    "Anmeldedatum": format_datetime(today(), 'd.M.YYYY hh:mm'),
     "Rechnungsnummer": rechnungsnummer
   }
 ---
