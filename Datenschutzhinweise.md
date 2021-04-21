@@ -34,7 +34,9 @@ Einige Veranstaltungen erfordern die Weitergabe einiger Daten, um Veranstaltunge
 
 ## Analyse-Tools und Tools von Drittanbietern
 
-Wir setzen auf dieser Website keine Analyse-Tools (Google Analytics, Matomo, …) ein. Bestimmte technische Informationen sind u.U. in Logdateien enthalten, die regelmäßig rotiert werden.
+Die Anmeldungen finden über die Software [docassemble](http://docassemble.org) statt. Die Software wird auf einem durch den Landesmusikrat Hamburg verwalteten Server in Deutschland betrieben.
+
+Wir setzen während des Anmeldeprozesses keine Analyse-Tools (Google Analytics, Matomo, …) ein. Bestimmte technische Informationen sind u.U. in Logdateien enthalten, die regelmäßig rotiert werden.
 
 Wir verwenden Google Workspace (Google Drive und Google Docs) zum automatischen Abspeichern Ihrer Angaben in der Anmeldung. Eine Verarbeitung personenbezogener Daten findet damit auch in einem Drittland statt. Wir haben mit Google einen Auftragsverarbeitungsvertrag geschlossen, der den Anforderungen von Art. 28 DSGVO entspricht. Ein angemessenes Datenschutzniveau ist durch den Abschluss der sog. EU-Standardvertragsklauseln garantiert.
 

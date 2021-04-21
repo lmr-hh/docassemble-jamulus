@@ -101,7 +101,7 @@ fields:
   - Ort: person.address.city
     default: Hamburg
 validation code: |
-  if not phone_number_is_valid(person.phone_number, "DE"):
+  if person.phone_number and not phone_number_is_valid(person.phone_number, "DE"):
     validation_error('Bitte geben Sie eine gültige Telefonnummer ein.', field='person.phone_number')
 ---
 id: jamulus-2021/optionen
