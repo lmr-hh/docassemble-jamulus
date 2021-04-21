@@ -63,7 +63,7 @@ under: |
   Alle Angaben, die in diesem Formular gemacht werden, sind zur Durchführung
   des Workshops notwendig und werden ausschließlich zu dessen Durchführung
   verwendet. Daten werden nicht an Dritte weitergegeben. Beachten Sie auch
-  unsere [Datenschutzhinweise](https://www.lmr-hh.de/datenschutzhinweise/).
+  unsere [Datenschutzhinweise](/packagestatic/docassemble.jamulus/datenschutzhinweise.html).
   </small>
 ---
 id: jamulus-2021/persoenliche-daten
@@ -144,6 +144,9 @@ question: Teilnahmebedingungen
 subquestion:
   Um am Workshop teilnehmen zu können, müssen Sie den folgenden
   Teilnahmebedingungen zustimmen.
+
+  Klicken Sie [hier](/packagestatic/docassemble.jamulus/datenschutzhinweise.html),
+  um die Datenschutzhinweise zu lesen.
 fields:
   - ? Ich sichere zu, den Teilnahmebeitrag von ${ beitrag },00 € zeitnah zu
       überweisen. Mir ist bewusst, dass eine Teilnahme am Workshop nur nach
