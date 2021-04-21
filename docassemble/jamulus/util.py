@@ -23,7 +23,7 @@ def adresse(thing):
         components.append(address.address)
     city_components = []
     if getattr(address, "zip", None):
-        city_components.append(str(address.zip))
+        city_components.append(str(int(address.zip)))
     if getattr(address, "city", None):
         city_components.append(address.city)
     components.append(" ".join(city_components))
