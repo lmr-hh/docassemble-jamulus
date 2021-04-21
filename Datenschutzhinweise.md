@@ -4,9 +4,9 @@
 
 ## Verantwortlicher
 
-Landesmusikrat in der Freien und Hansestadt Hamburg e.V.
-Dammtorstraße 14
-20354 Hamburg
+Landesmusikrat in der Freien und Hansestadt Hamburg e.V.  
+Dammtorstraße 14  
+20354 Hamburg  
 info@lmr-hh.de
 
 ## Allgemeine Hinweise
