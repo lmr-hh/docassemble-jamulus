@@ -203,6 +203,7 @@ review:
       % else:
       Sie melden sich als **externe\*r Teilnehmer\*in** an.
       % endif
+      Ihr Teilnehmerbeitrag beträgt ${ beitrag } €.
 
       |Feld          |Ihre Angabe               |
       |--------------|--------------------------|
@@ -213,6 +214,7 @@ review:
       |Telefonnummer | ${ person.phone_number } |
       |E-Mail        | ${ person.email }        |
       |Adresse       | ${ adresse(person) }     |
+
       <p></p>
   - Angaben ändern: Optionen
     button: |

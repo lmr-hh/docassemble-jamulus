@@ -65,7 +65,7 @@ code: |
   with redis.lock(key + "-lock", timeout=5):
     redis.set(key, 94, nx=True)
     redis.incr(key)
-    rechnungsnummer = print(f'2021{redis.get(key).decode():03}')
+    rechnungsnummer = '2021' + str(redis.get(key).decode()).zfill(3)
     if testmodus:
       rechnungsnummer = rechnungsnummer + "-test"
 ---
