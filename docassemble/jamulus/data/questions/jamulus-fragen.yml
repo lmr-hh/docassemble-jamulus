@@ -47,8 +47,7 @@ subquestion: |
 
   #### Teilnahmegebühr
   Die Teilnahmegebühr für LMR-Mitglieder beträgt insgesamt 10 Euro
-  (Nichtmitglieder zahlen 35 Euro). Die Teilnehmeranzahl ist begrenzt. Eine
-  Anmeldung ist ab dem 20.04.2021 möglich.
+  (Nichtmitglieder zahlen 35 Euro). Die Teilnehmeranzahl ist begrenzt.
 
   #### Anmeldeschluss
   Anmeldeschluss ist der 14.05.2021.
@@ -58,16 +57,13 @@ subquestion: |
 
   **Ansprechpartnerin**  
   Frau Daja de Jong  
-  E-Mail: dejong@lmr-hh.de  
-  Tel: 0173/2456635
+  E-Mail: dejong@lmr-hh.de
 under: |
   <small>
-  Zur Durchführung des Workshops erfragen wir einige persönliche Daten. Alle
-  Angaben, die in diesem Formular gemacht werden, sind zur Durchführung des
-  Workshops notwendig und werden ausschließlich zu dessen Durchführung
+  Alle Angaben, die in diesem Formular gemacht werden, sind zur Durchführung
+  des Workshops notwendig und werden ausschließlich zu dessen Durchführung
   verwendet. Daten werden nicht an Dritte weitergegeben. Beachten Sie auch
   unsere [Datenschutzhinweise](https://www.lmr-hh.de/datenschutzhinweise/).
-  Bei Fragen wenden Sie sich an Frau [Daja de Jong](mailto:dejong@lmr-hh.de).
   </small>
 ---
 id: jamulus-2021/mitglied
@@ -77,7 +73,7 @@ question: Sind Sie Mitglied im Landesmusikrat Hamburg?
 subquestion: |
   Wenn Sie selbst Mitglied im Landesmusikrat Hamburg sind oder sich im Namen
   einer Organisation anmelden, die Mitglied im Landesmusikrat Hamburg ist,
-  zahlen Sie eine geringere Teilnahmegebühr.
+  zahlen Sie 10 € statt 35 € Teilnahmegebühr.
 ---
 id: jamulus-2021/persoenliche-daten
 field: Kontaktdaten
@@ -87,9 +83,12 @@ subquestion: |
   Zur Durchführung des Workshops benötigen wir von Ihnen folgende Daten. Diese
   Daten werden als Rechnungsdaten verwendet.
 fields:
-  - Organisation: person.organisation
-    help: Geben Sie den Namen der Organisation an, für die Sie sich anmelden.
-    required: false
+  - Organisation / Verband / Ensemble / ...: person.organisation
+    help: |
+      Geben Sie den Namen der Organisation (bzw. den Verband oder das Ensemble)
+      an, für die Sie sich anmelden. Wenn Sie individuelles Mitglied im Landesmusikrat
+      sind, geben Sie bitte "Einzelperson" an.
+    show if: Mitglied
   - Vorname: person.name.first
   - Nachname: person.name.last
   - E-Mail Adresse: person.email
@@ -97,8 +96,11 @@ fields:
     help: Sie erhalten Rechnung und Zugang zum Workshop an diese E-Mail Adresse.
   - Telefonnummer: person.phone_number
     required: false
-  - Vollständige Anschrift: person.address.address
-    hint: Beispiel-Straße 123, 12345 Hamburg
+  - Straße und Hausnummer: person.address.address
+    hint: Beispiel-Straße 123
+  - Postleitzahl: person.address.zip
+  - Ort: person.address.city
+    default: Hamburg
 ---
 id: jamulus-2021/optionen
 field: Optionen
@@ -107,10 +109,17 @@ question: Workshop-Optionen
 subquestion: |
   Der Workshop besteht aus zwei Teilen:
   
-  - 1\. Teil des Workshops: Freitag, 21.05.2021, 18.30 - 20.30 Uhr per ZOOM
-  - 2\. Teil des Workshops: Samstag, 29.05.2021. Hier gibt es zwei Optionen:
-      - Workshop für Chorleiter\*innen und Chorist\*innen: 15.00 - 17.00 Uhr
-      - Workshop für Instrumentalist\*innen: 17.30 - 19.30 Uhr
+  **Erster Teil des Workshops**: Freitag, 21.05.2021, 18.30 – 20:30 Uhr  
+    Hier geht es um allgemeine Themen wie die Voraussetzungen, Installation und
+    Inbetriebnahme von Jamulus. Dieser Teil ist für alle Teilnehmer\*innen
+    verpflichtend.
+
+  **Zweiter Teil des Workshops**: Samstag, 29.05.2021  
+    Hier findet direkt über das Programm Jamulus jeweils eine beispielhafte
+    Probe für Chor bzw. für Instrumente statt.
+
+    - 15:00 Uhr – 17:00 Uhr für Chorleiter\*innen und Chorist\*innen
+    - 17:30 Uhr – 19:30 Uhr für Instrumentalist\*innen
 
   Bitte wählen Sie aus, an welchem Workshop Sie im 2. Teil teilnehmen möchten?
 buttons:
@@ -122,9 +131,11 @@ field: Rechnungs_Info
 section: Workshop-Optionen
 question: Rechnung
 subquestion: |
-  Die Teilnahme am Workshop kostet für Sie ${ beitrag } €. Nachdem Sie die
-  Anmeldung abgeschlossen haben, erhalten Sie eine Rechnung per E-Mail. Bitte
-  überweisen Sie zeitnah den Betrag entsprechend der Ihnen zugesandten Rechnung.
+  Die Teilnahme am Workshop kostet für Sie ${ beitrag } €.
+  
+  Nachdem Sie die Anmeldung abgeschlossen haben, erhalten Sie eine Rechnung per E-Mail.
+  
+  Bitte überweisen Sie zeitnah den Betrag entsprechend der Ihnen zugesandten Rechnung.
 buttons:
   - Verstanden: continue
 ---
@@ -136,9 +147,10 @@ subquestion:
   Um am Workshop teilnehmen zu können, müssen Sie den folgenden
   Teilnahmebedingungen zustimmen.
 fields:
-  - ? Ich sichere zu, den Teilnahmebeitrag von ${ beitrag } € zeitnah zu
+  - ? Ich sichere zu, den Teilnahmebeitrag von ${ beitrag },00 € zeitnah zu
       überweisen. Mir ist bewusst, dass eine Teilnahme am Workshop nur nach
-      erfolgter Zahlung möglich ist.
+      erfolgter Zahlung möglich ist. Der Link zur Zoom-Veranstaltung sowie
+      weitere Informationen folgen per E-Mail.
     : bedingungen.bezahlung
     datatype: yesnowide
     validate: >
@@ -154,6 +166,11 @@ fields:
       Die Anmeldungen werden in der Reihenfolge ihres Eingangs berücksichtigt.
       Die Teilnahmegebühr wird bei Nichtteilnahme nicht erstattet.
     : bedingungen.teilnehmeranzahl
+    datatype: yesnowide
+    validate: >
+      lambda x: x or validation_error('Sie müssen alle Teilnahmebedingungen akzeptieren.')
+  - ? Ich habe die Datenschutzhinweise zustimmend zur Kenntnis genommen.
+    : bedingungen.datenschutz
     datatype: yesnowide
     validate: >
       lambda x: x or validation_error('Sie müssen alle Teilnahmebedingungen akzeptieren.')
@@ -196,7 +213,8 @@ review:
       |Organisation  | ${ person.organisation }    |
       |Telefonnummer | ${ person.phone_number }    |
       |E-Mail        | ${ person.email }           |
-      |Adresse       | ${ person.address.address } |
+      |Adresse       | ${ adresse(person) } |
+      <p></p>
   - Angaben ändern: Optionen
     button: |
       ## Workshop-Optionen
@@ -215,18 +233,13 @@ review:
 
       Sie haben den Teilnahmebedingungen **zugestimmt**.
   - note: |
-      ## Unterschrift
+      ## Anmelden
 
-      Wenn Sie ihre Daten kontrolliert haben, werden Sie im folgenden Schritt
-      dazu aufgefordert, Ihre Anmeldung zu unterschreiben. Dies geht direkt mit
-      der Maus, bzw. per Touch-Eingabe. Danach können Sie Ihre Anmeldung abschicken.
-continue button label: Unterschreiben und abschicken
----
-id: jamulus-2021/unterschrift
-section: Ihre Anmeldung
-question: Unterschreiben Sie Ihre Anmeldung
-signature: Unterschrift
-under: ${ person.name }
+      Wenn Sie ihre Daten kontrolliert haben, klicken Sie auf "Jetzt verbindlich anmelden",
+      um Ihre Anmeldung abzuschicken. Sie erhalten sowohl Ihre Anmeldung als auch eine
+      Rechnung für den Teilnahmebeitrag per E-Mail. Den Zugang zu den beiden
+      Workshop-Teilen erhalten Sie später ebenfalls per E-Mail.
+continue button label: Jetzt verbindlich anmelden
 ---
 id: jamulus-2021/warten
 event: Warten
@@ -242,10 +255,16 @@ event: Fertig
 section: Ihre Anmeldung
 prevent going back: True
 question: Ihre Anmeldung
-subquestion:
+subquestion: |
   Ihre Anmeldung wurde erfolgreich abgeschickt. Sie erhalten eine Kopie per E-Mail.
-  Alternativ können Sie auch direkt hier Ihre Anmeldung
-  [herunterladen](${ anmeldung.pdf.url_for() }). Wir freuen uns über Ihre Teilnahme.
+
+  Sie können hier direkt Ihre Anmeldung und Ihre Rechnung herunterladen. Sie bekommen
+  beide Dokumente auch per Mail zugeschickt:
+
+  - [Anmeldung herunterladen](${ anmeldung.pdf.url_for() })
+  - [Rechnung herunterladen](${ rechnung.pdf.url_for() })
+  
+  Wir freuen uns über Ihre Teilnahme.
 
   Klicken Sie auf "Fertig", um die Anmeldung zu beenden.
 buttons:

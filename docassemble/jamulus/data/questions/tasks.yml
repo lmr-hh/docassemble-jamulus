@@ -21,7 +21,8 @@ code: |
     "Workshop-Option": Optionen,
     "Mitglied": Mitglied,
     "Newsletter": bedingungen.newsletter,
-    "Datum": today(format='d.M.YYYY')
+    "Anmeldedatum": today(format='d.M.YYYY hh:mm'),
+    "Rechnungsnummer": rechnungsnummer
   }
 ---
 # A task that adds a row to the Anmeldungen.

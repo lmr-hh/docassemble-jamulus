@@ -43,6 +43,7 @@ data:
   # wenn eine Anmeldung abgeschickt wird.
   E-Mail Benachrichtigung:
     - dejong@lmr-hh.de
+    - burmeister@lmr-hh.de
 
   # Dieses Mailgun Template wird zum Verschicken von E-Mails benutzt. Es sollte
   # die Variable {{{ content }}} enthalten.
@@ -60,7 +61,7 @@ code: |
   with redis.lock(key + "-lock", timeout=5):
     redis.set(key, 1, nx=True)
     redis.incr(key)
-    rechnungsnummer = redis.get(key).decode()
+    rechnungsnummer = "LMR-JAMULUS-" + redis.get(key).decode()
 ---
 # Das Anmeldeformular als PDF. Hier können Dateiname und -inhalt gesetzt werden.
 # Der variable name sowie die valid formats sollten nicht verändert werden.
@@ -124,7 +125,6 @@ code: |
   Rechnungs_Info
   Teilnahmebedingungen
   Kontrolle
-  Unterschrift
   Abschicken
   if testmodus:
     Testergebnisse
