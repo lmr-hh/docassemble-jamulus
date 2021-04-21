@@ -26,7 +26,8 @@ code: |
   bedingungen.akzeptiert = all([
     bedingungen.bezahlung,
     bedingungen.daten,
-    bedingungen.teilnehmeranzahl
+    bedingungen.teilnehmeranzahl,
+    bedingungen.datenschutz
   ])
 ---
 # Der Testmodus wird über einen URL-Parameter oder eine Konfigurationsvariable

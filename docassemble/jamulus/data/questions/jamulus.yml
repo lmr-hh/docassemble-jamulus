@@ -17,7 +17,7 @@ metadata:
   description:
     Dies ist die Anmeldung zum Jamulus-Workshop im Mai 2021.
   exit url: https://www.lmr-hh.de/save-the-date-workshop-online-proben-mit-jamulus/
-  revision_date: 2021-04-20
+  revision_date: 2021-04-21
 ---
 # In diesem Abschnitt werden die Anmeldungen sowie die Automatisierung
 # konfiguriert. Die einzelnen Felder sind separat dokumentiert.
@@ -27,7 +27,7 @@ data:
   # archiviert werden. Stattdessen wird eine Zusammenfassung der Aktionen an die
   # angegebene E-Mail geschickt, in der steht, was bei ausgeschaltetem
   # Testmodus passiert wäre.
-  Testmodus: false
+  Testmodus: true
 
   # Speichert alle angegebenen Daten in der Tabelle mit dieser ID ab. Die
   # 'Tabelle' gibt die ID einer Google Docs Tabelle an, in der neue Anmeldungen
@@ -43,6 +43,7 @@ data:
   # wenn eine Anmeldung abgeschickt wird.
   E-Mail Benachrichtigung:
     - dejong@lmr-hh.de
+    - burmeister@lmr-hh.de
 
   # Dieses Mailgun Template wird zum Verschicken von E-Mails benutzt. Es sollte
   # die Variable {{{ content }}} enthalten.
@@ -56,11 +57,17 @@ code: |
   beitrag = 10 if Mitglied else 35
 ---
 code: |
-  key = "jamulus_rechnungsnummer"
+  if testmodus:
+    key = "jamulus_rechnungsnummer_test"
+  else:
+    key = "jamulus_rechnungsnummer"
+  redis.set("jamulus_rechnungsnummer", 94)
   with redis.lock(key + "-lock", timeout=5):
-    redis.set(key, 1, nx=True)
+    redis.set(key, 94, nx=True)
     redis.incr(key)
-    rechnungsnummer = redis.get(key).decode()
+    rechnungsnummer = '2021' + str(redis.get(key).decode()).zfill(3)
+    if testmodus:
+      rechnungsnummer = rechnungsnummer + "-test"
 ---
 # Das Anmeldeformular als PDF. Hier können Dateiname und -inhalt gesetzt werden.
 # Der variable name sowie die valid formats sollten nicht verändert werden.
@@ -124,7 +131,6 @@ code: |
   Rechnungs_Info
   Teilnahmebedingungen
   Kontrolle
-  Unterschrift
   Abschicken
   if testmodus:
     Testergebnisse
