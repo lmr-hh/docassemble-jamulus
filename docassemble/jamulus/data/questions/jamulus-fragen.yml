@@ -97,8 +97,12 @@ fields:
   - Straße und Hausnummer: person.address.address
     hint: Beispiel-Straße 123
   - Postleitzahl: person.address.zip
+    datatype: number
   - Ort: person.address.city
     default: Hamburg
+validation code: |
+  if not phone_number_is_valid(person.phone_number, "DE"):
+    validation_error('Bitte geben Sie eine gültige Telefonnummer ein.', field='person.phone_number')
 ---
 id: jamulus-2021/optionen
 field: Optionen
