@@ -14,7 +14,6 @@ code: |
   member_data = {
     "Vorname": person.name.first,
     "Nachname": person.name.last,
-    "Organisation": person.organisation,
     "E-Mail": person.email,
     "Telefonnummer": person.phone_number,
     "Adresse": adresse(person),
@@ -24,6 +23,8 @@ code: |
     "Anmeldedatum": format_datetime(today(), 'd.M.YYYY hh:mm'),
     "Rechnungsnummer": rechnungsnummer
   }
+  if Mitglied:
+    member_data["Organisation"] = person.organisation
 ---
 # A task that adds a row to the Anmeldungen.
 code: |
