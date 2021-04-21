@@ -66,15 +66,6 @@ under: |
   unsere [Datenschutzhinweise](https://www.lmr-hh.de/datenschutzhinweise/).
   </small>
 ---
-id: jamulus-2021/mitglied
-yesno: Mitglied
-section: Persönliche Daten
-question: Sind Sie Mitglied im Landesmusikrat Hamburg?
-subquestion: |
-  Wenn Sie selbst Mitglied im Landesmusikrat Hamburg sind oder sich im Namen
-  einer Organisation anmelden, die Mitglied im Landesmusikrat Hamburg ist,
-  zahlen Sie 10 € statt 35 € Teilnahmegebühr.
----
 id: jamulus-2021/persoenliche-daten
 field: Kontaktdaten
 section: Persönliche Daten
@@ -86,6 +77,7 @@ subquestion: |
   Wenn Sie selbst Mitglied im Landesmusikrat Hamburg sind oder sich im Namen
   einer Organisation anmelden, die Mitglied im Landesmusikrat Hamburg ist,
   zahlen Sie 10 € statt 35 € Teilnahmegebühr.
+  <p></p>
 fields:
   - Sind Sie Mitglied im Landesmusikrat Hamburg?: Mitglied
     datatype: yesnoradio
@@ -201,19 +193,16 @@ review:
       Bevor Sie Ihre Anmeldung abschicken, haben Sienoch einmal die Möglichkeit,
       Ihre Angaben zu überprüfen. Nachdem Sie Ihre Anmeldung abgeschickt haben,
       bekommen Sie eine Bestätigung per E-Mail.
-  - Ändern:
-      - Mitglied
-      - {recompute: [person.organisation]}
+  - Persönliche Daten ändern: Kontaktdaten
     button: |
+      ## Persönliche Daten
+
       % if Mitglied:
       Sie haben angegeben, dass sie **Mitglied** des Landesmusikrats sind, bzw. sich
       im Namen einer **Mitgliedsorganisation** anmelden.
       % else:
       Sie melden sich als **externe\*r Teilnehmer\*in** an.
       % endif
-  - Persönliche Daten ändern: Kontaktdaten
-    button: |
-      ## Persönliche Daten
 
       |Feld          |Ihre Angabe               |
       |--------------|--------------------------|
