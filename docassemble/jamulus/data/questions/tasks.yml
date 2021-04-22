@@ -20,7 +20,7 @@ code: |
     "Workshop-Option": Optionen,
     "Mitglied": Mitglied,
     "Newsletter": bedingungen.newsletter,
-    "Anmeldedatum": current_datetime().format_datetime('d.M.YYYY hh:mm'),
+    "Anmeldedatum": current_datetime(timezone="Europe/Berlin").format_datetime('d.M.YYYY hh:mm'),
     "Rechnungsnummer": rechnungsnummer,
     "Beitrag": beitrag
   }
