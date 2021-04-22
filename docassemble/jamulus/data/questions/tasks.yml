@@ -20,7 +20,7 @@ code: |
     "Workshop-Option": Optionen,
     "Mitglied": Mitglied,
     "Newsletter": bedingungen.newsletter,
-    "Anmeldedatum": format_datetime(today(), 'd.M.YYYY hh:mm'),
+    "Anmeldedatum": current_datetime(timezone="Europe/Berlin").format_datetime('d.M.YYYY HH:mm'),
     "Rechnungsnummer": rechnungsnummer,
     "Beitrag": beitrag
   }
@@ -28,6 +28,7 @@ code: |
     member_data["Organisation"] = person.organisation
 ---
 # A task that adds a row to the Anmeldungen.
+need: rechnungsnummer
 code: |
   save_data_task = background_action(
     'append_to_spreadsheet',
@@ -44,6 +45,7 @@ code: |
 #          should be inserted.
 # - test_variable: This argument provides the variable to fill in test mode.
 event: append_to_spreadsheet
+need: rechnungsnummer
 code: |
   background = interface() in {"worker", "cron"}
   if testmodus and background:
@@ -106,13 +108,13 @@ code: |
 
 ---
 # A task that archives the invoice PDF to a folder.
-need: rechnung
+need: [rechnungsnummer, rechnung]
 code: archive_invoice_task = background_action('archive_invoice', 'refresh')
 ---
 # Archives the invoice PDF to a folder. This action does not receive
 # arguments.
 event: archive_invoice
-need: rechnung
+need: [rechnungsnummer, rechnung]
 code: |
   background = interface() in {"worker", "cron"}
   if testmodus and background:
@@ -130,12 +132,12 @@ code: |
 
 ---
 # Sends an email to the registered email address
-need: anmeldung
+need: [rechnungsnummer, anmeldung, rechnung]
 code: member_email_task = background_action('send_member_email', 'refresh')
 ---
 # Sends an email to the registered email address.
 event: send_member_email
-need: anmeldung
+need: [rechnungsnummer, anmeldung, rechnung]
 code: |
   background = interface() in {"worker", "cron"}
   if testmodus and background:
@@ -154,12 +156,12 @@ code: |
 
 ---
 # Sends an email to the notification addresses.
-need: anmeldung
+need: [rechnungsnummer, anmeldung, rechnung]
 code: orga_email_task = background_action('send_orga_email', 'refresh')
 ---
 # Sends an email to the notification addresses.
 event: send_orga_email
-need: anmeldung
+need: [rechnungsnummer, anmeldung, rechnung]
 code: |
   background = interface() in {"worker", "cron"}
   recipients = daten["E-Mail Benachrichtigung"]
