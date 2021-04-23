@@ -26,7 +26,9 @@ under: |
   unsere [Datenschutzhinweise](/packagestatic/docassemble.jamulus/datenschutzhinweise.html).
   </small>
 fields:
-  - Sind Sie Mitglied im Landesmusikrat Hamburg?: Mitglied
+  - ? Gehören Sie einer Organisation oder einem Verband/Verein an,
+      die/der Mitglied beim Landesmusikrat Hamburg ist?
+    : Mitglied
     datatype: yesnoradio
   - Organisation / Verband / Ensemble / ...: person.organisation
     help: |
