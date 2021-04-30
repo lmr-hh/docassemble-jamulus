@@ -76,6 +76,25 @@ code: |
     redis.set(key, 7, nx=True)
     chor_rest = int(redis.get(key).decode())
     redis.decr(key)
+  chor_rest_decr = True
+---
+code: |
+  key = "jamulus_chor_rest"
+  if testmodus:
+    key = key + "_test"
+  with redis.lock(key + "-lock", timeout=5):
+    redis.set(key, 7, nx=True)
+    chor_rest = int(redis.get(key).decode())
+---
+code: |
+  key = "jamulus_instrument_rest"
+  if testmodus:
+    key = key + "_test"
+  with redis.lock(key + "-lock", timeout=5):
+    redis.set(key, 19, nx=True)
+    instrument_rest_rest = int(redis.get(key).decode())
+    redis.decr(key)
+  instrument_rest_decr = True
 ---
 code: |
   key = "jamulus_instrument_rest"
@@ -84,7 +103,6 @@ code: |
   with redis.lock(key + "-lock", timeout=5):
     redis.set(key, 19, nx=True)
     instrument_rest = int(redis.get(key).decode())
-    redis.decr(key)
 ---
 # Das Anmeldeformular als PDF. Hier können Dateiname und -inhalt gesetzt werden.
 # Der variable name sowie die valid formats sollten nicht verändert werden.
