@@ -120,6 +120,10 @@ buttons:
     ([{'exit': 'Anmeldung beenden'}] if chor_rest <= 0 and instrument_rest <= 0 else [])
 ---
 code: |
+  if Optionen == 'Instrument':
+    need(instrument_rest_decr)
+  elif Optionen == 'Chor':
+    need(chor_rest_decr)
   if Optionen == 'exit':
     command('exit', url='https://www.lmr-hh.de/save-the-date-workshop-online-proben-mit-jamulus/')
   Kapazitaet_Check = True
