@@ -11,6 +11,25 @@ subquestion: |
   </div>
   % endif
 
+  % if chor_rest <= 0 and instrument_rest <= 0:
+  <div class="alert alert-warning" role="alert">
+  Leider sind beide Workshops komplett ausgebucht. Wir versuchen weitere Termine
+  anzubieten, können aber zur Zeit leider keine weiteren Anmeldungen entgegennehmen.
+  </div>
+  % elif chor_rest <= 0:
+  <div class="alert alert-warning" role="alert">
+  Leider ist der Workshop für Chorleiter\*innen und Chorist\*innen komplett ausgebucht.
+  Wir versuchen weitere Termine anzubieten, können aber zur Zeit leider keine weiteren
+  Anmeldungen für diesen Teil  entgegennehmen.
+  </div>
+  % elif instrument_rest <= 0:
+  <div class="alert alert-warning" role="alert">
+  Leider ist der Workshop für Instrumentalist\*innen komplett ausgebucht. Wir versuchen
+  weitere Termine anzubieten, können aber zur Zeit leider keine weiteren Anmeldungen
+  für diesen Teil entgegennehmen.
+  </div>
+  % endif
+
   Zur Durchführung des Jamulus-Workshops benötigen wir von Ihnen folgende Daten.
   Diese Daten werden als Rechnungsdaten verwendet.
 
@@ -83,13 +102,13 @@ subquestion: |
   <div class="alert alert-warning" role="alert">
   Leider ist der Workshop für Chorleiter\*innen und Chorist\*innen komplett ausgebucht.
   Wir versuchen weitere Termine anzubieten, können aber zur Zeit leider keine weiteren
-  Anmeldungen entgegennehmen.
+  Anmeldungen für diesen Teil  entgegennehmen.
   </div>
   % elif instrument_rest <= 0:
   <div class="alert alert-warning" role="alert">
   Leider ist der Workshop für Instrumentalist\*innen komplett ausgebucht. Wir versuchen
   weitere Termine anzubieten, können aber zur Zeit leider keine weiteren Anmeldungen
-  entgegennehmen.
+  für diesen Teil entgegennehmen.
   </div>
   % endif
 buttons:
@@ -97,6 +116,13 @@ buttons:
     ([{'Chor': 'Chorleiter\*innen und Chorist\*innen'}] if chor_rest > 0 else [])
     +
     ([{'Instrument': 'Instrumentalist\*innen'}] if instrument_rest > 0 else [])
+    +
+    ([{'exit': 'Anmeldung beenden'}] if chor_rest <= 0 and instrument_rest <= 0 else [])
+---
+code: |
+  if Optionen == 'exit':
+    command('exit', url='https://www.lmr-hh.de/save-the-date-workshop-online-proben-mit-jamulus/')
+  Kapazitaet_Check = True
 ---
 id: jamulus-2021/rechnung
 field: Rechnungs_Info
