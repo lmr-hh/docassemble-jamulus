@@ -58,16 +58,33 @@ code: |
   beitrag = 10 if Mitglied else 35
 ---
 code: |
+  key = "jamulus_rechnungsnummer"
   if testmodus:
-    key = "jamulus_rechnungsnummer_test"
-  else:
-    key = "jamulus_rechnungsnummer"
+    key = key + "_test"
   with redis.lock(key + "-lock", timeout=5):
     redis.set(key, 94, nx=True)
     redis.incr(key)
     rechnungsnummer = '2021' + str(redis.get(key).decode()).zfill(3)
     if testmodus:
       rechnungsnummer = rechnungsnummer + "-test"
+---
+code: |
+  key = "jamulus_chor_rest"
+  if testmodus:
+    key = key + "_test"
+  with redis.lock(key + "-lock", timeout=5):
+    redis.set(key, 7, nx=True)
+    chor_rest = int(redis.get(key).decode())
+    redis.decr(key)
+---
+code: |
+  key = "jamulus_instrument_rest"
+  if testmodus:
+    key = key + "_test"
+  with redis.lock(key + "-lock", timeout=5):
+    redis.set(key, 19, nx=True)
+    instrument_rest = int(redis.get(key).decode())
+    redis.decr(key)
 ---
 # Das Anmeldeformular als PDF. Hier können Dateiname und -inhalt gesetzt werden.
 # Der variable name sowie die valid formats sollten nicht verändert werden.

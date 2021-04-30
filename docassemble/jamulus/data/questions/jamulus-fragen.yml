@@ -73,9 +73,30 @@ subquestion: |
     - 17:30 Uhr – 19:30 Uhr für Instrumentalist\*innen
 
   Bitte wählen Sie aus, an welchem Workshop Sie im 2. Teil teilnehmen möchten.
+
+  % if chor_rest <= 0 and instrument_rest <= 0:
+  <div class="alert alert-warning" role="alert">
+  Leider sind beide Workshops komplett ausgebucht. Wir versuchen weitere Termine
+  anzubieten, können aber zur Zeit leider keine weiteren Anmeldungen entgegennehmen.
+  </div>
+  % elif chor_rest <= 0:
+  <div class="alert alert-warning" role="alert">
+  Leider ist der Workshop für Chorleiter\*innen und Chorist\*innen komplett ausgebucht.
+  Wir versuchen weitere Termine anzubieten, können aber zur Zeit leider keine weiteren
+  Anmeldungen entgegennehmen.
+  </div>
+  % elif instrument_rest <= 0:
+  <div class="alert alert-warning" role="alert">
+  Leider ist der Workshop für Instrumentalist\*innen komplett ausgebucht. Wir versuchen
+  weitere Termine anzubieten, können aber zur Zeit leider keine weiteren Anmeldungen
+  entgegennehmen.
+  </div>
+  % endif
 buttons:
-  Chorleiter\*innen und Chorist\*innen: Chor
-  Instrumentalist\*innen: Instrument
+  code: >
+    ([{'Chor': 'Chorleiter\*innen und Chorist\*innen'}] if chor_rest > 0 else [])
+    +
+    ([{'Instrument': 'Instrumentalist\*innen'}] if instrument_rest > 0 else [])
 ---
 id: jamulus-2021/rechnung
 field: Rechnungs_Info
