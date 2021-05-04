@@ -22,7 +22,8 @@ code: |
     "Newsletter": bedingungen.newsletter,
     "Anmeldedatum": current_datetime(timezone="Europe/Berlin").format_datetime('d.M.YYYY HH:mm'),
     "Rechnungsnummer": rechnungsnummer,
-    "Beitrag": beitrag
+    "Beitrag": beitrag,
+    "Warteliste": (Optionen == "Chor" and chor_rest <= 0) or (Optionen == "Instrument" and instrument_rest <= 0)
   }
   if Mitglied:
     member_data["Organisation"] = person.organisation
