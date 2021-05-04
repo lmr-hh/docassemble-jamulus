@@ -13,20 +13,23 @@ subquestion: |
 
   % if chor_rest <= 0 and instrument_rest <= 0:
   <div class="alert alert-warning" role="alert">
-  Leider sind beide Workshops komplett ausgebucht. Wir versuchen weitere Termine
-  anzubieten, können aber zur Zeit leider keine weiteren Anmeldungen entgegennehmen.
+  Leider sind beide Workshops komplett ausgebucht. Wenn Sie sich trotzdem anmelden,
+  setzen wir Sie auf eine Warteliste. Wir versuchen weitere Kapazitäten für den Workshop
+  zu schaffen, können aber nicht garantieren, dass Sie einen Platz bekommen.
   </div>
   % elif chor_rest <= 0:
   <div class="alert alert-warning" role="alert">
   Leider ist der Workshop für Chorleiter\*innen und Chorist\*innen komplett ausgebucht.
-  Wir versuchen weitere Termine anzubieten, können aber zur Zeit leider keine weiteren
-  Anmeldungen für diesen Teil  entgegennehmen.
+  Wenn Sie sich trotzdem anmelden, setzen wir Sie auf eine Warteliste. Wir versuchen
+  weitere Kapazitäten für den Workshop zu schaffen, können aber nicht garantieren,
+  dass Sie einen Platz bekommen.
   </div>
   % elif instrument_rest <= 0:
   <div class="alert alert-warning" role="alert">
-  Leider ist der Workshop für Instrumentalist\*innen komplett ausgebucht. Wir versuchen
-  weitere Termine anzubieten, können aber zur Zeit leider keine weiteren Anmeldungen
-  für diesen Teil entgegennehmen.
+  Leider ist der Workshop für Instrumentalist\*innen komplett ausgebucht. Wenn Sie
+  sich trotzdem anmelden, setzen wir Sie auf eine Warteliste. Wir versuchen weitere
+  Kapazitäten für den Workshop zu schaffen, können aber nicht garantieren, dass Sie
+  einen Platz bekommen.
   </div>
   % endif
 
@@ -95,37 +98,34 @@ subquestion: |
 
   % if chor_rest <= 0 and instrument_rest <= 0:
   <div class="alert alert-warning" role="alert">
-  Leider sind beide Workshops komplett ausgebucht. Wir versuchen weitere Termine
-  anzubieten, können aber zur Zeit leider keine weiteren Anmeldungen entgegennehmen.
+  Leider sind beide Workshops komplett ausgebucht. Wenn Sie sich trotzdem anmelden,
+  setzen wir Sie auf eine Warteliste. Wir versuchen weitere Kapazitäten für den Workshop
+  zu schaffen, können aber nicht garantieren, dass Sie einen Platz bekommen.
   </div>
   % elif chor_rest <= 0:
   <div class="alert alert-warning" role="alert">
   Leider ist der Workshop für Chorleiter\*innen und Chorist\*innen komplett ausgebucht.
-  Wir versuchen weitere Termine anzubieten, können aber zur Zeit leider keine weiteren
-  Anmeldungen für diesen Teil  entgegennehmen.
+  Wenn Sie sich trotzdem anmelden, setzen wir Sie auf eine Warteliste. Wir versuchen
+  weitere Kapazitäten für den Workshop zu schaffen, können aber nicht garantieren,
+  dass Sie einen Platz bekommen.
   </div>
   % elif instrument_rest <= 0:
   <div class="alert alert-warning" role="alert">
-  Leider ist der Workshop für Instrumentalist\*innen komplett ausgebucht. Wir versuchen
-  weitere Termine anzubieten, können aber zur Zeit leider keine weiteren Anmeldungen
-  für diesen Teil entgegennehmen.
+  Leider ist der Workshop für Instrumentalist\*innen komplett ausgebucht. Wenn Sie
+  sich trotzdem anmelden, setzen wir Sie auf eine Warteliste. Wir versuchen weitere
+  Kapazitäten für den Workshop zu schaffen, können aber nicht garantieren, dass Sie
+  einen Platz bekommen.
   </div>
   % endif
 buttons:
-  code: >
-    ([{'Chor': 'Chorleiter\*innen und Chorist\*innen'}] if chor_rest > 0 else [])
-    +
-    ([{'Instrument': 'Instrumentalist\*innen'}] if instrument_rest > 0 else [])
-    +
-    ([{'exit': 'Anmeldung beenden'}] if chor_rest <= 0 and instrument_rest <= 0 else [])
+  Chorleiter\*innen und Chorist\*innen: Chor
+  Instrumentalist\*innen: Instrument
 ---
 code: |
   if Optionen == 'Instrument':
     need(instrument_rest_decr)
   elif Optionen == 'Chor':
     need(chor_rest_decr)
-  if Optionen == 'exit':
-    command('exit', url='https://www.lmr-hh.de/save-the-date-workshop-online-proben-mit-jamulus/')
   Kapazitaet_Check = True
 ---
 id: jamulus-2021/rechnung
@@ -236,6 +236,11 @@ review:
       - 2\. Teil des Workshops: Samstag, 29.05.2021, 17.30 - 19.30 Uhr (Termin für Instrumentalist\*innen)
       % endif
       <p></p>
+
+      % if (Optionen == "Chor" and chor_rest <= 0) or (Optionen == "Instrument" and instrument_rest <= 0):
+      Sie melden sich auf einen **Wartelistenplatz** an. Wir versuchen weitere Kapazitäten zu schaffen,
+      können aber nicht garantieren, dass Sie am Workshop teilnehmen können.
+      % endif
   - Erneut ansehen: Teilnahmebedingungen
     button: |
       ## Teilnahmebedingungen
