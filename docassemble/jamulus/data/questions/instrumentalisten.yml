@@ -28,7 +28,7 @@ metadata:
 # konfiguriert. Die einzelnen Felder sind separat dokumentiert.
 variable name: Tabelle
 data:
-  ID: 10bqlxBe6ZRVwgz7JoX2Qly1H4z5YX01idgxl1KutBSo
+  ID: 1ynQ8lxHxZJXS3XMJf2Jsae5k_O6TvuaZ87jETxQ4vMk
   Blatt-ID: 1223040774
   Bereich: Anmeldungen
 ---
@@ -43,11 +43,11 @@ code: |
 # case-insensitive.
 code: |
   member_data = {
-    "Instrument": instrument,
-    "Niveau": niveau,
-    "Alter": alter,
-    "Mitglied": member,
-    "Ensemble": ensemble
+    "Instrument": instrument if defined('instrument') else '',
+    "Niveau": niveau if defined('niveau') else '',
+    "Alter": alter if defined('alter') else '',
+    "Mitglied": member if defined('member') else '',
+    "Ensemble": ensemble if defined('ensemble') else ''
   }
 ---
 # A task that adds a row to the Anmeldungen.
@@ -71,10 +71,7 @@ code: |
     action_argument('range'),
     member_data
   )
-  if background:
-    background_response(result)
-  else:
-    json_response(result)
+  background_response(result)
 ---
 # Die Reihenfolge, in der Fragen gestellt werden. Dies ist eine erweiterte
 # Funktion, die nicht leichtfertig verändert werden sollte.
@@ -94,22 +91,22 @@ subquestion: |
   beantworten.
 fields:
   - Welches Instrument spielen Sie?: instrument
-    required: no
+    required: false
   - Wie schätzen Sie Ihr eigenes Können ein?: niveau
-    required: no
+    required: false
     choices:
       - Anfänger\*in
       - Fortgeschrittene\*r
       - Profi
   - Wie alt sind Sie?: alter
     datatype: integer
-    required: no
+    required: false
   - Gehören Sie einem Orchester/Band/Musikgruppe an?: member
     datatype: yesnoradio
-    required: no
+    required: false
   - Name des Ensembles: ensemble
     show if: member
-    required: no
+    required: false
 ---
 event: Warten
 prevent going back: True
