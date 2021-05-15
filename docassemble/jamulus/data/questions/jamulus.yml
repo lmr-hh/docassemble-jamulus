@@ -158,6 +158,7 @@ sections:
 # Funktion, die nicht leichtfertig verändert werden sollte.
 mandatory: True
 code: |
+  Anmeldeschluss
   Mitglied
   Kontaktdaten
   Optionen
