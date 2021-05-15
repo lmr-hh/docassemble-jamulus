@@ -1,6 +1,6 @@
 ---
 id: jamulus-2021/frist
-field: Anmeldeschluss
+event: Anmeldeschluss
 section: Ihre Anmeldung
 question: Anmeldefrist abgelaufen
 subquestion: |
@@ -8,7 +8,7 @@ subquestion: |
   eine Anmeldung ist nicht mehr möglich. Die Zugangsdaten erhalten Sie nach erfolgter
   Zahlung kurz vor Beginn des Workshops.
 buttons:
-  - Fertig: exit
+  - Beenden: exit
 ---
 id: jamulus-2021/persoenliche-daten
 field: Kontaktdaten
