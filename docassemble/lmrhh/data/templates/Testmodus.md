@@ -11,17 +11,18 @@
 
 Es wurde ein Anmeldungsformular als PDF generiert.
 
-<a href="${ anmeldung.pdf.url_for() }"
-   target="_blank"
-   class="btn btn-primary btn-sm">
-    Anmeldeformular ansehen
-</a>
-
-<a href="${ rechnung.pdf.url_for() }"
-   target="_blank"
-   class="btn btn-primary btn-sm">
-    Rechnung ansehen
-</a>
+<p>
+  <a href="${ anmeldung.pdf.url_for() }"
+    target="_blank"
+    class="btn btn-primary btn-sm">
+      Anmeldeformular ansehen
+  </a>
+  <a href="${ rechnung.pdf.url_for() }"
+    target="_blank"
+    class="btn btn-primary btn-sm">
+      Rechnung ansehen
+  </a>
+</p>
 
 ### Begrüßungs-E-Mail
 Eine E-Mail würde an `${ person.email }` geschickt werden.
