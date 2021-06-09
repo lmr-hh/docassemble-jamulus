@@ -150,13 +150,7 @@ review:
     button: |
       ## Persönliche Daten
 
-      % if Mitglied:
-      Sie haben angegeben, dass Sie **Mitglied** des Landesmusikrats sind, bzw. sich
-      im Namen einer **Mitgliedsorganisation** anmelden.
-      % else:
-      Sie melden sich als **externe\*r Teilnehmer\*in** an.
-      % endif
-      Ihr Teilnehmerbeitrag beträgt 25 €.
+      Sie haben folgende Daten angegeben. Die Teilnahmegebühr beträgt 25 €.
 
       |Feld          |Ihre Angabe               |
       |--------------|--------------------------|
