@@ -156,7 +156,7 @@ review:
       % else:
       Sie melden sich als **externe\*r Teilnehmer\*in** an.
       % endif
-      Ihr Teilnehmerbeitrag beträgt ${ beitrag } €.
+      Ihr Teilnehmerbeitrag beträgt 25 €.
 
       |Feld          |Ihre Angabe               |
       |--------------|--------------------------|
@@ -174,8 +174,8 @@ review:
 
       |Webinar   | Priorität          |
       |----------|--------------------|
-      % for (key, value) in webinare:
-      | ${ key } | ${ lookup(value) } |
+      % for (k, v) in webinare.items():
+      | ${ k } | ${ value(v) } |
       % endfor
   - Erneut ansehen: Teilnahmebedingungen
     button: |
