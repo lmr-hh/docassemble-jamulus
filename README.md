@@ -1,3 +1,3 @@
-# Jamulus-Anmeldungen
+# LMR-Anmeldungen
 
-In diesem Repository befinden sich die Online-Anmeldungen für einen Jamulus Workshop.
+In diesem Repository befinden sich die Online-Anmeldungen des LMR Hamburg.

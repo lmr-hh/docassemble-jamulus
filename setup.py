@@ -56,15 +56,15 @@ def find_package_data(where='.', package='', exclude=standard_exclude,
 
 
 setup(
-    name='docassemble.jamulus',
-    version='1.0.8',
+    name='docassemble.lmrhh',
+    version='1.1.0',
     description=__doc__,
     long_description=long_description(),
     long_description_content_type='text/markdown',
     author='Kim Wittenburg',
     author_email='admin@lmr-hh.de',
     license='The MIT License (MIT)',
-    url='https://github.com/lmr-hamburg/docassemble-jamulus',
+    url='https://github.com/lmr-hamburg/docassemble-lmrhh',
     packages=find_packages(),
     namespace_packages=['docassemble'],
     install_requires=[
@@ -74,6 +74,6 @@ setup(
         'google-auth-oauthlib'
     ],
     zip_safe=False,
-    package_data=find_package_data(where='docassemble/jamulus/',
-                                   package='docassemble.jamulus'),
+    package_data=find_package_data(where='docassemble/lmrhh/',
+                                   package='docassemble.lmrhh'),
 )

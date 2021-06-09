@@ -1,0 +1,232 @@
+---
+id: mud-2021/persoenliche-daten
+field: Kontaktdaten
+section: Persönliche Daten
+question: Persönliche Daten
+subquestion: |
+  % if testmodus:
+  <div class="alert alert-warning" role="alert">
+  Die Anmeldung wird im Testmodus ausgefüllt. Die Ergebnisse werden nicht
+  automatisch übermittelt.
+  </div>
+  % endif
+
+  Um sich zur Fachtagung Musik und Demenz am 17.09.2021 anzumelden, müssen Sie
+  die folgenden Daten angeben. Die Daten sind erforderlich, um den Workshop
+  durchzuführen und z.B. eine Rechnung für die Teilnahmegebühr auszustellen.
+
+  Die Teilnahmegebühr beträgt 25 €.
+under: |
+  <small>
+  Alle Angaben, die in diesem Formular gemacht werden, sind zur Durchführung
+  des Workshops notwendig und werden ausschließlich zu dessen Durchführung
+  verwendet. Daten werden nicht an Dritte weitergegeben. Beachten Sie auch
+  unsere [Datenschutzhinweise](/packagestatic/docassemble.jamulus/datenschutzhinweise.html).
+  </small>
+fields:
+  - Organisation: person.organisation
+  - Tätigkeit: person.position
+  - Vorname: person.name.first
+  - Nachname: person.name.last
+  - E-Mail Adresse: person.email
+    datatype: email
+    help: Sie erhalten Rechnung und Zugang zum Workshop an diese E-Mail Adresse.
+  - Telefonnummer: person.phone_number
+    required: false
+  - Straße und Hausnummer: person.address.address
+    hint: Beispiel-Straße 123
+  - Postleitzahl: person.address.zip
+    datatype: number
+  - Ort: person.address.city
+    default: Hamburg
+validation code: |
+  if person.phone_number and not phone_number_is_valid(person.phone_number, "DE"):
+    validation_error('Bitte geben Sie eine gültige Telefonnummer ein.', field='person.phone_number')
+---
+id: mud-2021/optionen
+field: Optionen
+section: Webinar-Optionen
+question: Webinar-Optionen
+subquestion: |
+  Im zweiten Teil der Tagung werden verschiedene Webinare stattfinden. Sie werden
+  insgesamt an **3** der Angebote teilnehmen können.
+
+  Es gibt insgesamt 9 verschiedene Webinare, aus denen Sie auswählen können. Wir werden
+  versuchen, alle Teilnehmenden auf Basis der Angaben möglichst gleichmäßig auf die
+  verschiedenen Webinare aufzuteilen. Wir bitten um Verständnis, dass wir erst nach
+  Ende der Anmeldefrist sagen können, an welchen Webinaren Sie teilnehmen.
+
+  Die folgenden Webinare stehen zur Auswahl:
+
+  - Hohberger
+  - Richarz
+  - Mayr
+  - Zank-Belz
+  - Keßler
+  - Sommerer
+  - Klimpel
+  - Blauth
+  - Stritzker
+
+  Vergeben Sie für jedes der Webinare eine Priorität zwischen 1 (niedrigste Priorität)
+  und 9 (höchste Priorität).
+fields:
+  - code: |
+      [{key: value, 'datatype': 'number', 'min': 1, 'max': 9} for (key, value) in webinare.items()]
+---
+code: |
+  if Optionen == 'Instrument':
+    need(instrument_rest_decr)
+  elif Optionen == 'Chor':
+    need(chor_rest_decr)
+  Kapazitaet_Check = True
+---
+id: mud-2021/rechnung
+field: Rechnungs_Info
+section: Workshop-Optionen
+question: Rechnung
+subquestion: |
+  Für die Teilnahme an der Tagung ist ein Teilnahmebeitrag von 25 € fällig.
+
+  Nachdem Sie die Anmeldung abgeschlossen haben, erhalten Sie eine Rechnung per E-Mail.
+  
+  Bitte überweisen Sie zeitnah den Betrag entsprechend der Ihnen zugesandten Rechnung.
+buttons:
+  - Verstanden: continue
+---
+id: mud-2021/teilnahmebedingungen
+field: Teilnahmebedingungen
+section: Bedingungen
+question: Teilnahmebedingungen
+subquestion:
+  Um am Workshop teilnehmen zu können, müssen Sie den folgenden
+  Teilnahmebedingungen zustimmen.
+
+  Klicken Sie [hier](/packagestatic/docassemble.jamulus/datenschutzhinweise.html),
+  um die Datenschutzhinweise zu lesen.
+fields:
+  - ? Ich sichere zu, den Teilnahmebeitrag von 25,00 € zeitnah zu
+      überweisen. Mir ist bewusst, dass eine Teilnahme an der Tagung nur nach
+      erfolgter Zahlung möglich ist. Der Link zur Veranstaltung sowie weitere
+      Informationen folgen per E-Mail.
+    : bedingungen.bezahlung
+    datatype: yesnowide
+    validate: >
+      lambda x: x or validation_error('Sie müssen alle Teilnahmebedingungen akzeptieren.')
+  - ? Ich erkläre mich damit einverstanden, dass im Rahmen der Vorbereitung der
+      Tagung durch den Landesmusikrat Hamburg meine Kontaktdaten
+      gespeichert und zwecks Vorbereitung genutzt werden dürfen.
+    : bedingungen.daten
+    datatype: yesnowide
+    validate: >
+      lambda x: x or validation_error('Sie müssen alle Teilnahmebedingungen akzeptieren.')
+  - ? Ich habe die Datenschutzhinweise zustimmend zur Kenntnis genommen.
+    : bedingungen.datenschutz
+    datatype: yesnowide
+    validate: >
+      lambda x: x or validation_error('Sie müssen alle Teilnahmebedingungen akzeptieren.')
+  - ? Ich möchte zukünftig weitere Informationen des Landesmusikrates Hamburg
+      über dessen Newsletter erhalten.
+    : bedingungen.newsletter
+    datatype: yesnowide
+---
+id: mud-2021/kontrolle
+continue button field: Kontrolle
+section: Ihre Anmeldung
+question: Ihre Anmeldung zum Jamulus-Workshop
+review:
+  - note: |
+      % if testmodus:
+      <div class="alert alert-warning" role="alert">
+      Die Anmeldung wird im Testmodus ausgefüllt. Die Ergebnisse werden nicht
+      automatisch übermittelt. Wenn du auf "Anmeldung abschicken" klickst,
+      bekommst du eine Zusammenfassung der auszuführenden Aktionen.
+      </div>
+      % endif
+      Bevor Sie Ihre Anmeldung abschicken, haben Sie noch einmal die Möglichkeit,
+      Ihre Angaben zu überprüfen. Nachdem Sie Ihre Anmeldung abgeschickt haben,
+      bekommen Sie eine Bestätigung per E-Mail.
+  - Persönliche Daten ändern: Kontaktdaten
+    button: |
+      ## Persönliche Daten
+
+      % if Mitglied:
+      Sie haben angegeben, dass Sie **Mitglied** des Landesmusikrats sind, bzw. sich
+      im Namen einer **Mitgliedsorganisation** anmelden.
+      % else:
+      Sie melden sich als **externe\*r Teilnehmer\*in** an.
+      % endif
+      Ihr Teilnehmerbeitrag beträgt ${ beitrag } €.
+
+      |Feld          |Ihre Angabe               |
+      |--------------|--------------------------|
+      |Name          | ${ person.name }         |
+      |Organisation  | ${ person.organisation } |
+      |Tätigkeit     | ${ person.position }     |
+      |Telefonnummer | ${ person.phone_number } |
+      |E-Mail        | ${ person.email }        |
+      |Adresse       | ${ adresse(person) }     |
+  - Angaben ändern: Optionen
+    button: |
+      ## Webinar-Optionen
+
+      Sie haben folgende Prioritäten für die Webinare angegeben:
+
+      |Webinar   | Priorität          |
+      |----------|--------------------|
+      % for (key, value) in webinare:
+      | ${ key } | ${ lookup(value) } |
+      % endfor
+  - Erneut ansehen: Teilnahmebedingungen
+    button: |
+      ## Teilnahmebedingungen
+
+      Sie haben den Teilnahmebedingungen **zugestimmt**.
+      <p></p>
+  - note: |
+      ## Anmelden
+
+      Wenn Sie ihre Daten kontrolliert haben, klicken Sie auf "Jetzt verbindlich anmelden",
+      um Ihre Anmeldung abzuschicken. Sie erhalten sowohl Ihre Anmeldung als auch eine
+      Rechnung für den Teilnahmebeitrag per E-Mail. Den Zugang zu den beiden
+      Workshop-Teilen erhalten Sie später ebenfalls per E-Mail.
+continue button label: Jetzt verbindlich anmelden
+---
+id: mud-2021/warten
+event: Warten
+section: Ihre Anmeldung
+prevent going back: True
+question: Anmeldung abschicken...
+subquestion:
+  Ihre Anmeldung wird gerade abgeschickt. Dies kann einen Moment dauern. Bitte lassen
+  Sie dieses Fenster geöffnet, bis die Anmeldung erfolgreich abgeschickt wurde.
+---
+id: mud-2021/bestaetigung
+event: Fertig
+section: Ihre Anmeldung
+prevent going back: True
+question: Ihre Anmeldung
+subquestion: |
+  Ihre Anmeldung wurde erfolgreich abgeschickt. Sie erhalten eine Kopie per E-Mail.
+
+  Sie können hier direkt Ihre Anmeldung und Ihre Rechnung herunterladen. Sie bekommen
+  beide Dokumente auch per Mail zugeschickt:
+
+  - [Anmeldung herunterladen](${ anmeldung.pdf.url_for() })
+  - [Rechnung herunterladen](${ rechnung.pdf.url_for() })
+  
+  Wir freuen uns über Ihre Teilnahme.
+
+  Klicken Sie auf "Fertig", um die Anmeldung zu beenden.
+buttons:
+  - Fertig: exit
+---
+id: mud-2021/testergebnisse
+event: Testergebnisse
+section: Ihre Anmeldung
+prevent going back: True
+question: Testmodus
+subquestion: ${ testergebnis }
+buttons:
+  - Fertig: exit
+---
