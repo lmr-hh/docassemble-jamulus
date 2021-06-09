@@ -36,7 +36,7 @@ fields:
   - Straße und Hausnummer: person.address.address
     hint: Beispiel-Straße 123
   - Postleitzahl: person.address.zip
-    datatype: number
+    datatype: integer
   - Ort: person.address.city
     default: Hamburg
 validation code: |
@@ -72,7 +72,7 @@ subquestion: |
   und 9 (höchste Priorität).
 fields:
   - code: |
-      [{key: value, 'datatype': 'number', 'min': 1, 'max': 9} for (key, value) in webinare.items()]
+      [{key: value, 'datatype': 'integer', 'min': 1, 'max': 9} for (key, value) in webinare.items()]
 ---
 code: |
   if Optionen == 'Instrument':
