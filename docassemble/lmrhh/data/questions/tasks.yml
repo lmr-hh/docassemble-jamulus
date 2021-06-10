@@ -13,7 +13,6 @@ code: |
 code: |
   member_data = {
     "Organisation": person.organisation,
-    "Tätigkeit": person.position,
     "Vorname": person.name.first,
     "Nachname": person.name.last,
     "E-Mail": person.email,
@@ -23,7 +22,6 @@ code: |
     "Anmeldedatum": current_datetime(timezone="Europe/Berlin").format_datetime('d.M.YYYY HH:mm'),
     "Rechnungsnummer": rechnungsnummer,
   }
-  member_data.update({v: value(v) for (k,v) in webinare.items()})
 ---
 # A task that adds a row to the Anmeldungen.
 need: rechnungsnummer

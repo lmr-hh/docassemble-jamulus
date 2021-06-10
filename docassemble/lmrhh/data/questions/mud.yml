@@ -56,7 +56,7 @@ code: |
   if testmodus:
     key = key + "_test"
   with redis.lock(key + "-lock", timeout=5):
-    redis.set(key, 200, nx=True)
+    redis.set(key, 206, nx=True)
     redis.incr(key)
     rechnungsnummer = '2021' + str(redis.get(key).decode()).zfill(3)
     if testmodus:
@@ -108,22 +108,9 @@ content file: Testmodus.md
 # Abschnitten zugeordnet werden.
 sections:
   - Persönliche Daten
-  - Workshop-Optionen
+  - Webinar-Optionen
   - Bedingungen
   - Ihre Anmeldung
----
-code: |
-  webinare = {
-    'Hohberger': 'hohberger',
-    'Richarz': 'richarz',
-    'Mayr': 'mayr',
-    'Zank-Belz': 'zankbelz',
-    'Keßler': 'kessler',
-    'Sommerer': 'sommerer',
-    'Klimpel': 'klimpel',
-    'Blauth': 'blauth',
-    'Stritzker': 'stritzker'
-  }
 ---
 # Die Reihenfolge, in der Fragen gestellt werden. Dies ist eine erweiterte
 # Funktion, die nicht leichtfertig verändert werden sollte.

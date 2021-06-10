@@ -11,9 +11,8 @@ subquestion: |
   </div>
   % endif
 
-  Um sich zur Fachtagung Musik und Demenz am 17.09.2021 anzumelden, müssen Sie
-  die folgenden Daten angeben. Die Daten sind erforderlich, um den Workshop
-  durchzuführen und z.B. eine Rechnung für die Teilnahmegebühr auszustellen.
+  Für die Anmeldung zur Online-Tagung Musik und Demenz benötigen wir von Ihnen
+  folgende Daten. Diese Daten werden zur Rechnungsstellung verwendet.
 
   Die Teilnahmegebühr beträgt 25 €.
 under: |
@@ -24,8 +23,7 @@ under: |
   unsere [Datenschutzhinweise](/packagestatic/docassemble.jamulus/datenschutzhinweise.html).
   </small>
 fields:
-  - Organisation: person.organisation
-  - Tätigkeit: person.position
+  - Organisation / Tätigkeit: person.organisation
   - Vorname: person.name.first
   - Nachname: person.name.last
   - E-Mail Adresse: person.email
@@ -53,12 +51,12 @@ subquestion: |
 
   Es gibt insgesamt 9 verschiedene Webinare, aus denen Sie auswählen können. Wir werden
   versuchen, alle Teilnehmenden auf Basis der Angaben möglichst gleichmäßig auf die
-  verschiedenen Webinare aufzuteilen. Wir bitten um Verständnis, dass wir erst nach
-  Ende der Anmeldefrist sagen können, an welchen Webinaren Sie teilnehmen.
+  verschiedenen Webinare aufzuteilen. Wir bitten um Verständnis, dass wir nicht garantieren
+  können, dass Sie an allen Ihren Wunsch-Webinaren teilnehmen können.
 
   Die folgenden Webinare stehen zur Auswahl:
 
-  - Hohberger
+  - Willkommen in der digitalen Welt – Musik-Apps in der Musikgeragogik Hohberger
   - Richarz
   - Mayr
   - Zank-Belz
@@ -70,20 +68,12 @@ subquestion: |
 
   Vergeben Sie für jedes der Webinare eine Priorität zwischen 1 (niedrigste Priorität)
   und 9 (höchste Priorität).
-fields:
-  - code: |
-      [{key: value, 'datatype': 'integer', 'min': 1, 'max': 9} for (key, value) in webinare.items()]
----
-code: |
-  if Optionen == 'Instrument':
-    need(instrument_rest_decr)
-  elif Optionen == 'Chor':
-    need(chor_rest_decr)
-  Kapazitaet_Check = True
+buttons:
+  - Weiter: continue
 ---
 id: mud-2021/rechnung
 field: Rechnungs_Info
-section: Workshop-Optionen
+section: Webinar-Optionen
 question: Rechnung
 subquestion: |
   Für die Teilnahme an der Tagung ist ein Teilnahmebeitrag von 25 € fällig.
@@ -160,17 +150,6 @@ review:
       |Telefonnummer | ${ person.phone_number } |
       |E-Mail        | ${ person.email }        |
       |Adresse       | ${ adresse(person) }     |
-  - Angaben ändern: Optionen
-    button: |
-      ## Webinar-Optionen
-
-      Sie haben folgende Prioritäten für die Webinare angegeben:
-
-      |Webinar   | Priorität          |
-      |----------|--------------------|
-      % for (k, v) in webinare.items():
-      | ${ k } | ${ value(v) } |
-      % endfor
   - Erneut ansehen: Teilnahmebedingungen
     button: |
       ## Teilnahmebedingungen
