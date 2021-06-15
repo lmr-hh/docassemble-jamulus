@@ -20,7 +20,7 @@ under: |
   Alle Angaben, die in diesem Formular gemacht werden, sind zur Durchführung
   des Workshops notwendig und werden ausschließlich zu dessen Durchführung
   verwendet. Daten werden nicht an Dritte weitergegeben. Beachten Sie auch
-  unsere [Datenschutzhinweise](/packagestatic/docassemble.jamulus/datenschutzhinweise.html).
+  unsere [Datenschutzhinweise](/packagestatic/docassemble.lmrhh/datenschutzhinweise.html).
   </small>
 fields:
   - Organisation / Tätigkeit: person.organisation
@@ -47,29 +47,47 @@ section: Webinar-Optionen
 question: Webinar-Optionen
 subquestion: |
   Im zweiten Teil der Tagung werden verschiedene Webinare stattfinden. Sie werden
-  insgesamt an **3** der Angebote teilnehmen können.
-
-  Es gibt insgesamt 9 verschiedene Webinare, aus denen Sie auswählen können. Wir werden
-  versuchen, alle Teilnehmenden auf Basis der Angaben möglichst gleichmäßig auf die
-  verschiedenen Webinare aufzuteilen. Wir bitten um Verständnis, dass wir nicht garantieren
-  können, dass Sie an allen Ihren Wunsch-Webinaren teilnehmen können.
-
+  insgesamt an **3** der Angebote teilnehmen können.  Es gibt insgesamt 9 verschiedene
+  Webinare, aus denen Sie 3 auswählen können.
+  
   Die folgenden Webinare stehen zur Auswahl:
 
-  - Willkommen in der digitalen Welt – Musik-Apps in der Musikgeragogik Hohberger
-  - Richarz
-  - Mayr
-  - Zank-Belz
-  - Keßler
-  - Sommerer
-  - Klimpel
-  - Blauth
-  - Stritzker
+  - **Willkommen in der digitalen Welt – Musik-Apps in der Musikgeragogik Hohberger**  
+    Frauke Hohberger, Musikpädagogin, Hannover
+  - **Kommunikationspuppen im digitalen Einsatz ‐ Musikalische Betreuung von Menschen mit Demenz online**  
+    Martina Klimpel, Dipl.‐Musikpädagogin, Landesmusikakademie Berlin
+  - **Rhythmik bringt durch Musik all(t)e Menschen in Bewegung!**  
+    Monika Mayr, Musik‐/Rhythmikpädagogin/‐geragogin, Wien
+  - **Musik auf Abstand und doch ganz nah ‐ Fenster‐ und Telefonkonzerte (Arbeitstitel)**  
+    Annette Zanker‐Belz, Musikgeragogin, Heilbronn
+  - **Meine ganz persönliche Musik ‐ Mehr Lebensqualität durch individualisierte Playlists**  
+    Julia Richarz, Dipl.‐Sozialpädagogin, Diakonie Düsseldorf
+  - **Musiktherapeutische Singangebote über Musikvideos (USB‐ Singkreise)**  
+    Michael Keßler, Musiktherapeut M.A., SRH Hochschule Heidelberg
+  - **Das Keyboard ‐ ein digitales Musikinstrument in der musiktherapeutischen Arbeit mit Menschen mit Demenz**  
+    Dr. phil. Markus Sommerer, Musiktherapeut
+  - **Musikinterventionen für den Alltag häuslich pflegender Angehöriger mit ihren Menschen mit Demenz**  
+    Dr. phil. Lara Blauth, Musiktherapeutin Studienleiterin, HAW Würzburg|Schweinfurt
+  - **Titel noch offen, musiktherapeutisches Thema**  
+    Judith Stritzker, Musiktherapeutin B.A., SRH Hochschule Heidelberg
 
-  Vergeben Sie für jedes der Webinare eine Priorität zwischen 1 (niedrigste Priorität)
-  und 9 (höchste Priorität).
-buttons:
-  - Weiter: continue
+  Um besser einschätzen zu können, welche Webinare stärker ausgelastet sind, möchten wir Sie
+  bitten, diejenigen Webinare auszuwählen, für die Sie sich besonders interessieren. Sie können
+  hier mehr als 3 Webinare auswählen, können aber in der Tagung nur an 3 Webinaren teilnehmen.
+fields:
+  - Für welche Webinare interessieren Sie sich?: webinare
+    datatype: checkboxes
+    none of the above: false
+    choices:
+      - Willkommen in der digitalen Welt – Musik-Apps in der Musikgeragogik Hohberger: hohberger
+      - Kommunikationspuppen im digitalen Einsatz ‐ Musikalische Betreuung von Menschen mit Demenz online: klimpel
+      - Rhythmik bringt durch Musik all(t)e Menschen in Bewegung!: mayr
+      - Musik auf Abstand und doch ganz nah ‐ Fenster‐ und Telefonkonzerte (Arbeitstitel): zankerbelz
+      - Meine ganz persönliche Musik ‐ Mehr Lebensqualität durch individualisierte Playlists: richarz
+      - Musiktherapeutische Singangebote über Musikvideos (USB‐ Singkreise): kessler
+      - Das Keyboard ‐ ein digitales Musikinstrument in der musiktherapeutischen Arbeit mit Menschen mit Demenz: sommerer
+      - Musikinterventionen für den Alltag häuslich pflegender Angehöriger mit ihren Menschen mit Demenz: blauth
+      - Titel noch offen, musiktherapeutisches Thema: stritzker
 ---
 id: mud-2021/rechnung
 field: Rechnungs_Info
@@ -92,7 +110,7 @@ subquestion:
   Um am Workshop teilnehmen zu können, müssen Sie den folgenden
   Teilnahmebedingungen zustimmen.
 
-  Klicken Sie [hier](/packagestatic/docassemble.jamulus/datenschutzhinweise.html),
+  Klicken Sie [hier](/packagestatic/docassemble.lmrhh/datenschutzhinweise.html),
   um die Datenschutzhinweise zu lesen.
 fields:
   - ? Ich sichere zu, den Teilnahmebeitrag von 25,00 € zeitnah zu
@@ -123,7 +141,7 @@ fields:
 id: mud-2021/kontrolle
 continue button field: Kontrolle
 section: Ihre Anmeldung
-question: Ihre Anmeldung zum Jamulus-Workshop
+question: Ihre Anmeldung zum Fachtagung Musik und Demenz
 review:
   - note: |
       % if testmodus:
@@ -146,7 +164,6 @@ review:
       |--------------|--------------------------|
       |Name          | ${ person.name }         |
       |Organisation  | ${ person.organisation } |
-      |Tätigkeit     | ${ person.position }     |
       |Telefonnummer | ${ person.phone_number } |
       |E-Mail        | ${ person.email }        |
       |Adresse       | ${ adresse(person) }     |
