@@ -21,6 +21,7 @@ code: |
     "Newsletter": bedingungen.newsletter,
     "Anmeldedatum": current_datetime(timezone="Europe/Berlin").format_datetime('d.M.YYYY HH:mm'),
     "Rechnungsnummer": rechnungsnummer,
+    "Betrag": 25
   }
   member_data.update(webinare)
 ---
