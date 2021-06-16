@@ -18,7 +18,7 @@ subquestion: |
 under: |
   <small>
   Alle Angaben, die in diesem Formular gemacht werden, sind zur Durchführung
-  des Workshops notwendig und werden ausschließlich zu dessen Durchführung
+  der Tagung notwendig und werden ausschließlich zu dessen Durchführung
   verwendet. Daten werden nicht an Dritte weitergegeben. Beachten Sie auch
   unsere [Datenschutzhinweise](/packagestatic/docassemble.lmrhh/datenschutzhinweise.html).
   </small>
@@ -28,7 +28,7 @@ fields:
   - Nachname: person.name.last
   - E-Mail Adresse: person.email
     datatype: email
-    help: Sie erhalten Rechnung und Zugang zum Workshop an diese E-Mail Adresse.
+    help: Sie erhalten Rechnung und Zugang zur Tagung an diese E-Mail Adresse.
   - Telefonnummer: person.phone_number
     required: false
   - Straße und Hausnummer: person.address.address
@@ -50,37 +50,32 @@ subquestion: |
   insgesamt 9 verschiedene, aus denen Sie an insgesamt **3** Stück teilnehmen
   können.  
   
-  Die folgenden Webinare stehen zur Auswahl:
-
-  - **Willkommen in der digitalen Welt – Musik-Apps in der Musikgeragogik Hohberger**  
-    Frauke Hohberger, Musikpädagogin, Hannover
-  - **Kommunikationspuppen im digitalen Einsatz ‐ Musikalische Betreuung von Menschen mit Demenz online**  
-    Martina Klimpel, Dipl.‐Musikpädagogin, Landesmusikakademie Berlin
-  - **Rhythmik bringt durch Musik all(t)e Menschen in Bewegung!**  
-    Monika Mayr, Musik‐/Rhythmikpädagogin/‐geragogin, Wien
-  - **Musik auf Abstand und doch ganz nah ‐ Fenster‐ und Telefonkonzerte (Arbeitstitel)**  
-    Annette Zanker‐Belz, Musikgeragogin, Heilbronn
-  - **Meine ganz persönliche Musik ‐ Mehr Lebensqualität durch individualisierte Playlists**  
-    Julia Richarz, Dipl.‐Sozialpädagogin, Diakonie Düsseldorf
-  - **Musiktherapeutische Singangebote über Musikvideos (USB‐ Singkreise)**  
-    Michael Keßler, Musiktherapeut M.A., SRH Hochschule Heidelberg
-  - **Das Keyboard ‐ ein digitales Musikinstrument in der musiktherapeutischen Arbeit mit Menschen mit Demenz**  
-    Dr. phil. Markus Sommerer, Musiktherapeut
-  - **Musikinterventionen für den Alltag häuslich pflegender Angehöriger mit ihren Menschen mit Demenz**  
-    Dr. phil. Lara Blauth, Musiktherapeutin Studienleiterin, HAW Würzburg|Schweinfurt
-  - **Titel noch offen, musiktherapeutisches Thema**  
-    Judith Stritzker, Musiktherapeutin B.A., SRH Hochschule Heidelberg
-  
-  Die Webinare werden in folgenden Zeitslots angeboten. Alle Webinare werden insgesamt 2 Mal durchgeführt:
+  Die Webinare werden in folgenden Zeitfenstern angeboten. Alle Webinare werden insgesamt 2 Mal durchgeführt:
   <table class="schedule">
-    <thead>
-    <th>Zeitslot</th><th colspan="6">Webinare</th>
-    </thead>
-    <tbody>
-    <tr><th>1</th><td>Hohberger</td><td>Richarz</td><td>Mayr</td><td>Keßler</td><td>Blauth</td><td>Sommerer</td></tr>
-    <tr><th>2</th><td>Hohberger</td><td>Klimpel</td><td>Mayr</td><td>Zanker-Belz</td><td>Blauth</td><td>Stritzker</td></tr>
-    <tr><th>3</th><td>Stritzker</td><td>Klimpel</td><td>Keßler</td><td>Zanker-Belz</td><td>Richarz</td><td>Sommerer</td></tr>
-    </tbody>
+    <tr>
+      <th>1.1</th><td><p>(1)</p><p>Musik-Apps für d. Generation Rock</p><p>Frauke Hohberger</p></td>
+      <th>1.2</th><td><p>(4)</p><p>Individualisierte Playlists</p><p>Julia Richarz</p></td>
+      <th>1.3</th><td><p>(3)</p><p>Musik bringt all(t)e in Bewegung</p><p>Mag. Monika Mayr</p></td>
+      <th>1.4</th><td><p>(5)</p><p>Lebenslange Musik zuhause erleben</p><p>Anette Zanker-Belz</p></td>
+      <th>1.5</th><td><p>(7)</p><p>Musiktherapeut. USB-Sinkreise</p><p>Michael Keßler</p></td>
+      <th>1.6</th><td><p>(8)</p><p>Das Keyboard i.d. musikther. Arbeit</p><p>Dr. Markus Sommerer</p></td>
+    </tr>
+    <tr>
+      <th>2.1</th><td><p>(1)</p><p>Musik-Apps für d. Generation Rock</p><p>Frauke Hohberger</p></td>
+      <th>2.2</th><td><p>(2)</p><p>Kommunikations-puppen</p><p>Martina Klimpel</p></td>
+      <th>2.3</th><td><p>(3)</p><p>Musik bringt all(t)e in Bewegung</p><p>Mag. Monika Mayr</p></td>
+      <th>2.4</th><td><p>(4)</p><p>Individualisierte Playlists</p><p>Julia Richarz</p></td>
+      <th>2.5</th><td><p>(6)</p><p>Musikintervent. f. häsl. pfleg. Angeh.</p><p>Dr. Lara Blauth</p></td>
+      <th>2.6</th><td><p>(9)</p><p>Musiktherapie in der geriatr. Pflege</p><p>Judith Stritzker</p></td>
+    </tr>
+    <tr>
+      <th>3.1</th><td><p>(9)</p><p>Musiktherapie in der geriatr. Pflege</p><p>Judith Stritzker</p></td>
+      <th>3.2</th><td><p>(2)</p><p>Kommunikations-puppen</p><p>Martina Klimpel</p></td>
+      <th>3.3</th><td><p>(7)</p><p>Musiktherapeut. USB-Sinkreise</p><p>Michael Keßler</p></td>
+      <th>3.4</th><td><p>(5)</p><p>Lebenslange Musik zuhause erleben</p><p>Anette Zanker-Belz</p></td>
+      <th>3.5</th><td><p>(6)</p><p>Musikintervent. f. häsl. pfleg. Angeh.</p><p>Dr. Lara Blauth</p></td>
+      <th>3.6</th><td><p>(8)</p><p>Das Keyboard i.d. musikther. Arbeit</p><p>Dr. Markus Sommerer</p></td>
+    </tr>
   </table>
 
   Um besser einschätzen zu können, welche Webinare stärker ausgelastet sind, möchten wir Sie
@@ -91,32 +86,60 @@ fields:
     datatype: checkboxes
     none of the above: false
     choices:
-      - "**Hohberger**: Willkommen in der digitalen Welt – Musik-Apps in der Musikgeragogik Hohberger": hohberger
-      - "**Klimpel**: Kommunikationspuppen im digitalen Einsatz ‐ Musikalische Betreuung von Menschen mit Demenz online": klimpel
-      - "**Mayr**: Rhythmik bringt durch Musik all(t)e Menschen in Bewegung!": mayr
-      - "**Zanker-Belz**: Musik auf Abstand und doch ganz nah ‐ Fenster‐ und Telefonkonzerte (Arbeitstitel)": zankerbelz
-      - "**Richarz**: Meine ganz persönliche Musik ‐ Mehr Lebensqualität durch individualisierte Playlists": richarz
-      - "**Keßler**: Musiktherapeutische Singangebote über Musikvideos (USB‐ Singkreise)": kessler
-      - "**Sommerer**: Das Keyboard ‐ ein digitales Musikinstrument in der musiktherapeutischen Arbeit mit Menschen mit Demenz": sommerer
-      - "**Blauth**: Musikinterventionen für den Alltag häuslich pflegender Angehöriger mit ihren Menschen mit Demenz": blauth
-      - "**Stritzker**: Titel noch offen, musiktherapeutisches Thema": stritzker
+      - ? "**(1)** Musik-Apps in der Musikgeragogik – Generation Rock<br />
+          _**Frauke Hohberger**, Musikpädagogin, Langenhagen_"
+        : hohberger
+      - ? "**(2)** Kommunikationspuppen im digitalen Einsatz – Musikalische Betreuung von Menschen mit Demenz online<br />
+          _**Martina Klimpel**, Dipl.‐Musikpädagogin, Landesmusikakademie Berlin_"
+        : klimpel
+      - ? "**(3)** Rhythmik bringt durch Musik all(t)e Menschen in Bewegung!<br />
+          _**Mag. Monika Mayr**, Musik‐/Rhythmikpädagogin/‐geragogin, Wien_"
+        : mayr
+      - ? "**(4)** Meine ganz persönliche Musik – Mehr Lebensqualität durch individualisierte Playlists<br />
+          _**Julia Richarz**, Dipl.‐Sozialpädagogin, Diakonie Düsseldorf_"
+        : richarz
+      - ? "**(5)** „Lebenslang Musik” im eigenen Zuhause erleben: Begegnung, Begleitung, Verbindung<br />
+          _**Annette Zanker‐Belz**, Musikgeragogin, Heilbronn_"
+        : zankerbelz
+      - ? "**(6)** Musikinterventionen für den Alltag häuslich pflegender Angehöriger mit ihren Menschen mit Demenz<br />
+          _**Dr. phil. Lara Blauth**, Musiktherapeutin Studienleiterin, HAW Würzburg, Schweinfurt_"
+        : blauth
+      - ? "**(7)** Musiktherapeutische Singangebote über Musikvideos (USB‐ Singkreise)<br />
+          _**Michael Keßler**, Musiktherapeut M.A., SRH Hochschule Heidelberg_"
+        : kessler
+      - ? "**(8)** Das Keyboard – ein digitales Musikinstrument in der musiktherapeutischen Arbeit mit Menschen mit Demenz<br />
+          _**Dr. phil. Markus Sommerer**, Musiktherapeut_"
+        : sommerer
+      - ? "**(9)** Musiktherapie in der geriatrischen Pflege<br />
+          _**Judith Stritzker**, Musiktherapeutin B.A., SRH Hochschule Heidelberg_"
+        : stritzker
 css: |
   <style>
     table.schedule,
     table.schedule th,
     table.schedule td {
-        border: 1px solid gray;
-        border-collapse: collapse;
-        padding: 5px 2px;
-        text-align: center;
+      font-size: 8px;
+      border: 1px solid gray;
+      border-collapse: collapse;
+      padding: 5px 2px;
+      text-align: center;
+    }
+
+    table.schedule p {
+      margin-bottom: 0;
+    }
+
+    table.schedule p:last-child {
+      font-style: italic;
     }
     
     table.schedule {
       width: 100%;
     }
-    
-    ul li {
-      margin-bottom: 5px;
+
+    label.btn-light span em, label.btn-primary span em {
+      margin-top: 10px;
+      display: block;
     }
   </style>
 ---
@@ -130,6 +153,7 @@ subquestion: |
   Nachdem Sie die Anmeldung abgeschlossen haben, erhalten Sie eine Rechnung per E-Mail.
   
   Bitte überweisen Sie zeitnah den Betrag entsprechend der Ihnen zugesandten Rechnung.
+  Die Teilnahmegebühr wird bei Nichtteilnahme nicht erstattet.
 buttons:
   - Verstanden: continue
 ---
@@ -138,7 +162,7 @@ field: Teilnahmebedingungen
 section: Bedingungen
 question: Teilnahmebedingungen
 subquestion:
-  Um am Workshop teilnehmen zu können, müssen Sie den folgenden
+  Um an der Tagung teilnehmen zu können, müssen Sie den folgenden
   Teilnahmebedingungen zustimmen.
 
   Klicken Sie [hier](/packagestatic/docassemble.lmrhh/datenschutzhinweise.html),
@@ -198,6 +222,56 @@ review:
       |Telefonnummer | ${ person.phone_number } |
       |E-Mail        | ${ person.email }        |
       |Adresse       | ${ adresse(person) }     |
+  - Präferenzen ändern: webinare
+    button: |
+      ## Gewählte Webinare
+
+      Sie haben angegeben, dass Sie sich für die folgenden Webinare interessieren:
+
+      % if webinare["hohberger"]:
+      **(1)** Musik-Apps in der Musikgeragogik – Generation Rock  
+      _**Frauke Hohberger**, Musikpädagogin, Langenhagen_
+      % endif
+
+      % if webinare["klimpel"]:
+      **(2)** Kommunikationspuppen im digitalen Einsatz – Musikalische Betreuung von Menschen mit Demenz online  
+      _**Martina Klimpel**, Dipl.‐Musikpädagogin, Landesmusikakademie Berlin_
+      % endif
+
+      % if webinare["mayr"]:
+      **(3)** Rhythmik bringt durch Musik all(t)e Menschen in Bewegung!  
+      _**Mag. Monika Mayr**, Musik‐/Rhythmikpädagogin/‐geragogin, Wien_
+      % endif
+
+      % if webinare["richarz"]:
+      **(4)** Meine ganz persönliche Musik – Mehr Lebensqualität durch individualisierte Playlists  
+      _**Julia Richarz**, Dipl.‐Sozialpädagogin, Diakonie Düsseldorf_
+      % endif
+
+      % if webinare["zankerbelz"]:
+      **(5)** „Lebenslang Musik” im eigenen Zuhause erleben: Begegnung, Begleitung, Verbindung  
+      _**Annette Zanker‐Belz**, Musikgeragogin, Heilbronn_
+      % endif
+
+      % if webinare["blauth"]:
+      **(6)** Musikinterventionen für den Alltag häuslich pflegender Angehöriger mit ihren Menschen mit Demenz  
+      _**Dr. phil. Lara Blauth**, Musiktherapeutin Studienleiterin, HAW Würzburg, Schweinfurt_
+      % endif
+
+      % if webinare["kessler"]:
+      **(7)** Musiktherapeutische Singangebote über Musikvideos (USB‐ Singkreise)  
+      _**Michael Keßler**, Musiktherapeut M.A., SRH Hochschule Heidelberg_
+      % endif
+
+      % if webinare["sommerer"]:
+      **(8)** Das Keyboard – ein digitales Musikinstrument in der musiktherapeutischen Arbeit mit Menschen mit Demenz  
+      _**Dr. phil. Markus Sommerer**, Musiktherapeut_
+      % endif
+
+      % if webinare["stritzker"]:
+      **(9)** Musiktherapie in der geriatrischen Pflege  
+      _**Judith Stritzker**, Musiktherapeutin B.A., SRH Hochschule Heidelberg_
+      % endif
   - Erneut ansehen: Teilnahmebedingungen
     button: |
       ## Teilnahmebedingungen
@@ -209,8 +283,8 @@ review:
 
       Wenn Sie ihre Daten kontrolliert haben, klicken Sie auf "Jetzt verbindlich anmelden",
       um Ihre Anmeldung abzuschicken. Sie erhalten sowohl Ihre Anmeldung als auch eine
-      Rechnung für den Teilnahmebeitrag per E-Mail. Den Zugang zu den beiden
-      Workshop-Teilen erhalten Sie später ebenfalls per E-Mail.
+      Rechnung für den Teilnahmebeitrag per E-Mail. Den Zugang zur Online-Tagung erhalten
+      Sie später ebenfalls per E-Mail.
 continue button label: Jetzt verbindlich anmelden
 ---
 id: mud-2021/warten
