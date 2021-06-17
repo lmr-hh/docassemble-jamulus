@@ -48,7 +48,7 @@ question: Webinar-Optionen
 subquestion: |
   Im zweiten Teil der Tagung werden verschiedene Webinare stattfinden. Es gibt
   insgesamt 9 verschiedene, von denen Sie an insgesamt **3** Stück teilnehmen
-  können.  
+  können.
   
   Die Webinare werden in folgenden 3 Zeitfenstern angeboten. Alle Webinare werden
   insgesamt 2 Mal durchgeführt:
@@ -82,6 +82,8 @@ subquestion: |
   Um besser einschätzen zu können, welche Webinare stärker ausgelastet sind, möchten wir Sie
   bitten, diejenigen Webinare auszuwählen, für die Sie sich besonders interessieren. Sie können
   hier mehr als 3 Webinare auswählen, können aber in der Tagung nur an 3 Webinaren teilnehmen.
+
+  Welche Webinare Sie dann tatsächlich besuchen möchten, können Sie in der Online-Tagunng entscheiden.
 fields:
   - Für welche Webinare interessieren Sie sich?: webinare
     datatype: checkboxes
