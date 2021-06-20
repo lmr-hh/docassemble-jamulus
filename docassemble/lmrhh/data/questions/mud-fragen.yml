@@ -46,12 +46,16 @@ field: Optionen
 section: Webinar-Optionen
 question: Webinar-Optionen
 subquestion: |
-  Im zweiten Teil der Tagung werden verschiedene Webinare stattfinden. Es gibt
-  insgesamt 9 verschiedene, von denen Sie an insgesamt **3** Stück teilnehmen
-  können.
+  Im zweiten Teil der Tagung werden verschiedene Webinare stattfinden. Es stehen 9 verschiedene
+  Webinare zur Auswahl. An **3 Webinaren** können Sie teilnehmen.
   
   Die Webinare werden in folgenden 3 Zeitfenstern angeboten. Alle Webinare werden
-  insgesamt 2 Mal durchgeführt:
+  insgesamt 2 Mal durchgeführt.
+
+  **Erstes Zeitfenster**: 15:50 Uhr bis 16:15 Uhr  
+  **Zweites Zeitfenster**: 16:20 Uhr bis 16:45 Uhr  
+  **Drittes Zeitfenster**: 17:50 Uhr bis 17:15 Uhr
+
   <table class="schedule">
     <tr>
       <th>1.1</th><td><p>(1)</p><p>Musik-Apps für d. Generation Rock</p><p>Frauke Hohberger</p></td>
@@ -83,7 +87,7 @@ subquestion: |
   bitten, diejenigen Webinare auszuwählen, für die Sie sich besonders interessieren. Sie können
   hier mehr als 3 Webinare auswählen, können aber in der Tagung nur an 3 Webinaren teilnehmen.
 
-  Welche Webinare Sie dann tatsächlich besuchen möchten, können Sie in der Online-Tagunng entscheiden.
+  Welche Webinare Sie dann tatsächlich besuchen möchten, können Sie in der Online-Tagung entscheiden.
 fields:
   - Für welche Webinare interessieren Sie sich?: webinare
     datatype: checkboxes
@@ -211,7 +215,7 @@ review:
       % endif
       Bevor Sie Ihre Anmeldung abschicken, haben Sie noch einmal die Möglichkeit,
       Ihre Angaben zu überprüfen. Nachdem Sie Ihre Anmeldung abgeschickt haben,
-      bekommen Sie eine Bestätigung per E-Mail.
+      bekommen Sie eine Bestätigung und die Rechnung per E-Mail.
   - Persönliche Daten ändern: Kontaktdaten
     button: |
       ## Persönliche Daten
