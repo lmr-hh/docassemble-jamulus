@@ -11,13 +11,11 @@ metadata:
   title: Anmeldung zum Musik und Demenz Fachtagung am 17.09.2021
   tab title: Anmeldung Musik und Demenz
   short title: Musik und Demenz
-  logo:
-    <img src="https://www.lmr-hh.de/wp-content/uploads/2020/03/Landesmusikrat-Hamburg-Negativ.svg"
-         height="27">
+  logo: '<img src="https://cdn.lmr-hh.de/logos/lmrhh-inverted.svg" height="27">'
   description:
     Dies ist die Anmeldung zur Fachtagung Musik und Demenz am 17.09.2021.
   exit url: https://www.lmr-hh.de
-  revision_date: 2021-06-09
+  revision_date: 2021-06-21
 ---
 # In diesem Abschnitt werden die Anmeldungen sowie die Automatisierung
 # konfiguriert. Die einzelnen Felder sind separat dokumentiert.
