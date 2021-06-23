@@ -70,7 +70,7 @@ subquestion: |
       <td><p><b>2.2</b>&nbsp;&nbsp;(2)</p><p>Kommunikations-puppen</p><p>Martina Klimpel</p></td>
       <td><p><b>2.3</b>&nbsp;&nbsp;(3)</p><p>Musik bringt all(t)e in Bewegung</p><p>Mag. Monika Mayr</p></td>
       <td><p><b>2.4</b>&nbsp;&nbsp;(4)</p><p>Individualisierte Playlists</p><p>Julia Richarz</p></td>
-      <td><p><b>2.5</b>&nbsp;&nbsp;(6)</p><p>Musikintervent. f. häsl. pfleg. Angeh.</p><p>Dr. Lara Blauth</p></td>
+      <td><p><b>2.5</b>&nbsp;&nbsp;(6)</p><p>Unterstützung f. häusl. pfleg. Angehörige</p><p>Dr. Laura Blauth</p></td>
       <td><p><b>2.6</b>&nbsp;&nbsp;(9)</p><p>Musiktherapie in der geriatr. Pflege</p><p>Judith Stritzker</p></td>
     </tr>
     <tr>
@@ -78,7 +78,7 @@ subquestion: |
       <td><p><b>3.2</b>&nbsp;&nbsp;(2)</p><p>Kommunikations-puppen</p><p>Martina Klimpel</p></td>
       <td><p><b>3.3</b>&nbsp;&nbsp;(7)</p><p>Musiktherapeut. USB-Sinkreise</p><p>Michael Keßler</p></td>
       <td><p><b>3.4</b>&nbsp;&nbsp;(5)</p><p>Lebenslange Musik zuhause erleben</p><p>Anette Zanker-Belz</p></td>
-      <td><p><b>3.5</b>&nbsp;&nbsp;(6)</p><p>Musikintervent. f. häsl. pfleg. Angeh.</p><p>Dr. Lara Blauth</p></td>
+      <td><p><b>3.5</b>&nbsp;&nbsp;(6)</p><p>Unterstützung f. häusl. pfleg. Angehörige</p><p>Dr. Laura Blauth</p></td>
       <td><p><b>3.6</b>&nbsp;&nbsp;(8)</p><p>Das Keyboard i.d. musikther. Arbeit</p><p>Dr. Markus Sommerer</p></td>
     </tr>
   </table>
@@ -106,10 +106,10 @@ fields:
           _**Julia Richarz**, Dipl.‐Sozialpädagogin, Diakonie Düsseldorf_"
         : richarz
       - ? "**(5)** „Lebenslang Musik” im eigenen Zuhause erleben: Begegnung, Begleitung, Verbindung<br />
-          _**Annette Zanker‐Belz**, Musikgeragogin, Heilbronn_"
+          _**Annette Zanker‐Belz**, Geragogin, Musikvermittlerin, Lebenslang lebendig Mensch gGmbH, Heilbronn_"
         : zankerbelz
-      - ? "**(6)** Musikinterventionen für den Alltag häuslich pflegender Angehöriger mit ihren Menschen mit Demenz<br />
-          _**Dr. phil. Lara Blauth**, Musiktherapeutin Studienleiterin, HAW Würzburg, Schweinfurt_"
+      - ? "**(6)** Unterstützung im Alltag für Menschen mit Demenz und ihre häuslich pflegenden Angehörigen durch Musik<br />
+          _**Dr. phil. Laura Blauth**, Musiktherapeutin Studienleiterin, HAW Würzburg, Schweinfurt_"
         : blauth
       - ? "**(7)** Musiktherapeutische Singangebote über Musikvideos (USB‐ Singkreise)<br />
           _**Michael Keßler**, Musiktherapeut M.A., SRH Hochschule Heidelberg_"
@@ -257,12 +257,12 @@ review:
 
       % if webinare["zankerbelz"]:
       **(5)** „Lebenslang Musik” im eigenen Zuhause erleben: Begegnung, Begleitung, Verbindung  
-      _**Annette Zanker‐Belz**, Musikgeragogin, Heilbronn_
+      _**Annette Zanker‐Belz**, Geragogin, Musikvermittlerin, Lebenslang lebendig Mensch gGmbH, Heilbronn_
       % endif
 
       % if webinare["blauth"]:
-      **(6)** Musikinterventionen für den Alltag häuslich pflegender Angehöriger mit ihren Menschen mit Demenz  
-      _**Dr. phil. Lara Blauth**, Musiktherapeutin Studienleiterin, HAW Würzburg, Schweinfurt_
+      **(6)** Unterstützung im Alltag für Menschen mit Demenz und ihre häuslich pflegenden Angehörigen durch Musik  
+      _**Dr. phil. Laura Blauth**, Musiktherapeutin Studienleiterin, HAW Würzburg, Schweinfurt_
       % endif
 
       % if webinare["kessler"]:
