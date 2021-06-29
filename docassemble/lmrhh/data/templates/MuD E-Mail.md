@@ -4,6 +4,13 @@ vielen Dank für Ihre Anmeldung zur Fachtagung **Musik und Demenz – Online** d
 
 Bitte beachten Sie, dass Ihre Anmeldung erst gültig wird, nachdem Sie Ihre Rechnung bezahlt haben.
 
-Viele Grüße  
-Norbert Groß (Projektleiter)  
-Brigitte Kober-Dill (Projektkoordination)
+Viele Grüße
+
+<table style="border:none">
+<tr><td style="padding-right: 30px">Norbert Groß</td><td>Brigitte Kober-Dill</td></tr>
+<tr><td style="padding-right: 30px">(Projektleiter)</td><td>(Projektkoordination)</td></tr>
+</table>
+
+Norbert Groß
+Projektleiter									Brigitte Kober-Dill (Projektkoordination)
+
