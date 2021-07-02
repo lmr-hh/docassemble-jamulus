@@ -62,7 +62,7 @@ subquestion: |
       <td><p><b>1.2</b>&nbsp;&nbsp;(4)</p><p>Individualisierte Playlists</p><p>Julia Richarz</p></td>
       <td><p><b>1.3</b>&nbsp;&nbsp;(3)</p><p>Musik bringt all(t)e in Bewegung</p><p>Mag. Monika Mayr</p></td>
       <td><p><b>1.4</b>&nbsp;&nbsp;(5)</p><p>Lebenslange Musik zuhause erleben</p><p>Anette Zanker-Belz</p></td>
-      <td><p><b>1.5</b>&nbsp;&nbsp;(7)</p><p>Musiktherapeut. USB-Sinkreise</p><p>Michael Keßler</p></td>
+      <td><p><b>1.5</b>&nbsp;&nbsp;(7)</p><p>Musiktherap. Singangeb. auf USB</p><p>Markus Keßler</p></td>
       <td><p><b>1.6</b>&nbsp;&nbsp;(8)</p><p>Das Keyboard i.d. musikther. Arbeit</p><p>Dr. Markus Sommerer</p></td>
     </tr>
     <tr>
@@ -76,7 +76,7 @@ subquestion: |
     <tr>
       <td><p><b>3.1</b>&nbsp;&nbsp;(9)</p><p>Musiktherapie in der geriatr. Pflege</p><p>Judith Stritzker</p></td>
       <td><p><b>3.2</b>&nbsp;&nbsp;(2)</p><p>Kommunikations-puppen</p><p>Martina Klimpel</p></td>
-      <td><p><b>3.3</b>&nbsp;&nbsp;(7)</p><p>Musiktherapeut. USB-Sinkreise</p><p>Michael Keßler</p></td>
+      <td><p><b>3.3</b>&nbsp;&nbsp;(7)</p><p>Musiktherap. Singangeb. auf USB</p><p>Markus Keßler</p></td>
       <td><p><b>3.4</b>&nbsp;&nbsp;(5)</p><p>Lebenslange Musik zuhause erleben</p><p>Anette Zanker-Belz</p></td>
       <td><p><b>3.5</b>&nbsp;&nbsp;(6)</p><p>Unterstützung f. häusl. pfleg. Angehörige</p><p>Dr. Laura Blauth</p></td>
       <td><p><b>3.6</b>&nbsp;&nbsp;(8)</p><p>Das Keyboard i.d. musikther. Arbeit</p><p>Dr. Markus Sommerer</p></td>
@@ -111,11 +111,11 @@ fields:
       - ? "**(6)** Unterstützung im Alltag für Menschen mit Demenz und ihre häuslich pflegenden Angehörigen durch Musik<br />
           _**Dr. phil. Laura Blauth**, Musiktherapeutin Studienleiterin, HAW Würzburg, Schweinfurt_"
         : blauth
-      - ? "**(7)** Musiktherapeutische Singangebote über Musikvideos (USB‐ Singkreise)<br />
-          _**Michael Keßler**, Musiktherapeut M.A., SRH Hochschule Heidelberg_"
+      - ? "**(7)** Musiktherapeutische Singangebote auf USB-Stick<br />
+          _**Markus Keßler**, Musiktherapeut M.A., Musik-Institut Rhein-Neckar, Heidelberg"_
         : kessler
       - ? "**(8)** Das Keyboard – ein digitales Musikinstrument in der musiktherapeutischen Arbeit mit Menschen mit Demenz<br />
-          _**Dr. phil. Markus Sommerer**, Musiktherapeut_"
+          _**Dr. rer. hum. biol. Markus Sommerer**, Musiktherapeut_"
         : sommerer
       - ? "**(9)** Musiktherapie in der geriatrischen Pflege<br />
           _**Judith Stritzker**, Musiktherapeutin B.A., SRH Hochschule Heidelberg_"
@@ -266,13 +266,13 @@ review:
       % endif
 
       % if webinare["kessler"]:
-      **(7)** Musiktherapeutische Singangebote über Musikvideos (USB‐ Singkreise)  
-      _**Michael Keßler**, Musiktherapeut M.A., SRH Hochschule Heidelberg_
+      **(7)** Musiktherapeutische Singangebote auf USB-Stick
+      _**Markus Keßler**, Musiktherapeut M.A., Musik-Institut Rhein-Neckar, Heidelberg_
       % endif
 
       % if webinare["sommerer"]:
       **(8)** Das Keyboard – ein digitales Musikinstrument in der musiktherapeutischen Arbeit mit Menschen mit Demenz  
-      _**Dr. phil. Markus Sommerer**, Musiktherapeut_
+      _**Dr. rer. hum. biol. Markus Sommerer**, Musiktherapeut_
       % endif
 
       % if webinare["stritzker"]:
