@@ -87,7 +87,7 @@ subquestion: |
   bitten, diejenigen Webinare auszuwählen, für die Sie sich besonders interessieren. Sie können
   hier mehr als 3 Webinare auswählen, können aber in der Tagung nur an 3 Webinaren teilnehmen.
 
-  Zu jedem Webinar ist eine Kurzbeschreibung verfügbar: <a class="button" href="/packagestatic/docassemble.lmrhh/Webinarubersicht.pdf">Kurzbeschreibungen anzeigen</a>
+  Zu jedem Webinar ist eine Kurzbeschreibung verfügbar: <a class="btn btn-secondary" target="_blank" href="/packagestatic/docassemble.lmrhh/Webinarubersicht.pdf">Kurzbeschreibungen anzeigen</a>
 
   Welche Webinare Sie dann tatsächlich besuchen möchten, können Sie in der Online-Tagung entscheiden.
 fields:
