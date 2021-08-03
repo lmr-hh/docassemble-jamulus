@@ -48,12 +48,12 @@ question: Webinar-Optionen
 subquestion: |
   Im zweiten Teil der Tagung werden verschiedene Webinare stattfinden. Es stehen 9 verschiedene
   Webinare zur Auswahl. An **3 Webinaren** können Sie teilnehmen.
-  
+
   Die Webinare werden in folgenden 3 Zeitfenstern angeboten. Alle Webinare werden
   insgesamt 2 Mal durchgeführt.
 
-  **Erstes Zeitfenster**: 15:50 Uhr bis 16:15 Uhr  
-  **Zweites Zeitfenster**: 16:20 Uhr bis 16:45 Uhr  
+  **Erstes Zeitfenster**: 15:50 Uhr bis 16:15 Uhr
+  **Zweites Zeitfenster**: 16:20 Uhr bis 16:45 Uhr
   **Drittes Zeitfenster**: 16:50 Uhr bis 17:15 Uhr
 
   <table class="schedule">
@@ -62,7 +62,7 @@ subquestion: |
       <td><p><b>1.2</b>&nbsp;&nbsp;(4)</p><p>Individualisierte Playlists</p><p>Julia Richarz</p></td>
       <td><p><b>1.3</b>&nbsp;&nbsp;(3)</p><p>Musik bringt all(t)e in Bewegung</p><p>Mag. Monika Mayr</p></td>
       <td><p><b>1.4</b>&nbsp;&nbsp;(5)</p><p>Lebenslange Musik zuhause erleben</p><p>Anette Zanker-Belz</p></td>
-      <td><p><b>1.5</b>&nbsp;&nbsp;(7)</p><p>Musiktherap. Singangeb. auf USB</p><p>Markus Keßler</p></td>
+      <td><p><b>1.5</b>&nbsp;&nbsp;(7)</p><p>Musiktherap. Singangeb. auf USB</p><p>Michael Keßler</p></td>
       <td><p><b>1.6</b>&nbsp;&nbsp;(8)</p><p>Das Keyboard i.d. musikther. Arbeit</p><p>Dr. Markus Sommerer</p></td>
     </tr>
     <tr>
@@ -76,7 +76,7 @@ subquestion: |
     <tr>
       <td><p><b>3.1</b>&nbsp;&nbsp;(9)</p><p>Musiktherapie in der geriatr. Pflege</p><p>Judith Stritzker</p></td>
       <td><p><b>3.2</b>&nbsp;&nbsp;(2)</p><p>Kommunikations-puppen</p><p>Martina Klimpel</p></td>
-      <td><p><b>3.3</b>&nbsp;&nbsp;(7)</p><p>Musiktherap. Singangeb. auf USB</p><p>Markus Keßler</p></td>
+      <td><p><b>3.3</b>&nbsp;&nbsp;(7)</p><p>Musiktherap. Singangeb. auf USB</p><p>Michael Keßler</p></td>
       <td><p><b>3.4</b>&nbsp;&nbsp;(5)</p><p>Lebenslange Musik zuhause erleben</p><p>Anette Zanker-Belz</p></td>
       <td><p><b>3.5</b>&nbsp;&nbsp;(6)</p><p>Unterstützung f. häusl. pfleg. Angehörige</p><p>Dr. Laura Blauth</p></td>
       <td><p><b>3.6</b>&nbsp;&nbsp;(8)</p><p>Das Keyboard i.d. musikther. Arbeit</p><p>Dr. Markus Sommerer</p></td>
@@ -86,6 +86,8 @@ subquestion: |
   Um besser einschätzen zu können, welche Webinare stärker ausgelastet sind, möchten wir Sie
   bitten, diejenigen Webinare auszuwählen, für die Sie sich besonders interessieren. Sie können
   hier mehr als 3 Webinare auswählen, können aber in der Tagung nur an 3 Webinaren teilnehmen.
+
+  Zu jedem Webinar ist eine Kurzbeschreibung verfügbar: <a class="button" href="/packagestatic/docassemble.lmrhh/Webinarubersicht.pdf">Kurzbeschreibungen anzeigen</a>
 
   Welche Webinare Sie dann tatsächlich besuchen möchten, können Sie in der Online-Tagung entscheiden.
 fields:
@@ -112,7 +114,7 @@ fields:
           _**Dr. phil. Laura Blauth**, Musiktherapeutin Studienleiterin, HAW Würzburg, Schweinfurt_"
         : blauth
       - ? "**(7)** Musiktherapeutische Singangebote auf USB-Stick<br />
-          _**Markus Keßler**, Musiktherapeut M.A., Musik-Institut Rhein-Neckar, Heidelberg_"
+          _**Michael Keßler**, Musiktherapeut M.A., Musik-Institut Rhein-Neckar, Heidelberg_"
         : kessler
       - ? "**(8)** Das Keyboard – ein digitales Musikinstrument in der musiktherapeutischen Arbeit mit Menschen mit Demenz<br />
           _**Dr. rer. hum. biol. Markus Sommerer**, Musiktherapeut_"
@@ -139,7 +141,7 @@ css: |
     table.schedule p:last-child {
       font-style: italic;
     }
-    
+
     table.schedule {
       width: 100%;
     }
@@ -158,7 +160,7 @@ subquestion: |
   Für die Teilnahme an der Tagung ist ein Teilnahmebeitrag von 25 € fällig.
 
   Nachdem Sie die Anmeldung abgeschlossen haben, erhalten Sie eine Rechnung per E-Mail.
-  
+
   Bitte überweisen Sie zeitnah den Betrag entsprechend der Ihnen zugesandten Rechnung.
   Die Teilnahmegebühr wird bei Nichtteilnahme nicht erstattet.
 buttons:
@@ -236,47 +238,47 @@ review:
       Sie haben angegeben, dass Sie sich für die folgenden Webinare interessieren:
 
       % if webinare["hohberger"]:
-      **(1)** Musik-Apps in der Musikgeragogik – Generation Rock  
+      **(1)** Musik-Apps in der Musikgeragogik – Generation Rock
       _**Frauke Hohberger**, Musikpädagogin, Langenhagen_
       % endif
 
       % if webinare["klimpel"]:
-      **(2)** Kommunikationspuppen im digitalen Einsatz – Musikalische Betreuung von Menschen mit Demenz online  
+      **(2)** Kommunikationspuppen im digitalen Einsatz – Musikalische Betreuung von Menschen mit Demenz online
       _**Martina Klimpel**, Dipl.‐Musikpädagogin, Landesmusikakademie Berlin_
       % endif
 
       % if webinare["mayr"]:
-      **(3)** Rhythmik bringt durch Musik all(t)e Menschen in Bewegung!  
+      **(3)** Rhythmik bringt durch Musik all(t)e Menschen in Bewegung!
       _**Mag. Monika Mayr**, Musik‐/Rhythmikpädagogin/‐geragogin, Wien_
       % endif
 
       % if webinare["richarz"]:
-      **(4)** Meine ganz persönliche Musik – Mehr Lebensqualität durch individualisierte Playlists  
+      **(4)** Meine ganz persönliche Musik – Mehr Lebensqualität durch individualisierte Playlists
       _**Julia Richarz**, Dipl.‐Sozialpädagogin, Diakonie Düsseldorf_
       % endif
 
       % if webinare["zankerbelz"]:
-      **(5)** „Lebenslang Musik” im eigenen Zuhause erleben: Begegnung, Begleitung, Verbindung  
+      **(5)** „Lebenslang Musik” im eigenen Zuhause erleben: Begegnung, Begleitung, Verbindung
       _**Annette Zanker‐Belz**, Geragogin, Musikvermittlerin, Lebenslang lebendig Mensch gGmbH, Heilbronn_
       % endif
 
       % if webinare["blauth"]:
-      **(6)** Unterstützung im Alltag für Menschen mit Demenz und ihre häuslich pflegenden Angehörigen durch Musik  
+      **(6)** Unterstützung im Alltag für Menschen mit Demenz und ihre häuslich pflegenden Angehörigen durch Musik
       _**Dr. phil. Laura Blauth**, Musiktherapeutin Studienleiterin, HAW Würzburg, Schweinfurt_
       % endif
 
       % if webinare["kessler"]:
       **(7)** Musiktherapeutische Singangebote auf USB-Stick
-      _**Markus Keßler**, Musiktherapeut M.A., Musik-Institut Rhein-Neckar, Heidelberg_
+      _**Michael Keßler**, Musiktherapeut M.A., Musik-Institut Rhein-Neckar, Heidelberg_
       % endif
 
       % if webinare["sommerer"]:
-      **(8)** Das Keyboard – ein digitales Musikinstrument in der musiktherapeutischen Arbeit mit Menschen mit Demenz  
+      **(8)** Das Keyboard – ein digitales Musikinstrument in der musiktherapeutischen Arbeit mit Menschen mit Demenz
       _**Dr. rer. hum. biol. Markus Sommerer**, Musiktherapeut_
       % endif
 
       % if webinare["stritzker"]:
-      **(9)** Musiktherapie in der geriatrischen Pflege  
+      **(9)** Musiktherapie in der geriatrischen Pflege
       _**Judith Stritzker**, Musiktherapeutin B.A., SRH Hochschule Heidelberg_
       % endif
   - Erneut ansehen: Teilnahmebedingungen
@@ -316,7 +318,7 @@ subquestion: |
 
   - [Anmeldung herunterladen](${ anmeldung.pdf.url_for() })
   - [Rechnung herunterladen](${ rechnung.pdf.url_for() })
-  
+
   Wir freuen uns über Ihre Teilnahme.
 
   Klicken Sie auf "Fertig", um die Anmeldung zu beenden.
