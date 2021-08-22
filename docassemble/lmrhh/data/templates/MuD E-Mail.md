@@ -10,7 +10,3 @@ Viele Grüße
 <tr><td style="padding-right: 30px">Norbert Groß</td><td>Brigitte Kober-Dill</td></tr>
 <tr><td style="padding-right: 30px">(Projektleiter)</td><td>(Projektkoordination)</td></tr>
 </table>
-
-Norbert Groß
-Projektleiter									Brigitte Kober-Dill (Projektkoordination)
-
