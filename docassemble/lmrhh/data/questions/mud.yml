@@ -57,7 +57,7 @@ code: |
   if testmodus:
     key = key + "_test"
   with redis.lock(key + "-lock", timeout=5):
-    redis.set(key, 206, nx=True)
+    redis.set(key, 280, nx=True)
     redis.incr(key)
     rechnungsnummer = '2021' + str(redis.get(key).decode()).zfill(3)
     if testmodus:
