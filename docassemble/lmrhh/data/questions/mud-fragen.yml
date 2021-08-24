@@ -166,6 +166,22 @@ subquestion: |
 buttons:
   - Verstanden: continue
 ---
+id: mud-2021/rechnung
+field: Rechnungsnummer
+section: Webinar-Optionen
+question: Rechnung
+subquestion: |
+  Für die Teilnahme an der Tagung ist ein Teilnahmebeitrag von 25 € fällig.
+
+  Nachdem Sie die Anmeldung abgeschlossen haben, erhalten Sie eine Rechnung per E-Mail.
+
+  Bitte überweisen Sie zeitnah den Betrag entsprechend der Ihnen zugesandten Rechnung.
+  Die Teilnahmegebühr wird bei Nichtteilnahme nicht erstattet.
+fields:
+  - "Rechnungsnummer": rechnungsnummer
+  - "Rechnungsdatum": rechnungsdatum
+    datatype: date
+---
 id: mud-2021/teilnahmebedingungen
 field: Teilnahmebedingungen
 section: Bedingungen
