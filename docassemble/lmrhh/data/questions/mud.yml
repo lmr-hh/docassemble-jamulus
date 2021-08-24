@@ -60,8 +60,11 @@ code: |
     redis.set(key, 280, nx=True)
     redis.incr(key)
     rechnungsnummer = '2021' + str(redis.get(key).decode()).zfill(3)
-    if testmodus:
-      rechnungsnummer = rechnungsnummer + "-test"
+  if testmodus:
+    rechnungsnummer = rechnungsnummer + "-test"
+---
+code: |
+  rechnungsdatum = today()
 ---
 # Das Anmeldeformular als PDF. Hier können Dateiname und -inhalt gesetzt werden.
 # Der variable name sowie die valid formats sollten nicht verändert werden.
@@ -119,7 +122,10 @@ mandatory: True
 code: |
   Kontaktdaten
   Optionen
-  Rechnungs_Info
+  if testmodus and url_args.get('rn', None) == 'manual':
+    Rechnungsnummer
+  else:
+    Rechnungs_Info
   Teilnahmebedingungen
   Kontrolle
   Abschicken
