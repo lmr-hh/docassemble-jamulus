@@ -1,0 +1,156 @@
+---
+# Dieser Abschnitt sollte nicht verändert werden.
+include:
+  - deutschland-singt-fragen.yml
+  - tasks.yml
+  - defs.yml
+---
+features:
+  navigation: true
+  hide navbar: false
+  hide standard menu: true
+  labels above fields: true
+  javascript: [actions.js]
+---
+# Die Metadaten konfigurieren das Erscheinungsbild der Anmeldungen (z.B. den
+# Titel). Mögliche Felder sind hier dokumentiert:
+# https://docassemble.org/docs/initial.html#metadata
+metadata:
+  title: Anmeldung zum Projekt Deutschland singt!
+  tab title: Anmeldung Deutschland singt
+  short title: Deutschland singt!
+  logo: '<img src="https://cdn.lmr-hh.de/logos/lmrhh-inverted.svg" height="27">'
+  description:
+    Dies ist die Anmeldung zum gemeinsamen Chorprojekt Deutschland singt!
+  exit url: https://www.lmr-hh.de
+  revision_date: 2021-09-10
+---
+# In diesem Abschnitt werden die Anmeldungen sowie die Automatisierung
+# konfiguriert. Die einzelnen Felder sind separat dokumentiert.
+variable name: daten
+data:
+  # Das Aktivieren des Testmodus verhindert, dass Anmeldungen automatisch
+  # archiviert werden. Stattdessen wird eine Zusammenfassung der Aktionen an die
+  # angegebene E-Mail geschickt, in der steht, was bei ausgeschaltetem
+  # Testmodus passiert wäre.
+  Testmodus: false
+
+  # Speichert alle angegebenen Daten in der Tabelle mit dieser ID ab. Die
+  # 'Tabelle' gibt die ID einer Google Docs Tabelle an, in der neue Anmeldungen
+  # eingefügt werden sollen. Der 'Bereich' gibt den Bereich (in A1-Notation) an,
+  # in dem neue Anmeldungen eingefügt werden sollen.
+
+  Anmeldungen:
+    Bibliothek: b!AEOAy7g2BE-9Q_U0jJ7fSCXwDcLKBLtNoRJAHQDqk2YblYpFdguJQK1fXZaCc57I
+    Dokument: 01PRD5L72ME5KVSJGTFJCJCOV2B4FWROVS
+    Tabelle: "{AC129F96-269F-44F5-9FAA-EBC8B6A31F4A}"
+
+  # Die hier angegebenen Personen erhalten automatisch eine Benachrichtigung,
+  # wenn eine Anmeldung abgeschickt wird.
+  E-Mail Benachrichtigung:
+    - wittenburg@lmr-hh.de
+
+  # Dieses Mailgun Template wird zum Verschicken von E-Mails benutzt. Es sollte
+  # die Variable {{{ content }}} enthalten.
+  Mailgun Vorlage: lmr-anmeldung
+
+  # Alle Termine des Projektes. Folgende Formate sind möglich:
+  # - yyyy-mm-dd: Ein einzelnes Datum. Der Wochentag wird automatisch erkannt.
+  # - [yyyy-mm-dd, <text>]: Ein Datum mit einem Texthinweis. Wenn der
+  #                         Texthinweis ein Komma enthält, muss er in
+  #                         Anführungszeichen eingeschlossen sein.
+  Probentermine:
+    - [ 2021-09-17, 18:30 Uhr - 20:30 Uhr ]
+    - [ 2021-09-19, 11:00 Uhr - 13:00 Uhr ]
+    - [ 2021-09-22, 18:30 Uhr - 20:30 Uhr ]
+    - [ 2021-09-27, 18:30 Uhr - 20:30 Uhr ]
+    - [ 2021-09-27, 18:30 Uhr - 20:30 Uhr ]
+---
+# Der Inhalt der E-Mail, die an neu angemeldete Mitglieder geschickt wird. Der
+# Wert von template sollte nicht verändert werden.
+template: person_email
+# Der E-Mail-Betreff
+subject: Ihre Anmeldung zur Fachtagung Musik und Demenz
+# Diese Datei enthält den Mailinhalt (die Datei befindet sich im `templates`
+# Ordner).
+content file: Deutschland Singt E-Mail.md
+---
+# Der Inhalt der E-Mail, die als Benachrichtigung bei neuen Anmeldungen
+# versendet wird. Der Wert von template sollte nicht verändert werden.
+template: orga_email
+# Der E-Mail-Betreff
+subject: ${ person.name } hat sich für Deutschland singt
+# Diese Datei enthält den Mailinhalt (die Datei befindet sich im `templates`
+# Ordner).
+content file: Deutschland Singt Benachrichtigung.md
+---
+template: testergebnis
+usedefs: [test_defs]
+content file: Deutschland Singt Testmodus.md
+---
+# Die Abschnitte der Anmeldung. In der fragen-Datei können Fragen diesen
+# Abschnitten zugeordnet werden.
+sections:
+  - Persönliche Daten
+  - Probentermine
+  - Ihre Anmeldung
+---
+# Die Reihenfolge, in der Fragen gestellt werden. Dies ist eine erweiterte
+# Funktion, die nicht leichtfertig verändert werden sollte.
+mandatory: True
+code: |
+  Kontaktdaten
+  Datenschutz
+  Probentermine
+  Kontrolle
+  Abschicken
+  if testmodus:
+    Testergebnisse
+  else:
+    Fertig
+---
+modules:
+  - .util
+  - docassemble.msgraph
+  - docassemble.mailgun
+---
+objects:
+  person: Individual
+  bedingungen: DAObject
+  redis: DARedis
+---
+# Der Testmodus wird über einen URL-Parameter oder eine Konfigurationsvariable
+# festgelegt.
+code: testmodus = url_args.get('test', False) or daten.get("Testmodus", False)
+---
+code: |
+  msgraph = MSGraphSession()
+  msgraph.fetch_token()
+  mailgun = Mailgun()
+  mailgun.template = daten["Mailgun Vorlage"]
+---
+code: |
+  table_doc_info = msgraph.get_file_info(
+    daten["Anmeldungen"]["Bibliothek"],
+    daten["Anmeldungen"]["Dokument"]
+  ).json()
+---
+# Startet alle Hintergrundaufgaben und aktiviert den Wartebildschirm, bis diese
+# beendet sind.
+code: |
+  if not all(task.ready() for task in [
+      save_data_task,
+      member_email_task,
+      orga_email_task
+  ]):
+    Warten
+  else:
+    Abschicken = True
+---
+# Wenn nach der Anmeldung gefragt wird, wird diese im Hintergrund erstellt.
+# Währenddessen wird ein Wartebildschirm gezeigt, Dies ist dazu da, dass der
+# "Absenden" Schritt einfach übersprungen werden kann.
+sets: anmeldung
+need: anmeldung_task
+code: Warten
+---

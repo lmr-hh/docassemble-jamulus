@@ -124,3 +124,40 @@ mako: |
       </%self:check>
     % endif
   </%def>
+
+  <%def name="check_table(table)">
+    % if "error" in table["file"]:
+      % if table["file"]["error"]["code"] == "itemNotFound":
+        <%self:cross msg="Die Datei wurde nicht gefunden.">
+          Die Datei-ID ist möglicherweise falsch oder die Datei wurde gelöscht.
+        </%self:cross>
+      % elif table["file"]["error"]["code"] == "accessDenied":
+        <%self:cross msg="Das Anmeldesystem hat keinen Zugriff auf die Datei.">
+          Der Account des Anmeldesystems hat scheinbar keinen Zugriff auf die Datei.
+          Der Account muss explizit die Rechte für die Dokumentenbibliothek zugewiesen bekommen.
+        </%self:cross>
+      % else:
+        <%self:cross msg="Unbekannter Fehler">
+          Es besteht kein Zugriff auf die Datei. Die Fehlermeldung lautet
+          ${ table["file"]["error"]["message"] }
+        </%self:cross>
+      % fi
+    % elif "error" in table["table"]:
+      % if table["table"]["code"] == "ItemNotFound":
+        <%self:cross msg="Tabelle nicht gefunden">
+          Die Datei existiert, allerdings existiert die Tabelle nicht. Es muss
+          die ID einer Tabelle innerhalb des Excel-Workbooks angegeben werden.
+        </%self:cross>
+      % else:
+        <%self:cross msg="Unbekannter Fehler">
+          Es besteht zwar Zugriff auf die Datei, allerdings nicht auf die Tabelle.
+          Die Fehlermeldung lautet ${ table["table"]["error"]["message"] }
+        </%self:cross>
+      % fi
+    % else:
+      <%self:check help="Die Daten aus den Anmeldungen werden automatisch in der Tabelle ergänzt.">
+        Die Tabelle **${ table['table']['name'] }** in der Datei
+        **${ table['file']['name]' }** ist scheinbar korrekt konfiguriert.
+      </%self:check>
+    % endif
+  </%def>
