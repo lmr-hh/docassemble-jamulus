@@ -67,9 +67,9 @@ ${ check_table(test_anmeldungen_tabelle) }
 
 <p>
   <%self:action_button action="append_to_table"
-                       drive="${ daten["Anmeldungen"]["Bibliothek"] }"
-                       file="${ daten["Anmeldungen"]["Dokument"] }"
-                       table="${ daten["Anmeldungen"]["Tabelle"] }
+                       drive="${ daten['Anmeldungen']['Bibliothek'] }"
+                       file="${ daten['Anmeldungen']['Dokument'] }"
+                       table="${ daten['Anmeldungen']['Tabelle'] }"
                        message="Die Daten wurden zur Anmeldeliste hinzugefügt.">
     Zur Tabelle hinzufügen
   </%self:action_button>
