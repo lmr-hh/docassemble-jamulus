@@ -73,7 +73,9 @@ ${ check_table(test_anmeldungen_tabelle) }
                        message="Die Daten wurden zur Anmeldeliste hinzugefügt.">
     Zur Tabelle hinzufügen
   </%self:action_button>
+% if 'error' not in test_anmeldungen_tabelle['file']:
   <a class="btn btn-secondary btn-sm"
      target="_blank"
      href="${ test_anmeldungen_tabelle['file']['webUrl'] }">Tabelle öffnen</a>
+% endif
 </p>
