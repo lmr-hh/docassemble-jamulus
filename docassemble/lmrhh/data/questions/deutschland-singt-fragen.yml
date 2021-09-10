@@ -134,9 +134,9 @@ subquestion:
   wurde.
 ---
 event: Fertig
-section: Deine Anmeldung
+section: Ihre Anmeldung
 prevent going back: True
-question: Deine Anmeldung
+question: Ihre Anmeldung
 subquestion:
   Ihre Anmeldung wurde erfolgreich abgeschickt. Sie erhalten eine Bestätigung
   per E-Mail.
@@ -146,7 +146,7 @@ buttons:
   - Fertig: exit
 ---
 event: Testergebnisse
-section: Deine Anmeldung
+section: Ihre Anmeldung
 prevent going back: True
 question: Testmodus
 subquestion: ${ testergebnis }
