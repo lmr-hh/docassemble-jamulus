@@ -58,9 +58,9 @@ nur an die von dir angegebene Adresse `${ person.email }` gesendet.
 
 ### Anmeldeliste
 Alle eingegebenen Daten werden automatisch zur Anmeldeliste hinzugefügt. Die
-Anmeldeliste ist eine Google-Tabelle mit der ID
-`${ test_anmeldungen_tabelle["id"] }`. Die Daten werden dort dem Bereich
-`${ daten["Anmeldungen"]["Bereich"] }` hinzugefügt. Überschriften werden
+Anmeldeliste ist ein Excel-Dokument mit der ID
+`${ daten["Anmeldungen"]["Dokument"] }`. Die Daten werden dort der Tabelle
+`${ daten["Anmeldungen"]["Tabelle"] }` hinzugefügt. Überschriften werden
 automatisch erkannt und den Einträgen zugeordnet.
 
 ${ check_table(test_anmeldungen_tabelle) }
