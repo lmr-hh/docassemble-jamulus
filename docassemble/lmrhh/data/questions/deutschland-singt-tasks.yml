@@ -18,7 +18,8 @@ code: |
     "Telefonnummer": person.phone_number,
     "Adresse": adresse(person),
     "Anmeldedatum": current_datetime(timezone="Europe/Berlin").format_datetime('d.M.YYYY HH:mm'),
-    "Probentermine": ', '.join(probentermine.true_values())
+    "Probentermine": ', '.join(probentermine.true_values()),
+    "Anmerkungen": anmerkungen
   }
 ---
 # A task that adds a row to the Anmeldungen.

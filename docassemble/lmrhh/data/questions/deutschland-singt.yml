@@ -46,9 +46,9 @@ data:
   # in dem neue Anmeldungen eingefügt werden sollen.
 
   Anmeldungen:
-    Bibliothek: b!AEOAy7g2BE-9Q_U0jJ7fSCXwDcLKBLtNoRJAHQDqk2YblYpFdguJQK1fXZaCc57I
-    Dokument: 01PRD5L72ME5KVSJGTFJCJCOV2B4FWROVS
-    Tabelle: "{AC129F96-269F-44F5-9FAA-EBC8B6A31F4A}"
+    Bibliothek: b!DkKMGZZSUkCu8rEpx9uVrMAuja_0o-1ElbYks7wAiSn4sEu-Dko9SovySKzF4i7E
+    Dokument: 01QGZNRZJOZUL5FVFYVBDYSP3MQAEVSOAG
+    Tabelle: "{AA83F56D-402D-4693-A866-07455B3B3D40}"
 
   # Die hier angegebenen Personen erhalten automatisch eine Benachrichtigung,
   # wenn eine Anmeldung abgeschickt wird.
