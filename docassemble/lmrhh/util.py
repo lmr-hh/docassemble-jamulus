@@ -1,6 +1,8 @@
 from docassemble.base.functions import value
 from docassemble.base.util import format_date, validation_error, Address, Person
 
+__all__ = ["adresse", "date_checklist", "dates_review"]
+
 
 def adresse(thing):
     """
@@ -31,20 +33,30 @@ def adresse(thing):
     return ", ".join(components)
 
 
-def date_checklist(dates: dict):
+def date_checklist(dates: dict, help_format=None):
     """
     Formats a list of checkbox entries to select dates from the given list.
     """
-    return [
-        {
-            date[0]: format_date(date[0], 'E, d. MMMM'),
-            'default': True,
-            'help': date[1]
-        } if isinstance(date, list) else {
-            date: format_date(date, 'E, d. MMMM'),
-            'default': True
-        } for date in dates
-    ]
+    checklist = []
+    for date in dates:
+        if isinstance(date, list) and help_format is None:
+            checklist.append({
+                date[0]: format_date(date[0], 'E, d. MMMM'),
+                'default': True,
+                'help': date[1]
+            })
+        elif isinstance(date, list):
+            checklist.append({
+                date[0]: format_date(date[0], 'E, d. MMMM') +
+                         (help_format % date[1]),
+                'default': True
+            })
+        else:
+            checklist.append({
+                date: format_date(date, 'E, d. MMMM'),
+                'default': True
+            })
+    return checklist
 
 
 def dates_review(dates: dict, selections: dict):

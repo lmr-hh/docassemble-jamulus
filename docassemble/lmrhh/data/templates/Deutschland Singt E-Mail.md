@@ -10,7 +10,7 @@ Sie haben folgende Angaben gemacht:
 |Name          | ${ person.name }         |
 |Telefonnummer | ${ person.phone_number } |
 |E-Mail        | ${ person.email }        |
-|Adresse       | ${ adresse(mitglied) }   |
+|Adresse       | ${ adresse(person) }   |
 
 Sie haben außerdem angegeben, dass Sie zu folgenden Proben dabei sind:
 
@@ -23,7 +23,7 @@ Sie haben außerdem angegeben, dass Sie zu folgenden Proben dabei sind:
 %>
 % if probentermine.get(the_date, False):
 - ${ text }
-% fi
+% endif
 % endfor
 
 Sie haben außerdem folgende Angaben gemacht:

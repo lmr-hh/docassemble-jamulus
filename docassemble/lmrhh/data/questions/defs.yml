@@ -141,7 +141,7 @@ mako: |
           Es besteht kein Zugriff auf die Datei. Die Fehlermeldung lautet
           ${ table["file"]["error"]["message"] }
         </%self:cross>
-      % fi
+      % endif
     % elif "error" in table["table"]:
       % if table["table"]["code"] == "ItemNotFound":
         <%self:cross msg="Tabelle nicht gefunden">
@@ -153,11 +153,11 @@ mako: |
           Es besteht zwar Zugriff auf die Datei, allerdings nicht auf die Tabelle.
           Die Fehlermeldung lautet ${ table["table"]["error"]["message"] }
         </%self:cross>
-      % fi
+      % endif
     % else:
       <%self:check help="Die Daten aus den Anmeldungen werden automatisch in der Tabelle ergänzt.">
         Die Tabelle **${ table['table']['name'] }** in der Datei
-        **${ table['file']['name]' }** ist scheinbar korrekt konfiguriert.
+        **${ table['file']['name'] }** ist scheinbar korrekt konfiguriert.
       </%self:check>
     % endif
   </%def>

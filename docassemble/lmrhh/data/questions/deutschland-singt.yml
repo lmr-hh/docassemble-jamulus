@@ -1,8 +1,13 @@
 ---
+modules:
+  - .util
+  - docassemble.msgraph
+  - docassemble.mailgun
+---
 # Dieser Abschnitt sollte nicht verändert werden.
 include:
   - deutschland-singt-fragen.yml
-  - tasks.yml
+  - deutschland-singt-tasks.yml
   - defs.yml
 ---
 features:
@@ -33,7 +38,7 @@ data:
   # archiviert werden. Stattdessen wird eine Zusammenfassung der Aktionen an die
   # angegebene E-Mail geschickt, in der steht, was bei ausgeschaltetem
   # Testmodus passiert wäre.
-  Testmodus: false
+  Testmodus: true
 
   # Speichert alle angegebenen Daten in der Tabelle mit dieser ID ab. Die
   # 'Tabelle' gibt die ID einer Google Docs Tabelle an, in der neue Anmeldungen
@@ -64,7 +69,7 @@ data:
     - [ 2021-09-19, 11:00 Uhr - 13:00 Uhr ]
     - [ 2021-09-22, 18:30 Uhr - 20:30 Uhr ]
     - [ 2021-09-27, 18:30 Uhr - 20:30 Uhr ]
-    - [ 2021-09-27, 18:30 Uhr - 20:30 Uhr ]
+    - [ 2021-10-01, 18:30 Uhr - 20:30 Uhr ]
 ---
 # Der Inhalt der E-Mail, die an neu angemeldete Mitglieder geschickt wird. Der
 # Wert von template sollte nicht verändert werden.
@@ -100,19 +105,13 @@ sections:
 mandatory: True
 code: |
   Kontaktdaten
-  Datenschutz
-  Probentermine
+  Termine
   Kontrolle
   Abschicken
   if testmodus:
     Testergebnisse
   else:
     Fertig
----
-modules:
-  - .util
-  - docassemble.msgraph
-  - docassemble.mailgun
 ---
 objects:
   person: Individual
@@ -146,11 +145,4 @@ code: |
     Warten
   else:
     Abschicken = True
----
-# Wenn nach der Anmeldung gefragt wird, wird diese im Hintergrund erstellt.
-# Währenddessen wird ein Wartebildschirm gezeigt, Dies ist dazu da, dass der
-# "Absenden" Schritt einfach übersprungen werden kann.
-sets: anmeldung
-need: anmeldung_task
-code: Warten
 ---
