@@ -27,7 +27,7 @@ Sie haben außerdem angegeben, dass Sie zu folgenden Proben dabei sind:
 % endfor
 
 Sie haben außerdem folgende Angaben gemacht:
-> ${ anmerkungen }
+> ${ anmerkungen.replace('\n', '\n> ') }
 
 Viele Grüße  
 Der Landesmusikrat Hamburg

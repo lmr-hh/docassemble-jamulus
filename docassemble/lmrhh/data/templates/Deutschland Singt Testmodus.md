@@ -23,7 +23,7 @@ E-Mail sieht allerdings anders aus.
 </p>
 
 <%self:collapse id="person-email-collapse" title="${ person_email.subject }">
-  ${ person_email }
+${ person_email }
 </%self:collapse>
 
 ### Benachrichtigungs-E-Mail
@@ -52,7 +52,7 @@ nur an die von dir angegebene Adresse `${ person.email }` gesendet.
 </p>
 
 <%self:collapse id="orga-email-collapse" title="${ orga_email.subject }">
-  ${ orga_email }
+${ orga_email }
 </%self:collapse>
 % endif
 
