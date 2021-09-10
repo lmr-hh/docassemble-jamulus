@@ -56,6 +56,12 @@ code: |
       }}
     )
   else:
+    something = msgraph.get(f"drives/{action_argument('drive')}/items/{action_argument('file')}/workbook/"
+                f"tables/{action_argument('table')}/headerRowRange").json()
+    print(f"drives/{action_argument('drive')}/items/{action_argument('file')}/workbook/"
+                          f"tables/{action_argument('table')}/headerRowRange")
+    print("------------------------DEBUG------------------------------")
+    print(something)
     result = msgraph.add_table_data(
       action_argument('drive'),
       action_argument('file'),
