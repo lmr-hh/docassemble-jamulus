@@ -33,7 +33,7 @@ def adresse(thing):
     return ", ".join(components)
 
 
-def date_checklist(dates: dict, help_format=None):
+def date_checklist(dates: dict, help_format=None, default=True):
     """
     Formats a list of checkbox entries to select dates from the given list.
     """
@@ -42,19 +42,19 @@ def date_checklist(dates: dict, help_format=None):
         if isinstance(date, list) and help_format is None:
             checklist.append({
                 date[0]: format_date(date[0], 'E, d. MMMM'),
-                'default': True,
+                'default': default,
                 'help': date[1]
             })
         elif isinstance(date, list):
             checklist.append({
                 date[0]: format_date(date[0], 'E, d. MMMM') +
                          (help_format % date[1]),
-                'default': True
+                'default': default
             })
         else:
             checklist.append({
                 date: format_date(date, 'E, d. MMMM'),
-                'default': True
+                'default': default
             })
     return checklist
 
