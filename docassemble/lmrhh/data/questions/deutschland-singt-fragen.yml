@@ -38,9 +38,8 @@ fields:
       Du erhältst per E-Mail wichtige Informationen zur Arbeitsphase und
       Konzerten.
   - Über welche Telefonnummer sind Sie erreichbar?: person.phone_number
-    required: false
     validate: >
-      lambda x: not x or phone_number_is_valid(x, "DE") or validation_error('Bitte geben Sie eine gültige Telefonnummer ein.')
+      lambda x: phone_number_is_valid(x, "DE") or validation_error('Bitte geben Sie eine gültige Telefonnummer ein.')
   - Wie lautet Ihre Adresse?: person.address.address
     hint: Bitte Straße und Hausnummer angeben
   - Wie lautet Ihre Postleitzahl?: person.address.zip
@@ -48,8 +47,8 @@ fields:
     default: Hamburg
   - In welcher Stimmlage singen Sie?: stimmlage
     required: false
-  - ? Ich erkläre mich damit einverstanden, dass im Rahmen der Vorbereitung der
-      Tagung durch den Landesmusikrat Hamburg meine Kontaktdaten
+  - ? Ich erkläre mich damit einverstanden, dass im Rahmen der Vorbereitung des
+      Projektchors durch den Landesmusikrat Hamburg meine Kontaktdaten
       gespeichert und zwecks Vorbereitung genutzt werden dürfen.
     : bedingungen.daten
     datatype: yesnowide
@@ -72,8 +71,9 @@ fields:
   - Ich bin an den folgenden Probenterminen anwesend: probentermine
     datatype: checkboxes
     none of the above: false
+    minlength: 1
     code: |
-      date_checklist(daten["Probentermine"])
+      date_checklist(daten["Probentermine"], default=False)
   - ? Weitere Anmerkungen
     : anmerkungen
     input type: area
@@ -140,9 +140,12 @@ event: Fertig
 section: Ihre Anmeldung
 prevent going back: True
 question: Ihre Anmeldung
-subquestion:
+subquestion: |
   Ihre Anmeldung wurde erfolgreich abgeschickt. Sie erhalten eine Bestätigung
   per E-Mail.
+
+  Sie können sich auf der folgenden Seite direkt die Noten herunterladen:
+  <a class ="btn btn-default" href="#">Noten herunterladen</a>
 
   Klicken Sie auf "Fertig", um die Anmeldung zu beenden.
 buttons:
