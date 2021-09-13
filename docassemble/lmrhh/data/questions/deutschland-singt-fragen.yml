@@ -18,10 +18,10 @@ subquestion: |
   Projektchor. Die Teilnahme ist kostenlos!
 
   Wir freuen uns sehr über Ihr Interesse. Um das Projekt coronakonform
-  durchführen zu können, möchten wir Sie bitten über das untenstehende Formular
-  Ihre Kontaktdaten zu hinterlegen. Wir möchten Sie außerdem bitten anzugeben,
-  an welchen Probenterminen Sie teilnehmen werden, damit die Proben effektiv
-  geplant werden können.
+  durchführen zu können, möchten wir Sie bitten, über das untenstehende Formular
+  Ihre Kontaktdaten zu hinterlegen. Wir möchten Sie außerdem bitten, nach
+  Möglichkeit auch anzugeben, an welchen Probenterminen Sie teilnehmen werden,
+  damit die Proben effektiv geplant werden können.
 under: |
   <small>
   Alle Angaben, die in diesem Formular gemacht werden, sind zur Durchführung
@@ -46,6 +46,8 @@ fields:
   - Wie lautet Ihre Postleitzahl?: person.address.zip
   - In welchem Ort wohnen Sie?: person.address.city
     default: Hamburg
+  - In welcher Stimmlage singen Sie?: stimmlage
+    required: false
   - ? Ich erkläre mich damit einverstanden, dass im Rahmen der Vorbereitung der
       Tagung durch den Landesmusikrat Hamburg meine Kontaktdaten
       gespeichert und zwecks Vorbereitung genutzt werden dürfen.
@@ -101,14 +103,15 @@ review:
       |Name          | ${ person.name }         |
       |Telefonnummer | ${ person.phone_number } |
       |E-Mail        | ${ person.email }        |
-      |Adresse       | ${ adresse(person) }   |
+      |Adresse       | ${ adresse(person) }     |
+      |Stimmlage     | ${ stimmlage }           |
 
       Sie haben den Datenschutzvereinbarungen **zugestimmt**.
   - Angaben ändern: Termine
     button: |
       ## Termine
 
-      Sie melden sich zu den folgenden Probeterminen verbindlich an:
+      Sie melden sich zu den folgenden Probeterminen an:
 
       ${ dates_review(daten["Probentermine"], probentermine) }
 

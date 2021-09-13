@@ -10,7 +10,8 @@ Sie haben folgende Angaben gemacht:
 |Name          | ${ person.name }         |
 |Telefonnummer | ${ person.phone_number } |
 |E-Mail        | ${ person.email }        |
-|Adresse       | ${ adresse(person) }   |
+|Adresse       | ${ adresse(person) }     |
+|Stimmlage     | ${ stimmlage }           |
 
 Sie haben außerdem angegeben, dass Sie zu folgenden Proben dabei sind:
 
