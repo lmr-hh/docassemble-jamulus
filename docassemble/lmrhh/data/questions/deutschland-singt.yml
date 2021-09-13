@@ -53,7 +53,8 @@ data:
   # Die hier angegebenen Personen erhalten automatisch eine Benachrichtigung,
   # wenn eine Anmeldung abgeschickt wird.
   E-Mail Benachrichtigung:
-    - wittenburg@lmr-hh.de
+    - dejong@lmr-hh.de
+    - vetter@lmr-hh.de
 
   # Dieses Mailgun Template wird zum Verschicken von E-Mails benutzt. Es sollte
   # die Variable {{{ content }}} enthalten.
