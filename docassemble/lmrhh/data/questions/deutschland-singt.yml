@@ -54,7 +54,7 @@ data:
   # wenn eine Anmeldung abgeschickt wird.
   E-Mail Benachrichtigung:
     - dejong@lmr-hh.de
-    - vetter@lmr-hh.de
+    - music@dorisvetter.com
 
   # Dieses Mailgun Template wird zum Verschicken von E-Mails benutzt. Es sollte
   # die Variable {{{ content }}} enthalten.
