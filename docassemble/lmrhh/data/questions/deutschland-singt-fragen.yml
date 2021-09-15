@@ -117,7 +117,7 @@ review:
 
       Sie melden sich zu den folgenden Probeterminen an:
 
-      ${ dates_review(daten["Probentermine"], probentermine) }
+      ${ dates_review(daten["Probentermine"], probentermine, help_format=", %s") }
 
       % if anmerkungen:
       <p><div class="card">
