@@ -120,6 +120,7 @@ sections:
 # Funktion, die nicht leichtfertig verändert werden sollte.
 mandatory: True
 code: |
+  Anmeldefrist
   Kontaktdaten
   Optionen
   if testmodus and url_args.get('rn', None) == 'manual':

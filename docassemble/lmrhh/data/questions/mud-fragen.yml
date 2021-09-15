@@ -1,4 +1,16 @@
 ---
+field: Anmeldefrist
+section: Persönliche Daten
+question: Anmeldefrist abgelaufen
+subquestion: |
+  Wir freuen uns über Ihr Interesse an der Fachtagung Musik und Demenz Online.
+  Leider ist die Anmeldefrist zur Teilnahme an der Tagung abgelaufen.
+
+  Wenn Sie sich bereits angemeldet haben, erhalten Sie per E-Mail einen
+  Zoom-Link, über den Sie an der Tagung teilnehmen können.
+buttons:
+  - Ende: exit
+---
 id: mud-2021/persoenliche-daten
 field: Kontaktdaten
 section: Persönliche Daten
