@@ -39,7 +39,16 @@ def date_checklist(dates: dict, help_format=None, default=True):
     """
     checklist = []
     for date in dates:
-        if isinstance(date, list) and help_format is None:
+        if isinstance(date, dict):
+            date_id = date.get('id', date['date'])
+            value = {
+                date_id: format_date(date['date'], 'E, d. MMMM'),
+                'default': default
+            }
+            if help_format and 'help' in date:
+                value[date_id] += help_format % date['help']
+            checklist.append(value)
+        elif isinstance(date, list) and help_format is None:
             checklist.append({
                 date[0]: format_date(date[0], 'E, d. MMMM'),
                 'default': default,
@@ -69,7 +78,10 @@ def dates_review(dates: dict, selections: dict):
     for date in dates:
         the_date = date[0] if isinstance(date, list) else date
         text = format_date(the_date, 'E, d. MMMM yyyy')
-        if isinstance(date, list):
+        if isinstance(date, dict):
+            if 'help' in date:
+                text += f" ({date['help']})"
+        elif isinstance(date, list):
             text += " (" + date[1] + ")"
         if selections.get(the_date, False):
             output += "- " + text + "\n"
