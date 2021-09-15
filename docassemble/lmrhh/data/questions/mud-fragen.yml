@@ -1,5 +1,5 @@
 ---
-field: Anmeldefrist
+event: Anmeldefrist
 section: Persönliche Daten
 question: Anmeldefrist abgelaufen
 subquestion: |
