@@ -39,7 +39,16 @@ def date_checklist(dates: dict, help_format=None, default=True):
     """
     checklist = []
     for date in dates:
-        if isinstance(date, list) and help_format is None:
+        if isinstance(date, dict):
+            date_id = date.get('id', date['date'])
+            value = {
+                date_id: format_date(date['date'], 'E, d. MMMM'),
+                'default': default
+            }
+            if help_format and 'help' in date:
+                value[date_id] += help_format % date['help']
+            checklist.append(value)
+        elif isinstance(date, list) and help_format is None:
             checklist.append({
                 date[0]: format_date(date[0], 'E, d. MMMM'),
                 'default': default,
@@ -59,19 +68,29 @@ def date_checklist(dates: dict, help_format=None, default=True):
     return checklist
 
 
-def dates_review(dates: dict, selections: dict):
+def dates_review(dates: dict, selections: dict, help_format=None):
     """
     Erstellt eine Liste von Terminen, in denen Fehltermine gekennzeichnet sind.
     Das Ergebnis kann dem Benutzer angezeigt werden.
     """
     output = ""
-    config: dict = value("daten")
     for date in dates:
-        the_date = date[0] if isinstance(date, list) else date
+        the_date = date
+        help_text = None
+        date_id = None
+        if isinstance(date, dict):
+            the_date = date['date']
+            date_id = date.get('id', None)
+            help_text = date.get('help', None)
+        elif isinstance(date, list):
+            the_date = date[0]
+            help_text = date[1]
+        if date_id is None:
+            date_id = the_date
         text = format_date(the_date, 'E, d. MMMM yyyy')
-        if isinstance(date, list):
-            text += " (" + date[1] + ")"
-        if selections.get(the_date, False):
+        if help_text is not None and help_format:
+            text += help_format % help_text
+        if selections.get(date_id, False):
             output += "- " + text + "\n"
         else:
             output += '- <span style="color: red; ' \

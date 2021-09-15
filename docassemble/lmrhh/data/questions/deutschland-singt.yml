@@ -67,10 +67,20 @@ data:
   #                         Anführungszeichen eingeschlossen sein.
   Probentermine:
     - [ 2021-09-17, 18:30 Uhr - 20:30 Uhr ]
-    - [ 2021-09-19, 11:00 Uhr - 13:00 Uhr ]
-    - [ 2021-09-22, 18:30 Uhr - 20:30 Uhr ]
+    - date: 2021-09-19
+      id: "2021-09-19-1"
+      help: 11:00 Uhr - 13:00 Uhr
+    - date: 2021-09-19
+      id: "2021-09-19-2"
+      help: 14:00 Uhr - 16:00 Uhr
+    # - date: 2021-09-22
+    #   help: 18:30 Uhr - 20:30 Uhr
     - [ 2021-09-27, 18:30 Uhr - 20:30 Uhr ]
-    - [ 2021-10-01, 18:30 Uhr - 20:30 Uhr ]
+    - [ 2021-09-29, 18:30 Uhr - 20:30 Uhr ]
+    - [ 2021-09-30, 18:30 Uhr - 20:30 Uhr ]
+    # - date: 2021-10-01
+    #   help: 18:30 Uhr - 20:30 Uhr
+    #   disabled: true
 ---
 # Der Inhalt der E-Mail, die an neu angemeldete Mitglieder geschickt wird. Der
 # Wert von template sollte nicht verändert werden.

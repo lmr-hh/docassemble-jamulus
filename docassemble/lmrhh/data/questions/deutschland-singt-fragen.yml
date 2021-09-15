@@ -67,13 +67,19 @@ subquestion: |
   Damit eine vernünftige Probenplanung möglich ist, möchten wir gerne von Ihnen
   wissen, an welchen Probenterminen Sie anwesend sein werden. Die Angaben, die
   hier gemacht werden, sind **verbindlich**.
+
+  <div class="alert alert-warning" role="alert">
+    <b>Achtung</b>: Aufgrund der hohen Nachfrage wurden weitere Probentermine
+    angesetzt. Sie können sich nicht mehr zu Probenterminen anmelden, die bereits
+    voll ausgelastet sind.
+  </div>
 fields:
   - Ich bin an den folgenden Probenterminen anwesend: probentermine
     datatype: checkboxes
     none of the above: false
     minlength: 1
     code: |
-      date_checklist(daten["Probentermine"], default=False)
+      date_checklist(daten["Probentermine"], default=False, help_format=", %s")
   - ? Weitere Anmerkungen
     : anmerkungen
     input type: area
@@ -113,7 +119,7 @@ review:
 
       Sie melden sich zu den folgenden Probeterminen an:
 
-      ${ dates_review(daten["Probentermine"], probentermine) }
+      ${ dates_review(daten["Probentermine"], probentermine, help_format=", %s") }
 
       % if anmerkungen:
       <p><div class="card">
