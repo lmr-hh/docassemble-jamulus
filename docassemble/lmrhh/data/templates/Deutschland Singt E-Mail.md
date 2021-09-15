@@ -17,18 +17,31 @@ Sie haben außerdem angegeben, dass Sie zu folgenden Proben dabei sind:
 
 % for date in daten["Probentermine"]:
 <%
-    the_date = date[0] if isinstance(date, list) else date
+    the_id = None
+    the_date = date
+    help_text = None
+    if isinstance(date, dict):
+        the_date = date['date']
+        the_id = date.get('id', None)
+        help_text = date.get('help', None)
+    elif isinstance(date, list):
+        the_date = date[0]
+        help_text = date[1]
     text = format_date(the_date, 'E, d. MMMM yyyy')
-    if isinstance(date, list):
-        text += " (" + date[1] + ")" 
+    if the_id is None:
+        the_id = the_date
+    if help_text:
+        text += f", {help_text}" 
 %>
-% if probentermine.get(the_date, False):
+% if probentermine.get(the_id, False):
 - ${ text }
 % endif
 % endfor
 
+% if anmerkungen.strip():
 Sie haben außerdem folgende Angaben gemacht:
 > ${ anmerkungen.replace('\n', '\n> ') }
+% endif
 
 Viele Grüße  
 Der Landesmusikrat Hamburg
