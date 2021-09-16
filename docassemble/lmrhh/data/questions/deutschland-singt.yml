@@ -66,7 +66,7 @@ data:
   #                         Texthinweis ein Komma enthält, muss er in
   #                         Anführungszeichen eingeschlossen sein.
   Probentermine:
-    - [ 2021-09-17, 18:30 Uhr - 20:30 Uhr ]
+    # - [ 2021-09-17, 18:30 Uhr - 20:30 Uhr ]
     - date: 2021-09-19
       id: "2021-09-19-1"
       help: 11:00 Uhr - 13:00 Uhr
