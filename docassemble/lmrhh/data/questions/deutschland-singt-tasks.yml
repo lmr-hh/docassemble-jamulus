@@ -21,7 +21,7 @@ code: |
     "Probentermine": ', '.join(probentermine.true_values()),
     "Anmerkungen": anmerkungen,
     "Stimmlage": stimmlage,
-    "Warteliste": true
+    "Warteliste": True
   }
 ---
 # A task that adds a row to the Anmeldungen.
