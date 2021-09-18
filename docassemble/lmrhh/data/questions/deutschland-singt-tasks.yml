@@ -20,8 +20,7 @@ code: |
     "Anmeldedatum": current_datetime(timezone="Europe/Berlin").format_datetime('d.M.YYYY HH:mm'),
     "Probentermine": ', '.join(probentermine.true_values()),
     "Anmerkungen": anmerkungen,
-    "Stimmlage": stimmlage,
-    "Warteliste": True
+    "Stimmlage": stimmlage
   }
 ---
 # A task that adds a row to the Anmeldungen.

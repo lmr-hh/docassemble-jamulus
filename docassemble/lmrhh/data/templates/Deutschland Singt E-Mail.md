@@ -3,10 +3,6 @@ Liebe\*r Herr\*Frau ${ person.name.last },
 vielen Dank für Ihre Anmeldung zum Projektchor "Deutschland singt!". Dies ist
 eine automatische Bestätigung, dass wir Ihre Anmeldung empfangen haben.
 
-Bitte beachten Sie, dass Sie sich zunächst auf eine Warteliste angemeldet haben.
-Sobald wir bestätigen konnten, dass mehr als 100 Personen coronakonform an dem
-Projekt teilnehmen können, werden wir Sie unverzüglich informieren.
-
 Sie haben folgende Angaben gemacht:
 
 |Feld          |Deine Angabe              |
