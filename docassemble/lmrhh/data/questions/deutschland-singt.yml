@@ -78,6 +78,12 @@ data:
     - [ 2021-09-29, 18:30 Uhr - 20:30 Uhr ]
     - [ 2021-09-30, 18:30 Uhr - 20:30 Uhr ]
     - [ 2021-10-01, 18:30 Uhr - 20:30 Uhr ]
+    - id: "2021-10-02-1"
+      date: 2021-10-02
+      help: 11:00 Uhr - 13:00 Uhr
+    - id: "2021-10-02-2"
+      date: 2021-10-02
+      help: 14:00 Uhr - 16:00 Uhr
 ---
 # Der Inhalt der E-Mail, die an neu angemeldete Mitglieder geschickt wird. Der
 # Wert von template sollte nicht verändert werden.
