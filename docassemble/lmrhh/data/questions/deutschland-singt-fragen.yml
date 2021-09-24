@@ -1,3 +1,13 @@
+event: Anmeldefrist
+section: Persönliche Daten
+question: Anmeldefrist abgelaufen
+subquestion: |
+  Vielen Dank für Ihr Interesse an der Teilnahme am Projektchor "Deutschland
+  singt". Leider sind inzwischen alle Plätze vergeben. Weitere Anmeldungen sind
+  zur Zeit nicht mehr möglich.
+buttons:
+  - Beenden: exit
+---
 field: Kontaktdaten
 section: Persönliche Daten
 question: Persönliche Daten
