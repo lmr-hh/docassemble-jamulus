@@ -5,8 +5,8 @@
 ## Verantwortlicher
 
 **Landesmusikrat in der Freien und Hansestadt Hamburg e.V.** <br />
-Dammtorstraße 14 <br />
-20354 Hamburg <br />
+Bahrenfelder Straße 73d <br />
+22765 Hamburg <br />
 info@lmr-hh.de
 
 ## Allgemeine Hinweise
@@ -15,16 +15,16 @@ Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren 
 
 ## Datenerfassung
 
-Bei Ihrem Besuch werden persönliche Daten erfasst. Die Datenerfassung erfolgt durch die Software [docassemble](http://docassemble.org) Die Daten werden dadurch erhoben, dass Sie diese in einem Anmeldeformular eingeben, bzw. automatisch durch unsere IT-Systeme. Bei automatisch erfassten Daten handelt es sich um technische Daten (z.B. Internetbrowser, Betriebssystem, Uhrzeit des Seitenaufrufs, …).
+Bei Ihrem Besuch werden persönliche Daten erfasst. Die Datenerfassung erfolgt durch die Software [docassemble](http://docassemble.org). Die Daten werden dadurch erhoben, dass Sie diese in einem Anmeldeformular eingeben, bzw. automatisch durch unsere IT-Systeme. Bei automatisch erfassten Daten handelt es sich um technische Daten (z.B. Internetbrowser, Betriebssystem, Uhrzeit des Seitenaufrufs, …). Diese automatisch erfassten Daten werden zur Bereitstellung des Anmelde-Dienstes verwendet.
 
-Die folgenden Daten werden in den meisten Fällen erfasst. Weitere Daten können abhängig von der Veranstaltung erfasst werden, für die Sie sich anmelden:
+Im Rahmen von Anmeldeformularen werden in den meisten Fällen die folgenden Daten erfasst. Weitere Daten können abhängig von der Veranstaltung erfasst werden, für die Sie sich anmelden:
 
 - Name
 - E-Mail-Adresse
 - Anschrift
 - Telefonnummer
 
-Wenn Sie eine Anmeldung starten aber nicht abschicken, werden die von Ihnen eingegebenen Daten durch die Software [docassemble](http://docassemble.org) gespeichert, sodass Sie die Anmeldung später fortsetzen können. Nach spätestens 30 Tagen Inaktivität werden unvollständige Anmeldedaten automatisch gelöscht.
+Wenn Sie eine Anmeldung starten aber nicht abschicken, werden die von Ihnen eingegebenen Daten durch die Software [docassemble](http://docassemble.org) verschlüsselt gespeichert, sodass Sie die Anmeldung später fortsetzen können. Nach spätestens 90 Tagen Inaktivität werden unvollständige Anmeldedaten automatisch gelöscht. Bevor Sie eine Anmeldung abschicken, sind die von Ihnen eingegebenen Daten verschlüsselt und können nur auf dem Gerät/Browser entschlüsselt werden, auf dem die Daten eingegeben wurden. Durch das Abschicken einer Anmeldung geben Sie ihr Einverständnis, dass die von Ihnen eingegebenen Daten durch den Landesmusikrat Hamburg verarbeitet werden. In der Regel müssen Sie dieses Einverständnis im Laufe des Anmeldeprozesses ausdrücklich erteilen.
 
 ## Wofür nutzen wir Ihre Daten?
 
@@ -38,7 +38,7 @@ Die Anmeldungen finden über die Software [docassemble](http://docassemble.org) 
 
 Wir setzen während des Anmeldeprozesses keine Analyse-Tools (Google Analytics, Matomo, …) ein. Bestimmte technische Informationen sind u.U. in Logdateien enthalten, die regelmäßig rotiert werden.
 
-Wir verwenden Google Workspace (Google Drive und Google Docs) zum automatischen Abspeichern Ihrer Angaben in der Anmeldung. Eine Verarbeitung personenbezogener Daten findet damit auch in einem Drittland statt. Wir haben mit Google einen Auftragsverarbeitungsvertrag geschlossen, der den Anforderungen von Art. 28 DSGVO entspricht. Ein angemessenes Datenschutzniveau ist durch den Abschluss der sog. EU-Standardvertragsklauseln garantiert.
+Wir verwenden Microsoft 365 zum automatischen Abspeichern Ihrer Angaben in der Anmeldung. Daten werden grundsätzlich in Detuschland gespeichert. Ein Auftragsverarbeitungsvertrag mit Microsoft liegt vor, der den Anforderungen von Art. 28 DSGVO entspricht.
 
 ## Rechtsgrundlage
 
@@ -46,6 +46,7 @@ Soweit personenbezogene Daten durch den Landesmusikrat Hamburg verarbeitet werde
 
 - Art. 6 Abs. 1 lit. f) DSGVO: Es besteht ein berechtigtes Interesse, um die Durchführung von Veranstaltungen möglich zu machen.
 - Art. 6 Abs. 1 lit. b) DSGVO: Die Datenerhebung ist zur Vertragserfüllung (d.h. Anmeldung) erforderlich.
+- Art. 6 Abs. 1 lit. a) DSGVO: Sie haben Ihre Einwilligung zur Verarbeitung der Daten erteilt.
 
 In bestimmten fällen ist außerdem Art. 6 Abs 1 lit. c) die Rechtsgrundlage, z.B. zum Ausstellen und Archivieren von Rechnungen.
 
@@ -67,4 +68,4 @@ Wir löschen personenbezogene Daten grundsätzlich dann, wenn kein Erfordernis f
 
 Wir überarbeiten diese Datenschutzhinweise bei Änderungen der Datenverarbeitung oder bei sonstigen Anlässen, die dies erforderlich machen. Die jeweils aktuelle Fassung finden Sie stets auf dieser Internetseite.
 
-Stand: 21. April 2021
+Stand: 17. August 2022
