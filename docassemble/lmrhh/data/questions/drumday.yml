@@ -1,0 +1,109 @@
+metadata:
+  title: Anmeldung zum Drum Day 2022
+  tab title: Anmeldung Drum Day
+  short title: Drum Day
+  logo: '<img src="https://cdn.lmr-hh.de/logos/lmrhh-inverted.svg" height="27">'
+  description:
+    Dies ist die Anmeldung zum Drum Day, einer Veranstaltung der JMS und des
+    Landesmusikrates Hamburg.
+  exit url: https://www.lmr-hh.de
+  revision_date: 2022-08-17
+---
+features:
+  navigation: false
+  hide navbar: false
+  hide standard menu: true
+  labels above fields: true
+  javascript: [actions.js]
+---
+modules:
+  - .util
+---
+objects:
+  person: Individual
+  redis: DARedis
+---
+# Testmodus
+code:
+  testmodus = url_args.get('test', False) or True
+---
+variable name: daten
+data:
+  Anmeldungen:
+    Bibliothek: b!DkKMGZZSUkCu8rEpx9uVrMAuja_0o-1ElbYks7wAiSn4sEu-Dko9SovySKzF4i7E
+    Dokument: 01QGZNRZJOZUL5FVFYVBDYSP3MQAEVSOAG
+    Tabelle: "{AA83F56D-402D-4693-A866-07455B3B3D40}"
+
+  Mailgun Vorlage: lmr-anmeldung
+  E-Mail Benachrichtigung: []
+---
+# Der Inhalt der E-Mail, die an neu angemeldete Mitglieder geschickt wird. Der
+# Wert von template sollte nicht verändert werden.
+template: person_email
+# Der E-Mail-Betreff
+subject: Ihre Anmeldung zum Drum Day
+# Diese Datei enthält den Mailinhalt (die Datei befindet sich im `templates`
+# Ordner).
+content file: Drum Day E-Mail.md
+---
+question: Drum Day + Percussion Day 2022
+subquestion: |
+  Am 16.09. und 17.09. findet in einer Kooperation der staatlichen
+  Jugendmusikschule Hamburg und dem Landesmusikrat Hamburg der Drum Day sowie
+  der 3. Percussion Day 2022 statt.
+  
+  Über dieses Formular können Sie sich zur Drum Clinic am 16.09. sowie zu den
+  Workshops am 17.09. anmelden. Beachten Sie, dass das Kontingent begrenzt ist
+  und Plätze nach dem First-Come First-Served Prinzip vergeben werden.
+fields:
+  - note: |
+      ## Drum Clinic am 16.09.
+      
+      Die Drum Clinic geht von etwa 16:00 Uhr bis 18:00 Uhr und wird von Benny
+      Greb und Jost Nickel durchgeführt. **Bitte bringen Sie Sticks & Pad mit**,
+      wenn Sie an der Drum Clinic teilnehmen möchten.
+      
+      Anschließend wird um 18:30 Uhr eine Eröffnungsveranstaltung mit Wort-
+      und Musikbeiträgen stattfinden.
+  - Anmelden zur Drum Clinic mit Benny Greb und Jost Nickel: drum_clinic
+    datatype: yesnoradio
+  - note: |
+      ## Percussion Day
+      
+      Der Percussion Day findet mit folgendem zeitlichen Ablauf statt:
+      
+      - 11:00: Eröffnung im Miralles-Saal
+      - 11:15 - 12:00: Workshop 1
+      - 12:15 - 13:00: Workshop 2
+      - 13:15 - 14:00: Workshop 3
+      - 14:30: Abschlusskonzert
+      - 16:00: Netzwerktreffen des Percussion Creativ e.V.
+      
+      Sie können sich für jede der drei Workshop-Zeiten zu einem anderen
+      Workshop anmelden. Die meisten Workshops finden mehrfach statt.
+      
+      Es ist auch möglich an einem Workshop passiv teilzunehmen. Als passive\*r
+      Teilnehmende\*r können Sie den Workshop besuchen, können aber selbst nicht
+      aktiv mitspielen.
+  - Workshop 1: workshop_1
+    choices:
+      - code: workshops
+      - E-Drums im Unterricht und Zuhause: w8
+  - Workshop 2: workshop_2
+    choices:
+      code: workshops
+  - Workshop 3: workshop_3
+    choices:
+      code: workshops
+continue button label: Abschicken
+---
+code: |
+  workshops = [
+    {"w1": "Das Drumset – der perfekte Einstieg"},
+    {"w2": "Drumset aufbauen - aber wie?"},
+    {"w3": "Freies Spiel am Drumset"},
+    {"w4": "Fitte Hände in allen Lebenslagen - schnelle Übungen für Zeit-Jongleure und Technikmuffel"},
+    {"w5": "Abwechslung im Spiel - Akzente am Drumset"},
+    {"w6": "Latin for drummers"},
+    {"w7": "E-Sets Beratung"}
+  ]

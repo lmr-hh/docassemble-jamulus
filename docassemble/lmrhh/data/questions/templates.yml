@@ -1,0 +1,17 @@
+template: notification_email
+subject: ${ person.name } hat sich für den Drum Day angemeldet
+content: |
+  Hallo,
+
+  ${ person } hat sich soeben zum Drum Day angemeldet. Die Anmeldedaten
+  wurden in die folgende Tabelle eingetragen.
+
+  [Anmeldeliste öffnen](${ tabelle['datei']['webUrl'] })  
+  [Anmeldeordner öffnen](${ ordner['webUrl'] })
+
+  Viele Grüße  
+  Das Anmeldungssystem
+---
+template: testergebnis
+usedefs: [test_defs]
+content file: Testmodus.md

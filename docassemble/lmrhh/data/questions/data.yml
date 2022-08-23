@@ -1,24 +1,4 @@
----
-features:
-  navigation: true
-  hide navbar: false
-  hide standard menu: true
-  labels above fields: true
-  javascript: [actions.js]
----
-objects:
-  person: Individual
-  bedingungen: DAObject
-  redis: DARedis
----
-include:
-  - tasks.yml
-  - defs.yml
----
-modules:
-  - .util
-  - .automate
----
+
 # Berechnet, ob die Teilnahmebedingungen akzeptiert wurden. Dies kann benutzt
 # werden, um ggf. die notwendige Frage nach den Bedingungen zu stellen, falls
 # bestimmte Bedingungne noch nicht akzeptiert sind.
