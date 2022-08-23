@@ -16,6 +16,9 @@ features:
   labels above fields: true
   javascript: [actions.js]
 ---
+include:
+  - drumday-templates.yml
+---
 modules:
   - .util
 ---
@@ -37,15 +40,7 @@ data:
   Mailgun Vorlage: lmr-anmeldung
   E-Mail Benachrichtigung: []
 ---
-# Der Inhalt der E-Mail, die an neu angemeldete Mitglieder geschickt wird. Der
-# Wert von template sollte nicht verändert werden.
-template: person_email
-# Der E-Mail-Betreff
-subject: Ihre Anmeldung zum Drum Day
-# Diese Datei enthält den Mailinhalt (die Datei befindet sich im `templates`
-# Ordner).
-content file: Drum Day E-Mail.md
----
+mandatory: true
 question: Drum Day + Percussion Day 2022
 subquestion: |
   Am 16.09. und 17.09. findet in einer Kooperation der staatlichen
@@ -87,18 +82,122 @@ fields:
       aktiv mitspielen.
   - Workshop 1: workshop_1
     choices:
-      - code: workshops
-      - E-Drums im Unterricht und Zuhause: w8
+      code: |
+        workshops + [
+          {"w8": "E-Drums im Unterricht und Zuhause"}
+        ]
+    default: None
+  - show if:
+      variable: workshop_1
+      is: w1
+    note: ${ w1_description }
+  - show if:
+      variable: workshop_1
+      is: w2
+    note: ${ w2_description }
+  - show if:
+      variable: workshop_1
+      is: w3
+    note: ${ w3_description }
+  - show if:
+      variable: workshop_1
+      is: w3
+    note: ${ w3_description }
+  - show if:
+      variable: workshop_1
+      is: w4
+    note: ${ w4_description }
+  - show if:
+      variable: workshop_1
+      is: w5
+    note: ${ w5_description }
+  - show if:
+      variable: workshop_1
+      is: w6
+    note: ${ w6_description }
+  - show if:
+      variable: workshop_1
+      is: w7
+    note: ${ w7_description }
+  - show if:
+      variable: workshop_1
+      is: w8
+    note: ${ w8_description }
   - Workshop 2: workshop_2
     choices:
       code: workshops
+  - show if:
+      variable: workshop_2
+      is: w1
+    note: ${ w1_description }
+  - show if:
+      variable: workshop_2
+      is: w2
+    note: ${ w2_description }
+  - show if:
+      variable: workshop_2
+      is: w3
+    note: ${ w3_description }
+  - show if:
+      variable: workshop_2
+      is: w3
+    note: ${ w3_description }
+  - show if:
+      variable: workshop_2
+      is: w4
+    note: ${ w4_description }
+  - show if:
+      variable: workshop_2
+      is: w5
+    note: ${ w5_description }
+  - show if:
+      variable: workshop_2
+      is: w6
+    note: ${ w6_description }
+  - show if:
+      variable: workshop_2
+      is: w7
+    note: ${ w7_description }
   - Workshop 3: workshop_3
     choices:
       code: workshops
+  - show if:
+      variable: workshop_3
+      is: w1
+    note: ${ w1_description }
+  - show if:
+      variable: workshop_3
+      is: w2
+    note: ${ w2_description }
+  - show if:
+      variable: workshop_3
+      is: w3
+    note: ${ w3_description }
+  - show if:
+      variable: workshop_3
+      is: w3
+    note: ${ w3_description }
+  - show if:
+      variable: workshop_3
+      is: w4
+    note: ${ w4_description }
+  - show if:
+      variable: workshop_3
+      is: w5
+    note: ${ w5_description }
+  - show if:
+      variable: workshop_3
+      is: w6
+    note: ${ w6_description }
+  - show if:
+      variable: workshop_3
+      is: w7
+    note: ${ w7_description }
 continue button label: Abschicken
 ---
 code: |
   workshops = [
+    {None: "Keine Auswahl"},
     {"w1": "Das Drumset – der perfekte Einstieg"},
     {"w2": "Drumset aufbauen - aber wie?"},
     {"w3": "Freies Spiel am Drumset"},
