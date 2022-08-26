@@ -25,6 +25,7 @@ code: |
           code=code
         )
 ---
+mandatory: true
 code: |
   _file = msgraph.get_file_info(
     daten["Anmeldungen"]["Bibliothek"],
@@ -73,7 +74,9 @@ code: |
     "datei": _file,
     "tabelle": _table
   }
+  del _file, _error, _table
 ---
+mandatory: true
 code: |
   ordner = msgraph.get_file_info(
     daten["Anmeldungen"]["Bibliothek"],
@@ -103,7 +106,5 @@ code: |
       "Konfigurationsfehler: Es ist ein Fehler beim Zufriff auf den "
       f"Archivordner aufgetreten. Die Fehlermeldung ist {_error['message']}",
     )
+  del _error
 ---
-code: |
-  need(tabelle, ordner)
-  Konfiguration = True
