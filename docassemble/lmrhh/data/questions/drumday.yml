@@ -34,10 +34,10 @@ code:
 variable name: daten
 data:
   Anmeldungen:
-    Bibliothek: b!DkKMGZZSUkCu8rEpx9uVrMAuja_0o-1ElbYks7wAiSn4sEu-Dko9SovySKzF4i7E
-    Dokument: 01QGZNRZJOZUL5FVFYVBDYSP3MQAEVSOAG
-    Tabelle: "{AA83F56D-402D-4693-A866-07455B3B3D40}"
-    Ordner: 01QGZNRZJOZUL5FVFYVBDYSP3MQAEVSOAG
+    Bibliothek: b!6WUxXoQj80WUPsIhFd8JKSL89XMR2F9MtpYy8ZkCvooW0mTd6lmzQIc9uJUAtP4v
+    Dokument: 01W6XJMNK2N3J3U3B6KFGYRYGUX65IWEBZ
+    Tabelle: "{8D9DB907-4FC4-4A4A-A843-0CCB5EAA702B}"
+    Ordner: 01W6XJMNKHJHAQSSPSFFG3ICXSGA3CQI6P
 
   Mailgun Vorlage: lmr-anmeldung
   E-Mail Benachrichtigung: []
@@ -85,7 +85,7 @@ code: |
     capacity = capacities[workshop]
     
     def space(index, key):
-      return capacity[index] - int(participants.get(key, 0))
+      return max(capacity[index] - int(participants.get(key, 0)), 0)
   
     space_active = space(1, b"active")
     return (
@@ -98,8 +98,8 @@ code: |
     key = f"drumday-{name}"
     participants = redis.hgetall(key)
     
-    space_regular = 200 - int(participants.get("regular", 0))
-    space_jms = 100 - int(participants.get("jms", 0))
+    space_regular = max(200 - int(participants.get("regular", 0)), 0)
+    space_jms = max(100 - int(participants.get("jms", 0)), 0)
     return (
       space_regular,
       space_jms + space_regular
@@ -135,7 +135,6 @@ mako: |
     Es sind leider schon alle Plätze für ${ name } vergeben.
   </div>
   % endif
-  </div>
   </%def>
 ---
 mandatory: true
@@ -206,7 +205,7 @@ fields:
       Workshop stattdessen besuchen.
   - '<span style="font-size:1.4em">Workshop-Block 1</span>': workshop1
     choices:
-      code: workshops
+      code: workshop_list
     default: None
   - Ich möchte nur passiv teilnehmen: workshop1_active
     datatype: noyes
@@ -257,7 +256,7 @@ fields:
       ${ w7_description }
   - '<span style="font-size:1.4em">Workshop-Block 2</span>': workshop2
     choices:
-      code: reduced_workshops
+      code: reduced_workshop_list
     default: None
   - Ich möchte nur passiv teilnehmen: workshop2_active
     datatype: noyes
@@ -302,7 +301,7 @@ fields:
       ${ w6_description }
   - '<span style="font-size:1.4em">Workshop-Block 3</span>': workshop3
     choices:
-      code: reduced_workshops
+      code: reduced_workshop_list
     default: None
   - Ich möchte nur passiv teilnehmen: workshop3_active
     datatype: noyes
@@ -354,32 +353,41 @@ fields:
     default: False
 continue button label: Abschicken
 validation code: |
+  if workshop1 == "None":
+    workshop1 = None
+  if workshop2 == "None":
+    workshop2 = None
+  if workshop3 == "None":
+    workshop3 = None
   if workshop2 and workshop1 == workshop2:
     validation_error("Du kannst einen Workshop nicht mehrfach belegen.", field="workshop2")
   if workshop3 and (workshop1 == workshop3 or workshop2 == workshop3):
     validation_error("Du kannst einen Workshop nicht mehrfach belegen.", field="workshop3")
 ---
 code: |
-  reduced_workshops = [
-    {None: "Ich möchte keinen Workshop in diesem Block besuchen"},
-    {"w1": "Das Drumset – der perfekte Einstieg"},
-    {"w2": "Drumset aufbauen - aber wie?"},
-    {"w3": "Freies Spiel am Drumset"},
-    {"w4": "Fitte Hände in allen Lebenslagen - schnelle Übungen für Zeit-Jongleure und Technikmuffel"},
-    {"w5": "Abwechslung im Spiel - moderne Tom-Fills"},
-    {"w6": "Latin for drummers"}
+  workshops = {
+    None: "Ich möchte keinen Workshop in diesem Block besuchen",
+    "w1": "Das Drumset – der perfekte Einstieg",
+    "w2": "Drumset aufbauen - aber wie?",
+    "w3": "Freies Spiel am Drumset",
+    "w4": "Fitte Hände in allen Lebenslagen - schnelle Übungen für Zeit-Jongleure und Technikmuffel",
+    "w5": "Abwechslung im Spiel - moderne Tom-Fills",
+    "w6": "Latin for drummers",
+    "w7": "E-Drums im Unterricht und Zuhause"
+  }
+  
+  workshop_list = [
+    {key: value} for key,value in workshops.items()
   ]
-  workshops = dict(reduced_workshops)
-  workshops["w7"] = "E-Drums im Unterricht und Zuhause"
+  reduced_workshop_list = [
+    {key: value} for key,value in workshops.items() if key != "w7"
+  ]
 ---
 mandatory: true
 need:
   - workshop1
-  - workshop1_active,
   - workshop2
-  - workshop2_active,
   - workshop3
-  - workshop3_active
   - get_space
 code: |
   with redis.lock("drumday-lock", timeout=5):
@@ -404,7 +412,7 @@ code: |
     keys = [None, None, None]
     for time in range(1, 4):
       workshop = value(f"workshop{time}")
-      if workshop is None:
+      if not workshop:
         continue
       is_active = value(f"workshop{time}_active")
       space_passive, space_active, space_jms = get_space(time, workshop)
@@ -439,7 +447,6 @@ code: |
 ---
 need:
   - registration
-  - notification_email
   - confirmation_email
 code: |
   data = {
@@ -451,9 +458,9 @@ code: |
     "Vorkenntnisse": person.knowledge,
     "Drum Clinic": drum_clinic,
     "Konzert": opening_concert,
-    "Workshop 1": workshops[workshop1],
-    "Workshop 2": workshops[workshop2],
-    "Workshop 3": workshops[workshop3],
+    "Workshop 1": workshops[workshop1] if workshop1 else "-",
+    "Workshop 2": workshops[workshop2] if workshop2 else "-",
+    "Workshop 3": workshops[workshop3] if workshop3 else "-",
     "Abschlusskonzert": closing_concert,
     "Anmeldedatum": current_datetime(timezone="Europe/Berlin").format_datetime('d.M.YYYY HH:mm')
   }

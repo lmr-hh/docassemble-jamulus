@@ -1,6 +1,6 @@
 attachment:
   name: Anmeldung ${ person.name }
-  filename: Rechnung ${ person.name }
+  filename: Anmeldung ${ person.name }
   docx template file: Anmeldung Drum Day.docx
   variable name: registration
   valid formats: [pdf]
