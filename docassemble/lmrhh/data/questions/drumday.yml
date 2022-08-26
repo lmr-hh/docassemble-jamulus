@@ -6,7 +6,7 @@ metadata:
     Drum Day und Percussion Day 2022
   description:
     Dies ist die Anmeldung zum Drum Day und Percussion Day 2022.
-  exit url: https://www.lmr-hh.de
+  exit url: https://www.lmr-hh.de/project/instrument-des-jahres-drumset/
   revision_date: 2022-08-17
 ---
 features:
@@ -444,6 +444,9 @@ need:
   - registration
   - confirmation_email
 code: |
+  # Ensure these exist
+  registration_path = registration.pdf.path()
+  registration_filename = registration.pdf.filename
   data = {
     "Vorname": person.name.first,
     "Nachname": person.name.last,
@@ -465,11 +468,11 @@ code: |
     daten["Anmeldungen"]["Tabelle"],
     data
   )
-  with open(registration.pdf.path(), 'rb') as f:
+  with open(registration_path, 'rb') as f:
     msgraph.upload_file(
       daten["Anmeldungen"]["Bibliothek"],
       daten["Anmeldungen"]["Ordner"],
-      registration.pdf.filename,
+      registration_filename,
       f
     )
   mailgun.send_email(
