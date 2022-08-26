@@ -123,7 +123,7 @@ mako: |
   % elif not space_passive:
   <div class="alert alert-warning">
     Für diesen Workshop sind keine passiven Plätze mehr frei. Du kannst dich
-    allerdings als aktive\*r Teilnehmende\*r anmelden.
+    allerdings als aktive*r Teilnehmende*r anmelden.
   </div>
   % endif
   </%def>
@@ -441,6 +441,8 @@ code: |
   del keys
 ---
 need:
+  - msgraph
+  - mailgun
   - registration
   - confirmation_email
 code: |
@@ -480,7 +482,7 @@ code: |
     template=confirmation_email,
     attachments=[registration.pdf]
   )
-  del data, f
+  del registration_path, registration_filename, data, f
   Automation = True
 ---
 mandatory: true
