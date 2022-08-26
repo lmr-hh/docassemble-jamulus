@@ -5,6 +5,17 @@ attachment:
   variable name: registration
   valid formats: [pdf]
 ---
+template: confirmation_email
+subject: Deine Anmeldung zum Drum Day und Percussion Day 2022
+content: |
+  Hallo,
+  
+  vielen Dank für deine Anmeldung zum Drum Day und Percussion Day 2022. Im
+  Anhang erhältst du deine Anmeldebestätigung. Bringe die Bestätigung bitte mit,
+  da sie am Eingang kontrolliert wird.
+  
+  Viele Grüße
+---
 template: w1_description
 content: |
   In diesem Workshop wird dir gezeigt, auf was du am Anfang achten solltest,

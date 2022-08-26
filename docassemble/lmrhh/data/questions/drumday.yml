@@ -37,6 +37,7 @@ data:
     Bibliothek: b!DkKMGZZSUkCu8rEpx9uVrMAuja_0o-1ElbYks7wAiSn4sEu-Dko9SovySKzF4i7E
     Dokument: 01QGZNRZJOZUL5FVFYVBDYSP3MQAEVSOAG
     Tabelle: "{AA83F56D-402D-4693-A866-07455B3B3D40}"
+    Ordner: 01QGZNRZJOZUL5FVFYVBDYSP3MQAEVSOAG
 
   Mailgun Vorlage: lmr-anmeldung
   E-Mail Benachrichtigung: []
@@ -383,19 +384,19 @@ need:
 code: |
   with redis.lock("drumday-lock", timeout=5):
     space_regular, space_jms = get_space_large("drum-clinic")
-    if not space_jms or (nor person.jms and not space_regular):
+    if not space_jms or (not person.jms and not space_regular):
       define("workshop_error", "Drum Clinic")
       invalidate("drum_clinic")
       re_run_logic()
   
     space_regular, space_jms = get_space_large("opening-concert")
-    if not space_jms or (nor person.jms and not space_regular):
+    if not space_jms or (not person.jms and not space_regular):
       define("workshop_error", "Konzert")
       invalidate("opening_concert")
       re_run_logic()
   
     space_regular, space_jms = get_space_large("closing-concert")
-    if not space_jms or (nor person.jms and not space_regular):
+    if not space_jms or (not person.jms and not space_regular):
       define("workshop_error", "Abschlusskonzert")
       invalidate("closing_concert")
       re_run_logic()
@@ -436,7 +437,10 @@ code: |
         redis.hincrby(f"drumday-{time}-{workshop}", key, 1)
   del keys
 ---
-need: registration
+need:
+  - registration
+  - notification_email
+  - confirmation_email
 code: |
   data = {
     "Vorname": person.name.first,
@@ -453,12 +457,25 @@ code: |
     "Abschlusskonzert": closing_concert,
     "Anmeldedatum": current_datetime(timezone="Europe/Berlin").format_datetime('d.M.YYYY HH:mm')
   }
-  add_spreadsheet_row(
-      daten["Anmeldungen"]["Tabelle"],
-      daten["Anmeldungen"]["Bereich"],
-      data
+  msgraph.add_table_data(
+    daten["Anmeldungen"]["Bibliothek"],
+    daten["Anmeldungen"]["Dokument"],
+    daten["Anmeldungen"]["Tabelle"],
+    data
+  )
+  with open(registration.pdf.path(), 'rb') as f:
+    msgraph.upload_file(
+      daten["Anmeldungen"]["Bibliothek"],
+      daten["Anmeldungen"]["Ordner"],
+      registration.pdf.filename,
+      f
     )
-  del data
+  mailgun.send_email(
+    to=[person],
+    template=confirmation_email,
+    attachments=[registration.pdf]
+  )
+  del data, f
   Automation = True
 ---
 mandatory: true
