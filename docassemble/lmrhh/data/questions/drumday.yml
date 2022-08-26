@@ -98,8 +98,8 @@ code: |
     key = f"drumday-{name}"
     participants = redis.hgetall(key)
     
-    space_regular = max(200 - int(participants.get("regular", 0)), 0)
-    space_jms = max(100 - int(participants.get("jms", 0)), 0)
+    space_regular = max(200 - int(participants.get(b"regular", 0)), 0)
+    space_jms = max(100 - int(participants.get(b"jms", 0)), 0)
     return (
       space_regular,
       space_jms + space_regular
@@ -131,8 +131,8 @@ mako: |
   <%def name="warn_full_large(name, text)">
   <% space_regular, space_jms = get_space_large(name) %>
   % if not space_jms or (not person.jms and not space_regular):
-  <div class="alert alert-warning">
-    Es sind leider schon alle Plätze für ${ name } vergeben.
+  <div class="alert alert-danger">
+    Es sind leider schon alle Plätze für ${ text } ausgebucht.
   </div>
   % endif
   </%def>
@@ -390,26 +390,29 @@ need:
   - workshop3
   - get_space
 code: |
+  keys = {}
   with redis.lock("drumday-lock", timeout=5):
-    space_regular, space_jms = get_space_large("drum-clinic")
-    if not space_jms or (not person.jms and not space_regular):
-      define("workshop_error", "Drum Clinic")
-      invalidate("drum_clinic")
-      re_run_logic()
+    if drum_clinic:
+      space_regular, space_jms = get_space_large("drum-clinic")
+      if not space_jms or (not person.jms and not space_regular):
+        define("workshop_error", "Drum Clinic")
+        force_ask("drum_clinic")
+      keys["drumday-drum-clinic"] = "jms" if person.jms else "regular"
   
-    space_regular, space_jms = get_space_large("opening-concert")
-    if not space_jms or (not person.jms and not space_regular):
-      define("workshop_error", "Konzert")
-      invalidate("opening_concert")
-      re_run_logic()
+    if opening_concert:
+      space_regular, space_jms = get_space_large("opening-concert")
+      if not space_jms or (not person.jms and not space_regular):
+        define("workshop_error", "Konzert")
+        force_ask("opening_concert")
+      keys["drumday-opening-concert"] = "jms" if person.jms else "regular"
   
-    space_regular, space_jms = get_space_large("closing-concert")
-    if not space_jms or (not person.jms and not space_regular):
-      define("workshop_error", "Abschlusskonzert")
-      invalidate("closing_concert")
-      re_run_logic()
+    if closing_concert:
+      space_regular, space_jms = get_space_large("closing-concert")
+      if not space_jms or (not person.jms and not space_regular):
+        define("workshop_error", "Abschlusskonzert")
+        force_ask("closing_concert")
+      keys["drumday-closing-concert"] = "jms" if person.jms else "regular"
   
-    keys = [None, None, None]
     for time in range(1, 4):
       workshop = value(f"workshop{time}")
       if not workshop:
@@ -431,18 +434,10 @@ code: |
         define("workshop_error", f"Workshop {time}")
         invalidate(f"workshop{time}")
         re_run_logic()
-      keys[time-1] = key
+      keys[f"drumday-{time}-{workshop}"] = key
   
-    if drum_clinic:
-      redis.hincrby("drumday-drum-clinic", "jms" if person.jms else "regular", 1)
-    if opening_concert:
-      redis.hincrby("drumday-opening-concert", "jms" if person.jms else "regular", 1)
-    if closing_concert:
-      redis.hincrby("drumday-closing_concert", "jms" if person.jms else "regular", 1)
-    for time, key in enumerate(keys, 1):
-      if key:
-        workshop = value(f"workshop{time}")
-        redis.hincrby(f"drumday-{time}-{workshop}", key, 1)
+    for hash, key in keys.items():
+      redis.hincrby(hash, key, 1)
   del keys
 ---
 need:
