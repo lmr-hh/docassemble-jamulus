@@ -8,13 +8,21 @@ attachment:
 template: confirmation_email
 subject: Deine Anmeldung zum Drum Day und Percussion Day 2022
 content: |
+  ## Anmeldebestätigung Drum Day und Percussion Day 2022
+  
   Hallo,
   
   vielen Dank für deine Anmeldung zum Drum Day und Percussion Day 2022. Im
   Anhang erhältst du deine Anmeldebestätigung. Bringe die Bestätigung bitte mit,
-  da sie am Eingang kontrolliert wird.
+  da sie als Eintrittskarte gilt.
   
-  Viele Grüße
+  Wir freuen uns, dich am 16. und 17.9. in der Staatlichen Jugendmusikschule
+  Hamburg (Mittelweg 42, 20148 Hamburg) zu sehen!
+  
+  Weitere Infos unter https://lmr-hh.de/drumday
+  
+  Viele Grüße  
+  Dein Team für Drum Day und Percussion Day 2022
 ---
 template: w1_description
 content: |

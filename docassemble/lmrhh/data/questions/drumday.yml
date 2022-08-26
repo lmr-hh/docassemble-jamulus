@@ -502,4 +502,5 @@ subquestion: |
   
   Wir freuen uns auf Sie.
 buttons:
+  - Weitere Person anmelden: restart
   - Beenden: exit
