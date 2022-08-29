@@ -39,7 +39,7 @@ data:
     Tabelle: "{8D9DB907-4FC4-4A4A-A843-0CCB5EAA702B}"
     Ordner: 01W6XJMNKHJHAQSSPSFFG3ICXSGA3CQI6P
 
-  Mailgun Vorlage: lmr-anmeldung
+  Mailgun Vorlage: drumday-anmeldung
   E-Mail Benachrichtigung: []
 ---
 question: Anmeldung zum Drum Day und Percussion Day 2022
@@ -65,6 +65,13 @@ fields:
       - Ich bin kein\*e Drummer\*in
       - Ich bin Anfänger\*in
       - Ich bin Fortgeschrittene\*r
+under: |
+  <small>
+  Alle Angaben, die in diesem Formular gemacht werden, sind zur Durchführung
+  der Tagung notwendig und werden ausschließlich zu dessen Durchführung
+  verwendet. Daten werden nicht an Dritte weitergegeben. Beachten Sie auch
+  unsere [Datenschutzhinweise](/packagestatic/docassemble.mud/datenschutzhinweise.html).
+  </small>
 ---
 code: |
   capacities = {
