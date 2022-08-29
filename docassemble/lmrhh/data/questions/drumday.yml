@@ -26,7 +26,7 @@ objects:
 ---
 # Testmodus
 code:
-  testmodus = url_args.get('test', False) or True
+  testmodus = url_args.get('test', False)
 ---
 code:
   jms = url_args.get('jms', False)
