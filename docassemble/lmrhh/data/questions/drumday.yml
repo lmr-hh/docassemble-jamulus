@@ -104,6 +104,10 @@ code: |
       space_regular,
       space_jms + space_regular
     )
+  
+  def has_space_large(name):
+    space_regular, space_jms = get_space_large(name)
+    return space_regular or (person.jms and space_jms)
 ---
 def: space_def
 mako: |
@@ -130,7 +134,7 @@ mako: |
   
   <%def name="warn_full_large(name, text)">
   <% space_regular, space_jms = get_space_large(name) %>
-  % if not space_jms or (not person.jms and not space_regular):
+  % if not has_space_large(name):
   <div class="alert alert-danger">
     Es sind leider schon alle Plätze für ${ text } ausgebucht.
   </div>
@@ -157,26 +161,32 @@ fields:
       
       ### Drum Clinic
       
-      ${ warn_full_large("drum-clinic", "die Drum Clinic") }
-      
       Zum Drum Day am 16.09. werden **Benny Greb** und **Jost Nickel** in jeweils
       etwa 60 Minuten die _Drum Clinic_ durchführen. Die Veranstaltung geht von
       etwa 16:00 Uhr bis etwa 18:00 Uhr. Wenn du an der Drum Clinic aktiv
       teilnehmen möchtest, bringe bitte **Sticks & Practice Pads** mit.
       
       [Mehr zum Instrument des Jahres und zu den Vortragenden](https://www.lmr-hh.de/project/instrument-des-jahres-drumset/)
+      
+      ${ warn_full_large("drum-clinic", "die Drum Clinic") }
   - Anmelden zur Drum Clinic mit Benny Greb und Jost Nickel: drum_clinic
     datatype: yesnoradio
+    show if: {code: has_space_large('drum-clinic')}
+    validation messages:
+      required: Bitte wählen Sie eine Option aus.
   - note: |
-      ### Konzert
+      ### Konzert Drum Day
+      
+      Ab 19:00 Uhr findet am 16.09. ein Konzert mit Musik- und Wortbeiträgen
+      statt. Es werden Benny Greb und Jost Nickel zusammen mit dem Beatboxer
+      Guido zu erleben sein.
       
       ${ warn_full_large("opening-concert", "das Konzert") }
-      
-      Ab 19:00 Uhr findet am 16.09. ein Konzert statt. Es werden Benny Greb und
-      Jost Nickel zusammen mit dem Beatboxer Guido zu erleben sein. Das Konzert
-      wird begleitet von einigen Redebeiträgen.
-  - Anmelden zum Konzert: opening_concert
+  - Ich möchte am Drum Day Konzert teilnehmen: opening_concert
     datatype: yesnoradio
+    show if: {code: has_space_large('opening-concert')}
+    validation messages:
+      required: Bitte wählen Sie eine Option aus.
   - note: |
       ---
       
@@ -188,7 +198,7 @@ fields:
       - 11:15 - 12:00: Workshop-Block 1
       - 12:15 - 13:00: Workshop-Block 2
       - 13:15 - 14:00: Workshop-Block 3
-      - 14:30: Abschlusskonzert
+      - 14:30: Abschlusskonzert Percussion Day
       
       Es finden unterschiedliche Workshops statt, die in den drei Zeitblöcken
       zum Teil wiederholt werden. Du kannst dich für jeden der drei
@@ -345,12 +355,15 @@ fields:
       ${ warn_full(3, "w6") }
       ${ w6_description }
   - note: |
-      ### Abschlusskonzert
+      ### Abschlusskonzert Percussion Day
       
       ${ warn_full_large("closing-concert", "das Abschlusskonzert") }
   - Ich möchte das Abschlusskonzert besuchen: closing_concert
     datatype: yesnoradio
     default: False
+    show if: { code: has_space_large('closing-concert') }
+    validation messages:
+      required: Bitte wählen Sie eine Option aus.
 continue button label: Abschicken
 validation code: |
   if workshop1 == "None":
@@ -391,24 +404,24 @@ need:
   - get_space
 code: |
   keys = {}
+  the_drum_clinic = drum_clinic if defined('drum_clinic') else False
+  the_opening_concert = opening_concert if defined('opening_concert') else False
+  the_closing_concert = closing_concert if defined('closing_concert') else False
   with redis.lock("drumday-lock", timeout=5):
-    if drum_clinic:
-      space_regular, space_jms = get_space_large("drum-clinic")
-      if not space_jms or (not person.jms and not space_regular):
+    if the_drum_clinic:
+      if not has_space_large('drum-clinic'):
         define("workshop_error", "Drum Clinic")
         force_ask("drum_clinic")
       keys["drumday-drum-clinic"] = "jms" if person.jms else "regular"
   
-    if opening_concert:
-      space_regular, space_jms = get_space_large("opening-concert")
-      if not space_jms or (not person.jms and not space_regular):
+    if the_opening_concert:
+      if not has_space('opening-concert'):
         define("workshop_error", "Konzert")
         force_ask("opening_concert")
       keys["drumday-opening-concert"] = "jms" if person.jms else "regular"
   
-    if closing_concert:
-      space_regular, space_jms = get_space_large("closing-concert")
-      if not space_jms or (not person.jms and not space_regular):
+    if the_closing_concert:
+      if not has_space('closing-concert'):
         define("workshop_error", "Abschlusskonzert")
         force_ask("closing_concert")
       keys["drumday-closing-concert"] = "jms" if person.jms else "regular"
@@ -456,12 +469,12 @@ code: |
     "JMS-Schüler": person.jms,
     "Alter": person.age,
     "Vorkenntnisse": person.knowledge,
-    "Drum Clinic": drum_clinic,
-    "Konzert": opening_concert,
+    "Drum Clinic": the_drum_clinic,
+    "Konzert": the_opening_concert,
     "Workshop 1": workshops[workshop1] if workshop1 else "-",
     "Workshop 2": workshops[workshop2] if workshop2 else "-",
     "Workshop 3": workshops[workshop3] if workshop3 else "-",
-    "Abschlusskonzert": closing_concert,
+    "Abschlusskonzert": the_closing_concert,
     "Anmeldedatum": current_datetime(timezone="Europe/Berlin").format_datetime('d.M.YYYY HH:mm')
   }
   msgraph.add_table_data(
@@ -488,19 +501,19 @@ code: |
 mandatory: true
 need:
   - Automation
-question: Ihre Anmeldung
+question: Deine Anmeldung
 subquestion: |
   Vielen Dank für deine Anmeldung zum Drum Day und zum Percussion Day 2022.
   
-  Du kannst deine Anmeldung hier direkt herunterladen. Die Anmeldung wird dir
-  außerdem als Kopie per E-Mail zugeschickt.
+  **Wir empfehlen dir, deine Anmeldebestätigung hier direkt herunterzuladen**.
+  Die Anmeldung wird dir außerdem als Kopie per E-Mail zugeschickt.
   
   [Anmeldung herunterladen](${ registration.pdf.url_for() })
   
-  Bitte bringe die Anmeldung zum Drum Day und zum Percussion Day mit, da du sie
-  am Eingang vorzeigen musst.
+  Bitte bringe die Anmeldebestätigung zum Drum Day und zum Percussion Day mit,
+  da du sie am Eingang vorzeigen musst.
   
-  Wir freuen uns auf Sie.
+  Wir freuen uns auf dich.
 buttons:
   - Weitere Person anmelden: restart
   - Beenden: exit
