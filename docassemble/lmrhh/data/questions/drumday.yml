@@ -1,0 +1,519 @@
+metadata:
+  title: Anmeldung zum Drum Day und Percussion Day 2022
+  tab title: Drum Day und Percussion Day
+  short title: Drum Day und Percussion Day
+  logo:
+    Drum Day und Percussion Day 2022
+  description:
+    Dies ist die Anmeldung zum Drum Day und Percussion Day 2022.
+  exit url: https://www.lmr-hh.de/project/instrument-des-jahres-drumset/
+  revision_date: 2022-08-17
+---
+features:
+  navigation: false
+  hide navbar: false
+  hide standard menu: true
+  labels above fields: true
+  javascript: [actions.js]
+---
+include:
+  - config.yml
+  - drumday-templates.yml
+---
+objects:
+  person: Individual
+  redis: DARedis
+---
+# Testmodus
+code:
+  testmodus = url_args.get('test', False) or True
+---
+code:
+  jms = url_args.get('jms', False)
+---
+variable name: daten
+data:
+  Anmeldungen:
+    Bibliothek: b!6WUxXoQj80WUPsIhFd8JKSL89XMR2F9MtpYy8ZkCvooW0mTd6lmzQIc9uJUAtP4v
+    Dokument: 01W6XJMNK2N3J3U3B6KFGYRYGUX65IWEBZ
+    Tabelle: "{8D9DB907-4FC4-4A4A-A843-0CCB5EAA702B}"
+    Ordner: 01W6XJMNKHJHAQSSPSFFG3ICXSGA3CQI6P
+
+  Mailgun Vorlage: lmr-anmeldung
+  E-Mail Benachrichtigung: []
+---
+question: Anmeldung zum Drum Day und Percussion Day 2022
+subquestion: |
+  Am 16.09. und 17.09. findet in einer Kooperation der Staatlichen
+  Jugendmusikschule Hamburg und dem Landesmusikrat Hamburg e.V. der _Drum Day_
+  sowie der _3. Percussion Day 2022_ statt im Miralles-Saal im Mittelweg 42.
+  
+  **Anmeldeschluss**: 15.09.2022
+fields:
+  - Vorname: person.name.first
+  - Nachname: person.name.last
+  - E-Mail: person.email
+    datatype: email
+  - Alter: person.age
+    datatype: number
+  - Ich bin Schlagzeug-Schüler\*in der JMS: person.jms
+    datatype: yesno
+    default: ${ jms }
+  - Vorkenntnisse: person.knowledge
+    input type: radio
+    choices:
+      - Ich bin kein\*e Drummer\*in
+      - Ich bin Anfänger\*in
+      - Ich bin Fortgeschrittene\*r
+---
+code: |
+  capacities = {
+    # passive, active, JMS
+    "w1": (20, 5, 5),
+    "w2": (10, 3, 3),
+    "w3": (10, 4, 4),
+    "w4": (20, 5, 5),
+    "w5": (4, 4, 4),
+    "w6": (4, 4, 4),
+    "w7": (20, 4, 4)
+  }
+---
+code: |
+  def get_space(time, workshop):
+    key = f"drumday-{time}-{workshop}"
+    participants = redis.hgetall(key)
+    capacity = capacities[workshop]
+    
+    def space(index, key):
+      return max(capacity[index] - int(participants.get(key, 0)), 0)
+  
+    space_active = space(1, b"active")
+    return (
+      space(0, b"passive"),
+      space_active,
+      space_active + space(2, b"jms")
+    )
+  
+  def get_space_large(name):
+    key = f"drumday-{name}"
+    participants = redis.hgetall(key)
+    
+    space_regular = max(200 - int(participants.get(b"regular", 0)), 0)
+    space_jms = max(100 - int(participants.get(b"jms", 0)), 0)
+    return (
+      space_regular,
+      space_jms + space_regular
+    )
+  
+  def has_space_large(name):
+    space_regular, space_jms = get_space_large(name)
+    return space_regular or (person.jms and space_jms)
+---
+def: space_def
+mako: |
+  <%def name="warn_full(time, workshop)">
+  <% space_passive, space_active, space_jms = get_space(time, workshop) %>
+  % if not space_jms or (not person.jms and not space_active):
+    % if space_passive:
+  <div class="alert alert-warning">
+    Die aktiven Plätze dieses Workshops sind bereits vergeben. Es sind nur noch
+    passive Plätze verfügbar.
+  </div>
+    % else:
+  <div class="alert alert-danger">
+    Dieser Workshop ist bereits voll. Bitte wähle einen anderen Workshop.
+  </div>
+    % endif
+  % elif not space_passive:
+  <div class="alert alert-warning">
+    Für diesen Workshop sind keine passiven Plätze mehr frei. Du kannst dich
+    allerdings als aktive*r Teilnehmende*r anmelden.
+  </div>
+  % endif
+  </%def>
+  
+  <%def name="warn_full_large(name, text)">
+  <% space_regular, space_jms = get_space_large(name) %>
+  % if not has_space_large(name):
+  <div class="alert alert-danger">
+    Es sind leider schon alle Plätze für ${ text } ausgebucht.
+  </div>
+  % endif
+  </%def>
+---
+mandatory: true
+question: Anmeldung zum Drum Day und Percussion Day 2022
+pre: |
+  % if defined('workshop_error'):
+  <div class="alert alert-danger">
+    Deine Auswahl für ${ workshop_error } kann leider nicht erfüllt werden.
+    Bitte triff eine andere Auswahl.
+  </div>
+  % endif
+subquestion: |
+  Über dieses Formular meldest du dich zur Drum Clinic am 16.09. sowie zu den
+  Workshops am 17.09. an. Beachte, dass das Kontingent begrenzt ist und Plätze
+  nach dem First-Come, First-Served Prinzip vergeben werden.
+usedefs: space_def
+fields:
+  - note: |
+      ## Anmeldung zum Drum Day am 16.09.
+      
+      ### Drum Clinic
+      
+      Zum Drum Day am 16.09. werden **Benny Greb** und **Jost Nickel** in jeweils
+      etwa 60 Minuten die _Drum Clinic_ durchführen. Die Veranstaltung geht von
+      etwa 16:00 Uhr bis etwa 18:00 Uhr. Wenn du an der Drum Clinic aktiv
+      teilnehmen möchtest, bringe bitte **Sticks & Practice Pads** mit.
+      
+      [Mehr zum Instrument des Jahres und zu den Vortragenden](https://www.lmr-hh.de/project/instrument-des-jahres-drumset/)
+      
+      ${ warn_full_large("drum-clinic", "die Drum Clinic") }
+  - Anmelden zur Drum Clinic mit Benny Greb und Jost Nickel: drum_clinic
+    datatype: yesnoradio
+    show if: {code: has_space_large('drum-clinic')}
+    validation messages:
+      required: Bitte wählen Sie eine Option aus.
+  - note: |
+      ### Konzert Drum Day
+      
+      Ab 19:00 Uhr findet am 16.09. ein Konzert mit Musik- und Wortbeiträgen
+      statt. Es werden Benny Greb und Jost Nickel zusammen mit dem Beatboxer
+      Guido zu erleben sein.
+      
+      ${ warn_full_large("opening-concert", "das Konzert") }
+  - Ich möchte am Drum Day Konzert teilnehmen: opening_concert
+    datatype: yesnoradio
+    show if: {code: has_space_large('opening-concert')}
+    validation messages:
+      required: Bitte wählen Sie eine Option aus.
+  - note: |
+      ---
+      
+      ## Anmeldung zum Percussion Day am 17.09.
+      
+      Der Percussion Day findet mit folgendem zeitlichen Ablauf statt:
+      
+      - 11:00: Eröffnung im Miralles-Saal
+      - 11:15 - 12:00: Workshop-Block 1
+      - 12:15 - 13:00: Workshop-Block 2
+      - 13:15 - 14:00: Workshop-Block 3
+      - 14:30: Abschlusskonzert Percussion Day
+      
+      Es finden unterschiedliche Workshops statt, die in den drei Zeitblöcken
+      zum Teil wiederholt werden. Du kannst dich für jeden der drei
+      Workshop-Blöcke zu einem anderen Workshop anmelden.
+      
+      Es ist auch möglich, an einem Workshop passiv teilzunehmen. Als passive\*r
+      Teilnehmende\*r kannst du den Workshop besuchen und zuhören, kannst aber
+      selbst nicht aktiv mitspielen.
+      
+      Die Workshops sind durch bestimmte Kapazitäten beschränkt (z.B. die
+      Raumgröße). Die Plätze werden nach dem First-Come, First-Served Prinzip
+      vergeben. Ist ein Workshop voll, kannst du denselben Workshop evtl. in
+      einem anderen Block wählen, kannst passiv teilnehmen oder einen anderen
+      Workshop stattdessen besuchen.
+  - '<span style="font-size:1.4em">Workshop-Block 1</span>': workshop1
+    choices:
+      code: workshop_list
+    default: None
+  - Ich möchte nur passiv teilnehmen: workshop1_active
+    datatype: noyes
+    disable if:
+      variable: workshop1
+      is: null
+  - show if:
+      variable: workshop1
+      is: w1
+    note: |
+      ${ warn_full(1, "w1") }
+      ${ w1_description }
+  - show if:
+      variable: workshop1
+      is: w2
+    note: |
+      ${ warn_full(1, "w2") }
+      ${ w2_description }
+  - show if:
+      variable: workshop1
+      is: w3
+    note: |
+      ${ warn_full(1, "w3") }
+      ${ w3_description }
+  - show if:
+      variable: workshop1
+      is: w4
+    note: |
+      ${ warn_full(1, "w4") }
+      ${ w4_description }
+  - show if:
+      variable: workshop1
+      is: w5
+    note: |
+      ${ warn_full(1, "w5") }
+      ${ w5_description }
+  - show if:
+      variable: workshop1
+      is: w6
+    note: |
+      ${ warn_full(1, "w6") }
+      ${ w6_description }
+  - show if:
+      variable: workshop1
+      is: w7
+    note: |
+      ${ warn_full(1, "w7") }
+      ${ w7_description }
+  - '<span style="font-size:1.4em">Workshop-Block 2</span>': workshop2
+    choices:
+      code: reduced_workshop_list
+    default: None
+  - Ich möchte nur passiv teilnehmen: workshop2_active
+    datatype: noyes
+    disable if:
+      variable: workshop2
+      is: null
+  - show if:
+      variable: workshop2
+      is: w1
+    note: |
+      ${ warn_full(2, "w1") }
+      ${ w1_description }
+  - show if:
+      variable: workshop2
+      is: w2
+    note: |
+      ${ warn_full(2, "w2") }
+      ${ w2_description }
+  - show if:
+      variable: workshop2
+      is: w3
+    note: |
+      ${ warn_full(2, "w3") }
+      ${ w3_description }
+  - show if:
+      variable: workshop2
+      is: w4
+    note: |
+      ${ warn_full(2, "w4") }
+      ${ w4_description }
+  - show if:
+      variable: workshop2
+      is: w5
+    note: |
+      ${ warn_full(2, "w5") }
+      ${ w5_description }
+  - show if:
+      variable: workshop2
+      is: w6
+    note: |
+      ${ warn_full(2, "w6") }
+      ${ w6_description }
+  - '<span style="font-size:1.4em">Workshop-Block 3</span>': workshop3
+    choices:
+      code: reduced_workshop_list
+    default: None
+  - Ich möchte nur passiv teilnehmen: workshop3_active
+    datatype: noyes
+    disable if:
+      variable: workshop3
+      is: null
+  - show if:
+      variable: workshop3
+      is: w1
+    note: |
+      ${ warn_full(3, "w1") }
+      ${ w1_description }
+  - show if:
+      variable: workshop3
+      is: w2
+    note: |
+      ${ warn_full(3, "w2") }
+      ${ w2_description }
+  - show if:
+      variable: workshop3
+      is: w3
+    note: |
+      ${ warn_full(3, "w3") }
+      ${ w3_description }
+  - show if:
+      variable: workshop3
+      is: w4
+    note: |
+      ${ warn_full(3, "w4") }
+      ${ w4_description }
+  - show if:
+      variable: workshop3
+      is: w5
+    note: |
+      ${ warn_full(3, "w5") }
+      ${ w5_description }
+  - show if:
+      variable: workshop3
+      is: w6
+    note: |
+      ${ warn_full(3, "w6") }
+      ${ w6_description }
+  - note: |
+      ### Abschlusskonzert Percussion Day
+      
+      ${ warn_full_large("closing-concert", "das Abschlusskonzert") }
+  - Ich möchte das Abschlusskonzert besuchen: closing_concert
+    datatype: yesnoradio
+    default: False
+    show if: { code: has_space_large('closing-concert') }
+    validation messages:
+      required: Bitte wählen Sie eine Option aus.
+continue button label: Abschicken
+validation code: |
+  if workshop1 == "None":
+    workshop1 = None
+  if workshop2 == "None":
+    workshop2 = None
+  if workshop3 == "None":
+    workshop3 = None
+  if workshop2 and workshop1 == workshop2:
+    validation_error("Du kannst einen Workshop nicht mehrfach belegen.", field="workshop2")
+  if workshop3 and (workshop1 == workshop3 or workshop2 == workshop3):
+    validation_error("Du kannst einen Workshop nicht mehrfach belegen.", field="workshop3")
+---
+code: |
+  workshops = {
+    None: "Ich möchte keinen Workshop in diesem Block besuchen",
+    "w1": "Das Drumset – der perfekte Einstieg",
+    "w2": "Drumset aufbauen - aber wie?",
+    "w3": "Freies Spiel am Drumset",
+    "w4": "Fitte Hände in allen Lebenslagen - schnelle Übungen für Zeit-Jongleure und Technikmuffel",
+    "w5": "Abwechslung im Spiel - moderne Tom-Fills",
+    "w6": "Latin for drummers",
+    "w7": "E-Drums im Unterricht und Zuhause"
+  }
+  
+  workshop_list = [
+    {key: value} for key,value in workshops.items()
+  ]
+  reduced_workshop_list = [
+    {key: value} for key,value in workshops.items() if key != "w7"
+  ]
+---
+mandatory: true
+need:
+  - workshop1
+  - workshop2
+  - workshop3
+  - get_space
+code: |
+  keys = {}
+  the_drum_clinic = drum_clinic if defined('drum_clinic') else False
+  the_opening_concert = opening_concert if defined('opening_concert') else False
+  the_closing_concert = closing_concert if defined('closing_concert') else False
+  with redis.lock("drumday-lock", timeout=5):
+    if the_drum_clinic:
+      if not has_space_large('drum-clinic'):
+        define("workshop_error", "Drum Clinic")
+        force_ask("drum_clinic")
+      keys["drumday-drum-clinic"] = "jms" if person.jms else "regular"
+  
+    if the_opening_concert:
+      if not has_space('opening-concert'):
+        define("workshop_error", "Konzert")
+        force_ask("opening_concert")
+      keys["drumday-opening-concert"] = "jms" if person.jms else "regular"
+  
+    if the_closing_concert:
+      if not has_space('closing-concert'):
+        define("workshop_error", "Abschlusskonzert")
+        force_ask("closing_concert")
+      keys["drumday-closing-concert"] = "jms" if person.jms else "regular"
+  
+    for time in range(1, 4):
+      workshop = value(f"workshop{time}")
+      if not workshop:
+        continue
+      is_active = value(f"workshop{time}_active")
+      space_passive, space_active, space_jms = get_space(time, workshop)
+  
+      if not is_active:
+        space = space_passive
+        key = "passive"
+      elif person.jms:
+        space = space_jms
+        key = "jms"
+      else:
+        space = space_active
+        key = "active"
+  
+      if not space:
+        define("workshop_error", f"Workshop {time}")
+        invalidate(f"workshop{time}")
+        re_run_logic()
+      keys[f"drumday-{time}-{workshop}"] = key
+  
+    for hash, key in keys.items():
+      redis.hincrby(hash, key, 1)
+  del keys
+---
+need:
+  - msgraph
+  - mailgun
+  - registration
+  - confirmation_email
+code: |
+  # Ensure these exist
+  registration_path = registration.pdf.path()
+  registration_filename = registration.pdf.filename
+  data = {
+    "Vorname": person.name.first,
+    "Nachname": person.name.last,
+    "E-Mail": person.email,
+    "JMS-Schüler": person.jms,
+    "Alter": person.age,
+    "Vorkenntnisse": person.knowledge,
+    "Drum Clinic": the_drum_clinic,
+    "Konzert": the_opening_concert,
+    "Workshop 1": workshops[workshop1] if workshop1 else "-",
+    "Workshop 2": workshops[workshop2] if workshop2 else "-",
+    "Workshop 3": workshops[workshop3] if workshop3 else "-",
+    "Abschlusskonzert": the_closing_concert,
+    "Anmeldedatum": current_datetime(timezone="Europe/Berlin").format_datetime('d.M.YYYY HH:mm')
+  }
+  msgraph.add_table_data(
+    daten["Anmeldungen"]["Bibliothek"],
+    daten["Anmeldungen"]["Dokument"],
+    daten["Anmeldungen"]["Tabelle"],
+    data
+  )
+  with open(registration_path, 'rb') as f:
+    msgraph.upload_file(
+      daten["Anmeldungen"]["Bibliothek"],
+      daten["Anmeldungen"]["Ordner"],
+      registration_filename,
+      f
+    )
+  mailgun.send_email(
+    to=[person],
+    template=confirmation_email,
+    attachments=[registration.pdf]
+  )
+  del registration_path, registration_filename, data, f
+  Automation = True
+---
+mandatory: true
+need:
+  - Automation
+question: Deine Anmeldung
+subquestion: |
+  Vielen Dank für deine Anmeldung zum Drum Day und zum Percussion Day 2022.
+  
+  **Wir empfehlen dir, deine Anmeldebestätigung hier direkt herunterzuladen**.
+  Die Anmeldung wird dir außerdem als Kopie per E-Mail zugeschickt.
+  
+  [Anmeldung herunterladen](${ registration.pdf.url_for() })
+  
+  Bitte bringe die Anmeldebestätigung zum Drum Day und zum Percussion Day mit,
+  da du sie am Eingang vorzeigen musst.
+  
+  Wir freuen uns auf dich.
+buttons:
+  - Weitere Person anmelden: restart
+  - Beenden: exit

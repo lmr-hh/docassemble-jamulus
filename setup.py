@@ -57,7 +57,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude,
 
 setup(
     name='docassemble.lmrhh',
-    version='2.0.2',
+    version='3.0.0',
     description=__doc__,
     long_description=long_description(),
     long_description_content_type='text/markdown',
@@ -70,8 +70,6 @@ setup(
     install_requires=[
         'requests',
         'Flask-Mail',
-        'google-api-python-client',
-        'google-auth-oauthlib'
     ],
     zip_safe=False,
     package_data=find_package_data(where='docassemble/lmrhh/',
