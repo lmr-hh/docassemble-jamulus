@@ -55,7 +55,7 @@ under: |
   verwendet. Daten werden nicht an Dritte weitergegeben. Beachten Sie auch
   unsere [Datenschutzhinweise](/packagestatic/docassemble.mud/datenschutzhinweise.html).
   </small>
-question: Anmeldung zum Drum Day und Percussion Day 2022
+question: Anmeldung zum Drum Day 2022
 pre: |
   % if defined('workshop_error'):
   <div class="alert alert-danger">
@@ -74,15 +74,12 @@ subquestion: |
   teilnehmen, solange Plätze verfügbar sind.
 
   **Anmeldeschluss**: 15.09.2022
-usedefs: space_def
 fields:
   - Vorname: person.name.first
   - Nachname: person.name.last
   - E-Mail: person.email
     datatype: email
   - note: |
-      ## Anmeldung zum Drum Day am 16.09.
-      
       ### Drum Clinic
       
       Zum Drum Day am 16.09. werden **Benny Greb** und **Jost Nickel** in jeweils
@@ -99,7 +96,7 @@ fields:
   - Anmelden zur Drum Clinic mit Benny Greb und Jost Nickel: drum_clinic
     datatype: yesnoradio
     default: false
-    show if: {code: has_space_large('drum-clinic')}
+    show if: {code: get_space_clinic()}
     validation messages:
       required: Bitte wählen Sie eine Option aus.
   - note: |
@@ -117,7 +114,7 @@ fields:
   - Ich möchte am Drum Day Konzert teilnehmen: opening_concert
     datatype: yesnoradio
     default: true
-    show if: {code: has_space_large('opening-concert')}
+    show if: {code: get_space_concert()}
     validation messages:
       required: Bitte wählen Sie eine Option aus.
 continue button label: Abschicken
@@ -133,13 +130,13 @@ code: |
       if get_space_clinic() <= 0:
         define("workshop_error", "Drum Clinic")
         force_ask("drum_clinic")
-      keys["drumday-drum-clinic"] = "jms" if person.jms else "regular"
+      keys["drumday-drum-clinic"] = "regular"
   
     if the_opening_concert:
       if get_space_concert() <= 0:
         define("workshop_error", "Konzert")
         force_ask("opening_concert")
-      keys["drumday-opening-concert"] = "jms" if person.jms else "regular"
+      keys["drumday-opening-concert"] = "vip"
   
     for hash, key in keys.items():
       redis.hincrby(hash, key, 1)
@@ -175,7 +172,7 @@ code: |
       to=["paradies@lmr-hh.de"],
       template=warning_email
     )
-  del registration_path, registration_filename, data, f
+  del data
   Automation = True
 ---
 template: warning_email
