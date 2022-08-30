@@ -422,13 +422,13 @@ code: |
       keys["drumday-drum-clinic"] = "jms" if person.jms else "regular"
   
     if the_opening_concert:
-      if not has_space('opening-concert'):
+      if not has_space_large('opening-concert'):
         define("workshop_error", "Konzert")
         force_ask("opening_concert")
       keys["drumday-opening-concert"] = "jms" if person.jms else "regular"
   
     if the_closing_concert:
-      if not has_space('closing-concert'):
+      if not has_space_large('closing-concert'):
         define("workshop_error", "Abschlusskonzert")
         force_ask("closing_concert")
       keys["drumday-closing-concert"] = "jms" if person.jms else "regular"
