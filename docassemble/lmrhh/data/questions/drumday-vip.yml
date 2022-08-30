@@ -35,6 +35,13 @@ data:
   Mailgun Vorlage: drumday-anmeldung
   E-Mail Benachrichtigung: []
 ---
+attachment:
+  name: Anmeldung ${ person.name }
+  filename: Anmeldung ${ person.name }
+  docx template file: Anmeldung Drum Day VIP.docx
+  variable name: registration
+  valid formats: [pdf]
+---
 code: |
   def get_space_concert():
     participants = redis.hgetall("opening-concert")
@@ -146,8 +153,12 @@ need:
   - msgraph
   - mailgun
   - confirmation_email
+  - registration
   - get_space_concert
 code: |
+  # Ensure these exist
+  registration_path = registration.pdf.path()
+  registration_filename = registration.pdf.filename
   data = {
     "Vorname": person.name.first,
     "Nachname": person.name.last,
@@ -163,16 +174,24 @@ code: |
     daten["Anmeldungen"]["Tabelle"],
     data
   )
+  with open(registration_path, 'rb') as f:
+    msgraph.upload_file(
+      daten["Anmeldungen"]["Bibliothek"],
+      daten["Anmeldungen"]["Ordner"],
+      registration_filename,
+      f
+    )
   mailgun.send_email(
     to=[person],
-    template=confirmation_email
+    template=confirmation_email,
+    attachments=[registration.pdf]
   )
   if get_space_concert() <= 9:
     mailgun.send_email(
       to=["paradies@lmr-hh.de"],
       template=warning_email
     )
-  del data
+  del registration_path, registration_filename, data, f
   Automation = True
 ---
 template: warning_email
