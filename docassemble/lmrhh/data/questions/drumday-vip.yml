@@ -203,18 +203,12 @@ content: |
 template: confirmation_email
 subject: Ihre Anmeldung zum Drum Day 2022
 content: |
-  Vielen Dank für Ihre Anmeldung zum Drum Day 2022.
+  Vielen Dank für Ihre Anmeldung zum Drum Day 2022. Im Anhang erhalten Sie Ihre
+  Anmeldebestätigung. Bringen Sie die Bestätigung bitte zum Drum Day mit.
   
   Für Sie wird ein Sitzplatz im reservierten Bereich vorgehalten, dieser ist im
   Saal entsprechend markiert. Bitte wenden Sie sich bei Bedarf an unser Personal
   vor Ort.
-  
-  % if the_drum_clinic:
-  - Sie haben sich zur Drum Clinic mit Benny Greb und Jost Nickel angemeldet.
-  % endif
-  % if the_opening_concert:
-  - Sie haben sich zum Drum Day Konzert angemeldet.
-  % endif
   
   Viele Grüße  
   Das Drum Day Team
@@ -224,10 +218,16 @@ need:
   - Automation
 question: Ihre Anmeldung
 subquestion: |
-  Vielen Dank für Ihre Anmeldung zum Drum Day 2022. Sie erhalten eine
-  Anmeldebestätigung per E-Mail. Für Sie wird ein Sitzplatz im reservierten
-  Bereich vorgehalten, dieser ist im Saal entsprechend markiert. Bitte wenden
-  Sie sich bei Bedarf an unser Personal vor Ort.
+  Vielen Dank für Ihre Anmeldung zum Drum Day 2022.
+  
+  **Wir empfehlen Ihnen, Ihre Anmeldebestätigung hier direkt herunterzuladen**.
+  Die Anmeldung wird Ihnen außerdem als Kopie per E-Mail zugeschickt.
+  
+  [Anmeldung herunterladen](${ registration.pdf.url_for() })
+  
+  Für Sie wird ein Sitzplatz im reservierten Bereich vorgehalten, dieser ist im
+  Saal entsprechend markiert. Bitte wenden Sie sich bei Bedarf an unser Personal
+  vor Ort.
   
   Wir freuen uns auf Sie.
 buttons:
