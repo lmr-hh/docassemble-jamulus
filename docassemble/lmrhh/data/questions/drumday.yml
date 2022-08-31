@@ -105,7 +105,7 @@ code: |
     key = f"drumday-{name}"
     participants = redis.hgetall(key)
     
-    space_regular = max(200 - int(participants.get(b"regular", 0)), 0)
+    space_regular = max(250 - int(participants.get(b"regular", 0)), 0)
     space_jms = max(100 - int(participants.get(b"jms", 0)), 0)
     return (
       space_regular,

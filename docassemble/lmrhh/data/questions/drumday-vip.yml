@@ -51,7 +51,7 @@ code: |
   
   def get_space_clinic():
     participants = redis.hgetall("drum-clinic")
-    space_regular = max(200 - int(participants.get(b"regular", 0)), 0)
+    space_regular = max(250 - int(participants.get(b"regular", 0)), 0)
     return space_regular
 ---
 mandatory: true
