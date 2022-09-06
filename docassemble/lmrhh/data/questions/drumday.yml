@@ -171,7 +171,8 @@ fields:
       Zum Drum Day am 16.09. werden **Benny Greb** und **Jost Nickel** in jeweils
       etwa 60 Minuten die _Drum Clinic_ durchführen. Die Veranstaltung geht von
       etwa 16:00 Uhr bis etwa 18:00 Uhr. Wenn du an der Drum Clinic aktiv
-      teilnehmen möchtest, bringe bitte **Sticks & Practice Pads** mit.
+      teilnehmen möchtest, bringe bitte **Sticks & Practice Pads** mit. Einlass
+      ab 15:00 Uhr.
       
       [Mehr zum Instrument des Jahres und zu den Vortragenden](https://www.lmr-hh.de/drumday)
       
@@ -273,7 +274,7 @@ fields:
       ${ w7_description }
   - '<span style="font-size:1.4em">Workshop-Block 2</span>': workshop2
     choices:
-      code: reduced_workshop_list
+      code: w2_workshop_list
     default: None
   - Ich möchte nur passiv teilnehmen: workshop2_active
     datatype: noyes
@@ -318,7 +319,7 @@ fields:
       ${ w6_description }
   - '<span style="font-size:1.4em">Workshop-Block 3</span>': workshop3
     choices:
-      code: reduced_workshop_list
+      code: w3_workshop_list
     default: None
   - Ich möchte nur passiv teilnehmen: workshop3_active
     datatype: noyes
@@ -399,8 +400,11 @@ code: |
   workshop_list = [
     {key: value} for key,value in workshops.items()
   ]
-  reduced_workshop_list = [
+  w2_workshop_list = [
     {key: value} for key,value in workshops.items() if key != "w7"
+  ]
+  w3_workshop_list = [
+    {key: value} for key,value in workshops.items() if key not in ["w6", "w7"]
   ]
 ---
 mandatory: true
