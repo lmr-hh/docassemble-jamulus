@@ -46,13 +46,21 @@ code: |
   def get_space_concert():
     participants = redis.hgetall("opening-concert")
     space_vip = max(50 - int(participants.get(b"vip", 0)), 0)
-  
+
     return space_vip
-  
+
   def get_space_clinic():
     participants = redis.hgetall("drum-clinic")
     space_regular = max(250 - int(participants.get(b"regular", 0)), 0)
     return space_regular
+---
+mandatory: true
+question: Drum Day und Percussion Day 2022
+subquestion: |
+  Die Anmeldefrist für den Drum Day und Percussion Day ist abgelaufen. Es ist
+  keine weitere Anmeldung mehr möglich.
+buttons:
+  - Beenden: exit
 ---
 mandatory: true
 under: |
@@ -88,13 +96,13 @@ fields:
     datatype: email
   - note: |
       ### Drum Clinic
-      
+
       Zum Drum Day am 16.09. werden **Benny Greb** und **Jost Nickel** in jeweils
       etwa 60 Minuten die _Drum Clinic_ durchführen. Die Veranstaltung geht von
       etwa 16:00 Uhr bis etwa 18:00 Uhr.
-      
+
       [Mehr zum Instrument des Jahres und zu den Vortragenden](https://www.lmr-hh.de/drumday)
-      
+
       % if get_space_clinic() <= 0:
       <div class="alert alert-danger">
         Es sind leider schon alle Plätze für die Drum Clinic ausgebucht.
@@ -108,11 +116,11 @@ fields:
       required: Bitte wählen Sie eine Option aus.
   - note: |
       ### Konzert Drum Day
-      
+
       Ab 19:00 Uhr findet am 16.09. ein Konzert mit Musik- und Wortbeiträgen
       statt. Es werden Benny Greb und Jost Nickel zusammen mit dem Beatboxer
       Guido zu erleben sein.
-      
+
       % if get_space_concert() <= 0:
       <div class="alert alert-danger">
         Es sind leider schon alle Plätze für das Drum Day Konzert ausgebucht.
@@ -138,13 +146,13 @@ code: |
         define("workshop_error", "Drum Clinic")
         force_ask("drum_clinic")
       keys["drumday-drum-clinic"] = "regular"
-  
+
     if the_opening_concert:
       if get_space_concert() <= 0:
         define("workshop_error", "Konzert")
         force_ask("opening_concert")
       keys["drumday-opening-concert"] = "vip"
-  
+
     for hash, key in keys.items():
       redis.hincrby(hash, key, 1)
   del keys
@@ -205,12 +213,12 @@ subject: Ihre Anmeldung zum Drum Day 2022
 content: |
   Vielen Dank für Ihre Anmeldung zum Drum Day 2022. Im Anhang erhalten Sie Ihre
   Anmeldebestätigung. Bringen Sie die Bestätigung bitte zum Drum Day mit.
-  
+
   Für Sie wird ein Sitzplatz im reservierten Bereich vorgehalten, dieser ist im
   Saal entsprechend markiert. Bitte wenden Sie sich bei Bedarf an unser Personal
   vor Ort.
-  
-  Viele Grüße  
+
+  Viele Grüße
   Das Drum Day Team
 ---
 mandatory: true
@@ -219,16 +227,16 @@ need:
 question: Ihre Anmeldung
 subquestion: |
   Vielen Dank für Ihre Anmeldung zum Drum Day 2022.
-  
+
   **Wir empfehlen Ihnen, Ihre Anmeldebestätigung hier direkt herunterzuladen**.
   Die Anmeldung wird Ihnen außerdem als Kopie per E-Mail zugeschickt.
-  
+
   [Anmeldung herunterladen](${ registration.pdf.url_for() })
-  
+
   Für Sie wird ein Sitzplatz im reservierten Bereich vorgehalten, dieser ist im
   Saal entsprechend markiert. Bitte wenden Sie sich bei Bedarf an unser Personal
   vor Ort.
-  
+
   Wir freuen uns auf Sie.
 buttons:
   - Beenden: exit
