@@ -42,12 +42,20 @@ data:
   Mailgun Vorlage: drumday-anmeldung
   E-Mail Benachrichtigung: []
 ---
+mandatory: true
+question: Drum Day und Percussion Day 2022
+subquestion: |
+  Die Anmeldefrist für den Drum Day und Percussion Day ist abgelaufen. Es ist
+  keine weitere Anmeldung mehr möglich.
+buttons:
+  - Beenden: exit
+---
 question: Anmeldung zum Drum Day und Percussion Day 2022
 subquestion: |
   Am 16.09. und 17.09. findet in einer Kooperation der Staatlichen
   Jugendmusikschule Hamburg und dem Landesmusikrat Hamburg e.V. der _Drum Day_
   sowie der _3. Percussion Day 2022_ statt im Miralles-Saal im Mittelweg 42.
-  
+
   **Anmeldeschluss**: 15.09.2022
 fields:
   - Vorname: person.name.first
@@ -90,28 +98,28 @@ code: |
     key = f"drumday-{time}-{workshop}"
     participants = redis.hgetall(key)
     capacity = capacities[workshop]
-    
+
     def space(index, key):
       return max(capacity[index] - int(participants.get(key, 0)), 0)
-  
+
     space_active = space(1, b"active")
     return (
       space(0, b"passive"),
       space_active,
       space_active + space(2, b"jms")
     )
-  
+
   def get_space_large(name):
     key = f"drumday-{name}"
     participants = redis.hgetall(key)
-    
+
     space_regular = max(250 - int(participants.get(b"regular", 0)), 0)
     space_jms = max(100 - int(participants.get(b"jms", 0)), 0)
     return (
       space_regular,
       space_jms + space_regular
     )
-  
+
   def has_space_large(name):
     space_regular, space_jms = get_space_large(name)
     return space_regular or (person.jms and space_jms)
@@ -138,7 +146,7 @@ mako: |
   </div>
   % endif
   </%def>
-  
+
   <%def name="warn_full_large(name, text)">
   <% space_regular, space_jms = get_space_large(name) %>
   % if not has_space_large(name):
@@ -165,17 +173,17 @@ usedefs: space_def
 fields:
   - note: |
       ## Anmeldung zum Drum Day am 16.09.
-      
+
       ### Drum Clinic
-      
+
       Zum Drum Day am 16.09. werden **Benny Greb** und **Jost Nickel** in jeweils
       etwa 60 Minuten die _Drum Clinic_ durchführen. Die Veranstaltung geht von
       etwa 16:00 Uhr bis etwa 18:00 Uhr. Wenn du an der Drum Clinic aktiv
       teilnehmen möchtest, bringe bitte **Sticks & Practice Pads** mit. Einlass
       ab 15:00 Uhr.
-      
+
       [Mehr zum Instrument des Jahres und zu den Vortragenden](https://www.lmr-hh.de/drumday)
-      
+
       ${ warn_full_large("drum-clinic", "die Drum Clinic") }
   - Anmelden zur Drum Clinic mit Benny Greb und Jost Nickel: drum_clinic
     datatype: yesnoradio
@@ -184,11 +192,11 @@ fields:
       required: Bitte wählen Sie eine Option aus.
   - note: |
       ### Konzert Drum Day
-      
+
       Ab 19:00 Uhr findet am 16.09. ein Konzert mit Musik- und Wortbeiträgen
       statt. Es werden Benny Greb und Jost Nickel zusammen mit dem Beatboxer
       Guido zu erleben sein.
-      
+
       ${ warn_full_large("opening-concert", "das Konzert") }
   - Ich möchte am Drum Day Konzert teilnehmen: opening_concert
     datatype: yesnoradio
@@ -197,25 +205,25 @@ fields:
       required: Bitte wählen Sie eine Option aus.
   - note: |
       ---
-      
+
       ## Anmeldung zum Percussion Day am 17.09.
-      
+
       Der Percussion Day findet mit folgendem zeitlichen Ablauf statt:
-      
+
       - 11:00: Eröffnung im Miralles-Saal
       - 11:15 - 12:00: Workshop-Block 1
       - 12:15 - 13:00: Workshop-Block 2
       - 13:15 - 14:00: Workshop-Block 3
       - 14:30: Abschlusskonzert Percussion Day
-      
+
       Es finden unterschiedliche Workshops statt, die in den drei Zeitblöcken
       zum Teil wiederholt werden. Du kannst dich für jeden der drei
       Workshop-Blöcke zu einem anderen Workshop anmelden.
-      
+
       Es ist auch möglich, an einem Workshop passiv teilzunehmen. Als passive\*r
       Teilnehmende\*r kannst du den Workshop besuchen und zuhören, kannst aber
       selbst nicht aktiv mitspielen.
-      
+
       Die Workshops sind durch bestimmte Kapazitäten beschränkt (z.B. die
       Raumgröße). Die Plätze werden nach dem First-Come, First-Served Prinzip
       vergeben. Ist ein Workshop voll, kannst du denselben Workshop evtl. in
@@ -364,7 +372,7 @@ fields:
       ${ w6_description }
   - note: |
       ### Abschlusskonzert Percussion Day
-      
+
       ${ warn_full_large("closing-concert", "das Abschlusskonzert") }
   - Ich möchte das Abschlusskonzert besuchen: closing_concert
     datatype: yesnoradio
@@ -396,7 +404,7 @@ code: |
     "w6": "Latin for drummers",
     "w7": "E-Drums im Unterricht und Zuhause"
   }
-  
+
   workshop_list = [
     {key: value} for key,value in workshops.items()
   ]
@@ -424,26 +432,26 @@ code: |
         define("workshop_error", "Drum Clinic")
         force_ask("drum_clinic")
       keys["drumday-drum-clinic"] = "jms" if person.jms else "regular"
-  
+
     if the_opening_concert:
       if not has_space_large('opening-concert'):
         define("workshop_error", "Konzert")
         force_ask("opening_concert")
       keys["drumday-opening-concert"] = "jms" if person.jms else "regular"
-  
+
     if the_closing_concert:
       if not has_space_large('closing-concert'):
         define("workshop_error", "Abschlusskonzert")
         force_ask("closing_concert")
       keys["drumday-closing-concert"] = "jms" if person.jms else "regular"
-  
+
     for time in range(1, 4):
       workshop = value(f"workshop{time}")
       if not workshop:
         continue
       is_active = value(f"workshop{time}_active")
       space_passive, space_active, space_jms = get_space(time, workshop)
-  
+
       if not is_active:
         space = space_passive
         key = "passive"
@@ -453,13 +461,13 @@ code: |
       else:
         space = space_active
         key = "active"
-  
+
       if not space:
         define("workshop_error", f"Workshop {time}")
         invalidate(f"workshop{time}")
         re_run_logic()
       keys[f"drumday-{time}-{workshop}"] = key
-  
+
     for hash, key in keys.items():
       redis.hincrby(hash, key, 1)
   del keys
@@ -515,15 +523,15 @@ need:
 question: Deine Anmeldung
 subquestion: |
   Vielen Dank für deine Anmeldung zum Drum Day und zum Percussion Day 2022.
-  
+
   **Wir empfehlen dir, deine Anmeldebestätigung hier direkt herunterzuladen**.
   Die Anmeldung wird dir außerdem als Kopie per E-Mail zugeschickt.
-  
+
   [Anmeldung herunterladen](${ registration.pdf.url_for() })
-  
+
   Bitte bringe die Anmeldebestätigung zum Drum Day und zum Percussion Day mit,
   da du sie am Eingang vorzeigen musst.
-  
+
   Wir freuen uns auf dich.
 buttons:
   - Weitere Person anmelden: restart
