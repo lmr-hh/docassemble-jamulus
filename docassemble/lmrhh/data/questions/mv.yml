@@ -1,0 +1,69 @@
+metadata:
+  title: Anmeldung zur Mitgliederversammlung des LMR 2022
+  tab title: Mitgliederversammlung 2022
+  short title: Mitgliederversammlung 2022
+  logo: '<img src="https://cdn.lmr-hh.de/logos/lmrhh-inverted.svg" height="27">'
+  description:
+    Dies ist die Anmeldung zur Mitgliederversammlung 2022 des Landesmusikrats
+    Hamburg.
+  exit url: https://www.lmr-hh.de/
+  revision_date: 2022-09-21
+---
+features:
+  navigation: false
+  hide navbar: false
+  hide standard menu: true
+  labels above fields: true
+  javascript: [actions.js]
+---
+include:
+  - config.yml
+---
+objects:
+  person: Individual
+---
+variable name: daten
+data:
+  Mailgun Vorlage: lmr-anmeldung
+  Anmeldungen:
+    Bibliothek: b!oQXn9Y_Of0mXYhbnDSK6IlHAbZ5mvZNPhOq5rQ666QCN-TuDhhYaQYkENxK9KQ0N
+    Dokument: 015U4AKPZAPTKPNYPKAJCZWY2YBWKG3K6B
+    Tabelle: "{5BBD3C0B-4179-4BE4-824A-264B475E0731}"
+---
+question: Anmeldung zur Mitgliederversammlung des LMR Hamburg 2022
+subquestion: |
+  Dies ist die Anmeldung zur 44. Mitgliederversammlung des Landesmusikrates
+  Hamburg. Die Mitgliederversammlung findet satt am ... um ...
+  
+  Mit diesem Formular teilen Sie uns mit, ob Sie an der Versammlung teilnehmen
+  möchten. Auch wenn Sie nicht an der Versammlung teilnehmen, können Sie uns mit
+  Ihrer Rückmeldung dabei helfen, die Versammlung optimal vorzubereiten.
+  
+  Ihre Angaben sind nicht verbindlich.
+fields:
+  - Anmelden als: kind
+    input type: radio
+    choices:
+      - Ehrenmitglied: honorary
+      - Einzelmitglied: singular
+      - Präsidiumsmitglied: board
+      - Repräsentant\*in einer Organisation: organization
+  - Ich werde an der Mitgliederversammlung teilnehmen: attending
+    datatype: yesnowide
+under: |
+  <small>
+  Alle Angaben, die in diesem Formular gemacht werden, sind zur Durchführung
+  der Tagung notwendig und werden ausschließlich zu dessen Durchführung
+  verwendet. Daten werden nicht an Dritte weitergegeben. Beachten Sie auch
+  unsere [Datenschutzhinweise](/packagestatic/docassemble.mud/datenschutzhinweise.html).
+  </small>
+---
+mandatory: true
+need:
+  - attending
+question: Ihre Anmeldung
+subquestion: |
+  Vielen Dank für Ihre Anmeldung zur Mitgliederversammlung des LMR 2022. Sie
+  erhalten eine Anmeldebestätigung per E-Mail. Wir freuen uns auf Sie!
+buttons:
+  - Beenden: exit
