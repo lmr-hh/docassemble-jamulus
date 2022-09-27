@@ -19,6 +19,9 @@ features:
 include:
   - config.yml
 ---
+modules:
+  - .util
+---
 objects:
   person: Individual
   organization: Person
@@ -84,7 +87,7 @@ fields:
     datatype: email
 ---
 need: organization.email
-question: Persönliche Daten
+question: Repräsentant\*innen
 if: is_org
 subquestion: |
   Geben Sie hier die Daten der Repräsentanten ein, die
@@ -102,17 +105,17 @@ list collect:
 ---
 if: is_org
 code: |
-  if len(persons) == 1:
-    voter = persons[0]
+  voter = persons[0 if len(persons) == 1 else int(voter_index)]
 ---
 question: Stimmrecht
-field: voter
+field: voter_index
 if: is_org
 subquestion: |
   Es darf nur eine Person mit Stimmrecht an der Versammlung teilnehmen. Wer soll
   ${ organization.name } mit Stimmrecht vertreten?
 dropdown:
-  code: persons
+  code: >
+    [{idx: person.name} for idx,person in enumerate(persons)]
 ---
 if: not is_org
 code: voter = person
@@ -136,17 +139,18 @@ fields:
   - E-Mail: person.email
     datatype: email
 ---
-template: person_email
+if: not is_org
+template: notification_email
 subject: Vielen Dank für Ihre Rückmeldung zur LMR-Mitgliederversammlung
 content file: Person E-Mail.md
 ---
-template: org_email
+if: is_org
+template: notification_email
 subject: Vielen Dank für Ihre Rückmeldung zur LMR-Mitgliederversammlung
 content file: Org E-Mail.md
 ---
+need: [Intro, mailgun, msgraph, notification_email.content]
 code: |
-  the_email = org_email if is_org else person_email
-  
   def store_submission(p):
     data = {
       "Art": kind,
@@ -174,10 +178,11 @@ code: |
     
   if is_org:
     recipients = [organization]
-    bcc = persons
     if attending:
+      bcc = persons
       responses = [store_submission(person) for person in persons]
     else:
+      bcc = []
       responses = [store_submission(None)]
   else:
     recipients = [person]
@@ -189,7 +194,7 @@ code: |
   mailgun.send_email(
     to=recipients,
     bcc=bcc,
-    template=the_email,
+    template=notification_email,
   )
   
   del response, responses, store_submission, recipients, bcc
@@ -210,13 +215,5 @@ buttons:
 ---
 mandatory: true
 code: |
-  Intro
-  if is_org:
-    organization.email
-    if attending:
-      persons.gather()
-  else:
-    person.email
-  voter
   Send
   Done
