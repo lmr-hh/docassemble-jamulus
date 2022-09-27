@@ -39,7 +39,7 @@ field: Intro
 question: Anmeldung zur Mitgliederversammlung des LMR Hamburg 2022
 subquestion: |
   Dies ist die Anmeldung zur 44. Mitgliederversammlung des Landesmusikrates
-  Hamburg. Die Mitgliederversammlung findet satt am ... um ...
+  Hamburg. Die Mitgliederversammlung findet statt am ... um ...
   
   Mit diesem Formular teilen Sie uns mit, ob Sie an der Versammlung teilnehmen
   möchten. Auch wenn Sie nicht an der Versammlung teilnehmen, können Sie uns mit
@@ -134,10 +134,14 @@ subquestion: |
 fields:
   - Vorname: person.name.first
   - Nachname: person.name.last
-  - Funktion: person.role
-    required: false
+  - Straße und Hausnummer: person.address.address
+  - Postleitzahl: person.address.zip
+    datatype: integer
+  - Ort: person.address.city
   - E-Mail: person.email
     datatype: email
+  - Funktion: person.role
+    required: false
 ---
 if: not is_org
 template: notification_email
@@ -165,9 +169,11 @@ code: |
       data["E-Mail"] = p.email
     if is_org:
       data["Organisation"] = organization.name.text
-      data["Org Adresse"] = adresse(organization.address)
+      data["Adresse"] = adresse(organization.address)
       data["Org Telefon"] = organization.phone_number
       data["Org E-Mail"] = organization.email
+    else:
+      data["Adresse"] = adresse(p)
   
     return msgraph.add_table_data(
       daten["Anmeldungen"]["Bibliothek"],
