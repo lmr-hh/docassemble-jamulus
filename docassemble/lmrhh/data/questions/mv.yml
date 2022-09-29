@@ -39,8 +39,9 @@ field: Intro
 question: Anmeldung zur Mitgliederversammlung des LMR Hamburg 2022
 subquestion: |
   Dies ist die Anmeldung zur 44. Mitgliederversammlung des Landesmusikrates
-  Hamburg. Die Mitgliederversammlung findet statt am ... um ...
-  
+  Hamburg e.V. in der Staatlichen Jugendmusikschule Hamburg, Aula, Mittelweg 42,
+  20148 Hamburg. Die Mitgliederversammlung findet statt am 22.11.2022 um ... Uhr.
+
   Mit diesem Formular teilen Sie uns mit, ob Sie an der Versammlung teilnehmen
   möchten. Auch wenn Sie nicht an der Versammlung teilnehmen, können Sie uns mit
   Ihrer Rückmeldung dabei helfen, die Versammlung optimal vorzubereiten.
@@ -173,7 +174,7 @@ code: |
       data["Org Telefon"] = organization.phone_number
       data["Org E-Mail"] = organization.email
     else:
-      data["Adresse"] = adresse(p)
+      data["Adresse"] = adresse(p.address)
   
     return msgraph.add_table_data(
       daten["Anmeldungen"]["Bibliothek"],
