@@ -10,5 +10,10 @@ können. Sollten Sie sich später umentscheiden, können Sie die Anmeldung einfa
 erneut ausfüllen.
 % endif
 
+**Mitgliederversammlung des Landesmusikrates Hamburg**  
+Staatlichen Jugendmusikschule Hamburg, Aula  
+Mittelweg 42, 20148 Hamburg  
+Beginn: 17:30 Uhr
+
 Viele Grüße  
 Der Landesmusikrat Hamburg
