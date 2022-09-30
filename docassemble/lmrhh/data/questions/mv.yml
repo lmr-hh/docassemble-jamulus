@@ -1,0 +1,227 @@
+metadata:
+  title: Anmeldung zur Mitgliederversammlung des LMR 2022
+  tab title: Mitgliederversammlung 2022
+  short title: Mitgliederversammlung 2022
+  logo: '<img src="https://cdn.lmr-hh.de/logos/lmrhh-inverted.svg" height="27">'
+  description:
+    Dies ist die Anmeldung zur Mitgliederversammlung 2022 des Landesmusikrats
+    Hamburg.
+  exit url: https://www.lmr-hh.de/
+  revision_date: 2022-09-21
+---
+features:
+  navigation: false
+  hide navbar: false
+  hide standard menu: true
+  labels above fields: true
+  javascript: [actions.js]
+---
+include:
+  - config.yml
+---
+modules:
+  - .util
+---
+objects:
+  person: Individual
+  organization: Person
+  persons: DAList.using(object_type=Individual, minimum_number=1)
+---
+variable name: daten
+data:
+  Mailgun Vorlage: lmr-anmeldung
+  Anmeldungen:
+    Bibliothek: b!oQXn9Y_Of0mXYhbnDSK6IlHAbZ5mvZNPhOq5rQ666QCN-TuDhhYaQYkENxK9KQ0N
+    Dokument: 015U4AKPZAPTKPNYPKAJCZWY2YBWKG3K6B
+    Tabelle: "{5BBD3C0B-4179-4BE4-824A-264B475E0731}"
+---
+field: Intro
+question: Anmeldung zur Mitgliederversammlung des LMR Hamburg 2022
+subquestion: |
+  Dies ist die Anmeldung zur 44. Mitgliederversammlung des Landesmusikrates
+  Hamburg e.V. in der Staatlichen Jugendmusikschule Hamburg, Aula, Mittelweg 42,
+  20148 Hamburg. Die Mitgliederversammlung findet statt am 22.11.2022 um
+  17:30 Uhr.
+
+  Mit diesem Formular teilen Sie uns mit, ob Sie an der Versammlung teilnehmen
+  möchten. Auch wenn Sie nicht an der Versammlung teilnehmen, können Sie uns mit
+  Ihrer Rückmeldung dabei helfen, die Versammlung optimal vorzubereiten.
+  Sie können die Gelegenheit außerdem nutzen, um Ihre Daten in unserer
+  Mitgliedskartei zu aktualisieren, indem Sie in Ihrer Rückmeldung Ihre aktuellen
+  Kontaktdaten angeben.
+  
+  Ihre Angaben sind nicht verbindlich.
+fields:
+  - Anmelden als: kind
+    input type: radio
+    choices:
+      - Repräsentant\*in einer Organisation: Organisation
+      - Einzelmitglied: Einzelmitglied
+      - Präsidiumsmitglied: Präsidiumsmitglied
+      - Ehrenmitglied: Ehrenmitglied
+  - Ich werde an der Mitgliederversammlung teilnehmen: attending
+    datatype: yesnoradio
+under: |
+  <small>
+  Alle Angaben, die in diesem Formular gemacht werden, sind zur Durchführung
+  der Tagung notwendig und werden ausschließlich zu dessen Durchführung
+  verwendet. Daten werden nicht an Dritte weitergegeben. Beachten Sie auch
+  unsere [Datenschutzhinweise](/packagestatic/docassemble.mud/datenschutzhinweise.html).
+  </small>
+---
+code: is_org = kind == "Organisation"
+---
+question: Daten der Organisation
+subquestion: |
+  Geben Sie die Daten der Organisation an, für die Sie dieses Formular
+  ausfüllen.
+fields:
+  - Name der Organisation: organization.name.text
+  - Name des\*der Vorsitzenden: organization.president
+  - Straße und Hausnummer: organization.address.address
+  - Postleitzahl: organization.address.zip
+    datatype: integer
+  - Ort: organization.address.city
+  - Telefon: organization.phone_number
+    validate: >
+      lambda x: phone_number_is_valid(x, "DE") or validation_error('Bitte geben Sie eine gültige Telefonnummer ein.')
+  - E-Mail: organization.email
+    datatype: email
+---
+need: organization.email
+question: Repräsentant\*innen
+if: is_org
+subquestion: |
+  Geben Sie hier die Daten der Repräsentanten ein, die
+  **${ organization.name }** auf der Mitgliederversammlung repräsentieren
+  sollen.
+fields:
+  - Vorname: persons[i].name.first
+  - Nachname: persons[i].name.last
+  - Funktion: persons[i].role
+    required: false
+  - E-Mail: persons[i].email
+    datatype: email
+list collect:
+  add another label: Person hinzufügen
+---
+if: is_org
+code: |
+  voter = persons[0 if len(persons) == 1 else int(voter_index)]
+---
+question: Stimmrecht
+field: voter_index
+if: is_org
+subquestion: |
+  Es darf nur eine Person mit Stimmrecht an der Versammlung teilnehmen. Wer soll
+  ${ organization.name } mit Stimmrecht vertreten?
+dropdown:
+  code: >
+    [{idx: person.name} for idx,person in enumerate(persons)]
+---
+if: not is_org
+code: voter = person
+---
+question: Persönliche Daten
+if: not is_org
+subquestion: |
+  % if attending:
+  Geben Sie Ihre Daten an, um sich zur Mitgliederversammlung anzumelden, bzw.
+  um Ihre Daten in unserer Mitgliedskartei zu aktualisieren.
+  % else:
+  Geben Sie hier Ihre Daten an, damit wir Ihnen diese Rückmeldung zuordnen
+  können. Sie können auch die Gelegenheit nutzen, um uns aktualisierte
+  Kontaktdaten mitzuteilen.
+  % endif
+fields:
+  - Vorname: person.name.first
+  - Nachname: person.name.last
+  - Straße und Hausnummer: person.address.address
+  - Postleitzahl: person.address.zip
+    datatype: integer
+  - Ort: person.address.city
+  - E-Mail: person.email
+    datatype: email
+  - Funktion: person.role
+    required: false
+---
+if: not is_org
+template: notification_email
+subject: Vielen Dank für Ihre Rückmeldung zur LMR-Mitgliederversammlung
+content file: Person E-Mail.md
+---
+if: is_org
+template: notification_email
+subject: Vielen Dank für Ihre Rückmeldung zur LMR-Mitgliederversammlung
+content file: Org E-Mail.md
+---
+need: [Intro, mailgun, msgraph, notification_email.content]
+code: |
+  def store_submission(p):
+    data = {
+      "Art": kind,
+      "Teilnahme": attending,
+      "Anmeldedatum": current_datetime(timezone="Europe/Berlin").format_datetime('d.M.YYYY HH:mm'),
+    }
+    if p:
+      data["Vorname"] = p.name.first
+      data["Nachname"] = p.name.last
+      data["Stimmrecht"] = p == voter
+      data["Funktion"] = p.role
+      data["E-Mail"] = p.email
+    if is_org:
+      data["Organisation"] = organization.name.text
+      data["Adresse"] = adresse(organization.address)
+      data["Org Telefon"] = organization.phone_number
+      data["Org E-Mail"] = organization.email
+    else:
+      data["Adresse"] = adresse(p.address)
+  
+    return msgraph.add_table_data(
+      daten["Anmeldungen"]["Bibliothek"],
+      daten["Anmeldungen"]["Dokument"],
+      daten["Anmeldungen"]["Tabelle"],
+      data
+    )
+    
+  if is_org:
+    recipients = [organization]
+    if attending:
+      bcc = persons
+      responses = [store_submission(person) for person in persons]
+    else:
+      bcc = []
+      responses = [store_submission(None)]
+  else:
+    recipients = [person]
+    bcc = []
+    responses = [store_submission(person)]
+  for response in responses:
+    response.raise_for_status()
+  
+  mailgun.send_email(
+    to=recipients,
+    bcc=bcc,
+    template=notification_email,
+  )
+  
+  del response, responses, store_submission, recipients, bcc
+  Send = True
+---
+question: Ihre Anmeldung
+event: Done
+subquestion: |
+  % if attending:
+  Vielen Dank für Ihre Anmeldung zur Mitgliederversammlung des LMR 2022. Sie
+  erhalten eine Anmeldebestätigung per E-Mail. Wir freuen uns auf Sie!
+  % else:
+  Vielen Dank für Ihre Rückmeldung. Schade, dass Sie an der
+  Mitgliederversammlung nicht teilnehmen können.
+  % endif
+buttons:
+  - Beenden: exit
+---
+mandatory: true
+code: |
+  Send
+  Done

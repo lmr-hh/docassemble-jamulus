@@ -76,7 +76,6 @@ code: |
   }
   del _file, _error, _table
 ---
-mandatory: true
 code: |
   ordner = msgraph.get_file_info(
     daten["Anmeldungen"]["Bibliothek"],
